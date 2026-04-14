@@ -121,3 +121,10 @@ Class Libraries : This are the class libraries implemented internally by JAVA
    - Debugger
    - JavaDocs
    It consists compiler that converts source code to byte code.
+
+
+
+***************************************** Some Important Terms Asked in Interviews *******************************************
+JSE -> Java Standard Edition (It is our core JAVA)
+JEE -> Java Enterprise Edition (More libraries Added, used to create webapps), It is also called Jakarta Enterprise Edition
+JME -> Java Micro Edition (It is a lightweight Java edition), It was used for creating the mobile apps
