@@ -64,3 +64,60 @@ ISSUES IN C AND C++
 HOW IS JAVA SECURE?
 - JVM runs byte code in secure environment.
 - This model of java is called as sandbox model.
+
+
+***************************************** JVM IN DEPTH *******************************************
+--------------------
+|        JDK       |
+|  --------------- |
+|  |     JRE     | |
+|  | ----------- | |
+|  | |   JVM   | | | 
+|  | ----------- | |
+|  --------------- |
+--------------------
+
+JRE -> JAVA RUNTIME ENVIRONMENT
+JDK -> JAVA DEVELOPMENT KIT
+JVM -> JAVA VIRTUAL MACHINE
+
+Q.1) How does JVM runs bytecode?
+=> There are two types of software present to convert bytecode to machine code
+   a) Compiler -> Converts one type of code to another type of code. (Reads full code first and then converts it to another code)
+   b) Interpreter -> Same as compiler. (Converts code line by line and executes it line by line)
+
+   In early ages JAVA used interpreter
+   because we wanted early execution of the program.
+   - Slow Hardware : due to this using compiler was time consuming
+   - less RAM
+   - Disc slow
+   Therefore we used the interpreter
+
+   In modern times we added an JIT compiler with Interpreter
+   - So now it became Interpreter + JIT
+
+   Now what does JVM do to optimize it?
+   - The ByteCode which will be used frequently is compiled by the compiler to Machine Code and at the same time the interpreter keeps on converting
+     and executing the code line by line, this makes the repeated code run fast as it is already in machine code. Hence making it faster.
+
+
+JVM functionalities:
+- Convert ByteCode to MC
+- Security (Runs code in a sandbox environment)
+- Garbage Collection
+
+
+***************************************** JRE (JAVA RUNTIME ENVIRONMENT) *******************************************
+JRE = JVM + Class Libraries
+
+Class Libraries : This are the class libraries implemented internally by JAVA
+
+
+***************************************** JDk (JAVA DEVELOPMENT KIT) *******************************************
+*JDK
+=> JDK consist of everything that is required to run th java program.
+   It consists of:
+   - Compiler
+   - Debugger
+   - JavaDocs
+   It consists compiler that converts source code to byte code.
