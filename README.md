@@ -133,6 +133,7 @@ JME -> Java Micro Edition (It is a lightweight Java edition), It was used for cr
 
 # VARIABLES
 Variables are named storage location in a computer that can hold some value. It is also called as an identifier
+The value stored inside the variable is called as literal.
 
 How to declare variables in java?
 -> data_type variableName = data (optional);
@@ -145,8 +146,43 @@ There are two types of data types in Java:
 2. Non-Primitive
 
 1. Primitive:
-   a) Integer -> byte, short, int, long
+   a) Integer -> byte, short, int, long (this all have different ranges as how large of a number can be stored)
    b) Real Number -> float, double
    c) Character -> char
    d) Boolean ->  boolean
+
+a) Integer
+   i) byte: A byte can store number x where range of x is (-128, 127) that is 8 bit.
+  ii) short: A short can store 16 bit.  
+ iii) int: It can store 32 bit. 
+  iv) long: It can store 64  bit.
+
+  NOTE: Every number is signed in JAVA. It means that both positive and negative number can be stored in any variable.
+
+b) Real Number (Floating point numbers):
+   i) float: It can contain up to 32 bits. Range(1.4e-0.45 to 3.4e+0.38)
+  ii) double: It can contain up to 64 bits. Range(4.9e-324 to 1.8e+308)
+
+  float is also called as single precision and double is also called as double precision.
+  In production always prefer to use double. 
+  Why?
+  -> It has much more precision.
+  -> The hardware previously were good for doing calculation using float, but now the hardware are optimized for double.
+  -> Also builtin avg, sin(), cos() return double values.
+
+c) Characters:
+   i) char: They can represent unicode characters (They follow ASCII standard). It has the storage value of 16 bits.
+
+   We need to store it using single quotes so that the JAVA compiler knows that it is a character
+   Example : char d = 'a';
+   internally the character 'a' is stored as its ASCII number that is 65 and inside the memory that is stored in binary form of that number.
+   Whenever a user tries to retrieve that character based on the data type the compiler converts 65 to 'a';
+
+   Java uses unicode, which consists of all the characters around the world.
+
+
+d) Boolean:
+   i) boolean: It consists of only two values that are 0 and 1. 
+   -> in JAVA we can't write 0 or 1 for true or false, we can just write true and false unlike c and c++.
+
 
