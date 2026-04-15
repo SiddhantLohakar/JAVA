@@ -128,3 +128,25 @@ Class Libraries : This are the class libraries implemented internally by JAVA
 JSE -> Java Standard Edition (It is our core JAVA)
 JEE -> Java Enterprise Edition (More libraries Added, used to create webapps), It is also called Jakarta Enterprise Edition
 JME -> Java Micro Edition (It is a lightweight Java edition), It was used for creating the mobile apps
+
+
+
+# VARIABLES
+Variables are named storage location in a computer that can hold some value. It is also called as an identifier
+
+How to declare variables in java?
+-> data_type variableName = data (optional);
+
+Java is Staticaly Typed (we need to specify what type of data is going to be stored beforehand)
+
+# DATATYPES IN JAVA
+There are two types of data types in Java:
+1. Primitive
+2. Non-Primitive
+
+1. Primitive:
+   a) Integer -> byte, short, int, long
+   b) Real Number -> float, double
+   c) Character -> char
+   d) Boolean ->  boolean
+
