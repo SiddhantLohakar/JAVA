@@ -161,6 +161,7 @@ a) Integer
 
 b) Real Number (Floating point numbers):
    i) float: It can contain up to 32 bits. Range(1.4e-0.45 to 3.4e+0.38)
+             we need to explicitly specify keyword "f" when using float
   ii) double: It can contain up to 64 bits. Range(4.9e-324 to 1.8e+308)
 
   float is also called as single precision and double is also called as double precision.
@@ -186,3 +187,60 @@ d) Boolean:
    -> in JAVA we can't write 0 or 1 for true or false, we can just write true and false unlike c and c++.
 
 
+1) Problem with java storing decimal numbers.
+  Example : float f =  0.7f;
+            System.out.printf("%.20f");
+
+            output : 0.698975.... 
+            this kind of output is not given when we write soutp because it rounds of the number and gives the output. 
+
+
+# Storing binary, octal, and hexadecimal numbers in JAVA.
+
+1) Binary Number: Add "0b" in front of the number
+   example  int a = 0b101;
+
+2) Octal Number: Add "0" in front of the number
+   example int a = 023;
+
+3) Hexadecimal number: Add "0x" in front of the number.
+   example int a = 0xA;
+
+# How negative numbers and decimal numbers are stored internally in JAVA?
+
+1) Negative Number:
+   In JAVA the negative number is stored in the form 2's complement of that number.
+   For example:
+
+   byte a = -2;
+
+   1's complement of 2 =  0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
+   2's complement of 2 =  1 | 1 | 1 | 1 | 1 | 1 | 0 | 1 | +  1  =  1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 |
+
+   But how will java know if the number is positive or negative?
+   - It will look at the numbers most significant bit.
+   - If the MSB is 1 then the number is considered -ve. 
+     Else it is considered positive.
+   
+  a) Why byte can store only from -128 to 127?
+    - Byte can store 8 bits of memory, if we consider the first bit to be sign bit then :
+      If the first bit is 0 for +ve numbers:
+      - Even if we make all the remaining bits as 1 still the maximum number comes to be 127.
+      - Example:
+        0 1 1 1 1 1 1 1 = 127 (In this 0 is the sign bit).
+      if the first bit is 1 for -ver numbers:
+      - If we consider the rest of the numbers to be 0. Then the 2's complement of that number will come 128 and attaching -ve sign it becomes -128.
+      -  Example:
+         1 0 0 0 0 0 0 0 (1 is the sign bit here, so the number is negative)
+         2's complement of above number is = (10000000) = -128 
+
+   This is how we store negative numbers in java.
+
+   b) Why do we take 2's complement to store -ve number we could've used the 1's complement?
+   - This was done to handle a specific condition
+   - If someone tries to store -0 in byte, then the 1's complement will be (11111111)
+     in this case we have a negative 0 stored in our memory and that is wrong.
+   - If we use 2's complement then still -0 has 2's complement as 00000000 hence storing the number as 0 and not -0.
+
+2. Floating Number:
+   
