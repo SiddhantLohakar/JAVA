@@ -313,3 +313,54 @@ d) Boolean:
       The bias for double will be 1023.
 
 
+# Type Conversion in JAVA
+  
+  There are two types of type conversion in JAVA:
+  1. Implicit : 
+      Type conversion done by JAVA itself is called as Implicit conversion
+      Example:
+        byte b = 24:
+        int i;
+        i = b;
+      
+      A) Rules for implicit Conversion
+      - Destination data type should be wider than source data type. (This are also called as widening conversion)
+
+
+  2. Explicit:
+     This needs to be done by using casting.
+     Example int i = 300;
+             byte b = i; -> this will give error because bytes range is short
+         We need to do explicit casting to do this
+             byte b = (byte) i; we tell compiler intentionally that we want to convert our integer to byte
+
+             Since byte range is only 8 bit, the first 8 bit will be taken from the integer 300's binary form
+             so the number stored in "b" will be 44.
+         - This type of conversion are also called as narrowing conversion
+
+
+   3. Truncating Conversion:
+      - float to int
+         float f = 16.25f;
+         int a - f;
+         we get the value in "a" as 16
+      
+      - double to int
+
+   4. Boolean to any data type conversion:
+         NOTE: This conversion are not possible in JAVA
+   
+   5. Automatic Type Promotion
+       JAVA internally converts the type while doing some calculations or writing some expression.
+       Example:
+         byte b = 50;
+         b = b*2; This will give error because  the number while calculating are converted to int
+         So we need to explicitly specify the type to be inferred as byte
+
+      ** Type Promotion Rules **
+      1. byte, short  and char values are promoted to int.
+      2. If one operand is long, the while expression will become long
+      3. If one operand is float, entire expression will become float
+      4. If one operand is double, entire expression is double
+      
+       
