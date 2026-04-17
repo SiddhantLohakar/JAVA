@@ -243,4 +243,73 @@ d) Boolean:
    - If we use 2's complement then still -0 has 2's complement as 00000000 hence storing the number as 0 and not -0.
 
 2. Floating Number:
+   If we have number stored like:
+   float f = 8.125
+   What happens internally?
+   => The float takes 32 bit of memory which is divided into 3 parts
+      1. Sign bit: 1bit (MSB) is a sign bit.
+      2. Exponent: Following 8 bit after sign bit are exponent.
+      3. Mantissa: The remaining 23 bits are called as mantissa.
    
+   Now how does the "8.125" gets stored internally?
+   => STEP 1:
+      first "8" is converted to binary i.e  1000
+      then  ".125" is converted to binary i.e 001
+
+      so the binary now looks like 1000.001
+
+      STEP 2: Make it in the form of (1.xx * 2^exp).
+      => So the number becomes: 1.000001 * 2^3
+
+      STEP 3: Add Bias to the exponent.
+      => for float bias = 127;
+         so exponent = 127 + 3 = 130
+         Convert the exponent to binary so we get: exp = (10000010)
+
+      STEP 4: Place value in memory.
+      => 1. Sign Bit: 
+            - Since the number is positive the sign bit is 0
+         2. Exponent Bits:
+            - Exponent we have took out i.e 10000010
+         3. Mantisaa:
+            - The "xx" in (1.xx * 2^exp) is the mantissa
+            - i.e 000001
+            - since we have the space of 23 bits we make the remaining spaces to "0"
+
+   3) How does retrieval takes place?
+      => Let's use our previous number as an example: 0|10000010|00000100...00
+      
+         The formula for that is : (-1)^sign * (1 + Mantissa) * 2^exp-Bias
+         => So replacing the value accordingly we get: (-1)^0 * (1 + 2^-6) * 2^(130-127)
+                                                       = 1 * (1.56125) * 8 = 8.125
+
+   
+   4) Now let's look at the edge case:
+      Consider the number 0.7.
+      a) Express the number to binary
+         i.e 0.1011001100110... the number after decimal goes on repeating infinitely
+      
+      b) Express the above number in the format : (1.xx * 2^exp)
+         1.01100110... * 2^-1
+         Exponent = 127 +  (-1) = 126
+         Binary form of exponent =  01111110
+      
+      c) Express it in memory
+         0|01111110|0110 0110 0110 0110 0110 011
+         - Since we are storing trucated data, when we try to extract it back we get the wrong value.
+
+   5) What is Bias and why it's value is 127?
+      - Bias is the number that we add to exponent so that we don't have to store negative exponents.
+      - To know the exact value of bias we have the formula: 
+        2^(Number of exp bits - 1) -1;
+      - This is an IEEE format
+
+   6) But how do we store the floating numbers in double:
+      - In double we have 64 bits
+      - MSB (1bit) = Sign bit
+      - Following 11 (bit) = Exponent
+      - Following 52 (bit) = Mantissa
+
+      The bias for double will be 1023.
+
+
