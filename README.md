@@ -552,3 +552,34 @@ To prevent short circuit from happening we can use a bitwise and or bitwise OR o
 
       We can also have nested switch 
 
+
+# Iteration Statement in JAVA
+- Loops a certain block of code for a certain number of time
+Types of loops in JAVA:
+ - While loop
+ - For loop
+ - do - while loop
+
+1) While loop :
+   Runs the block of code till the expression specified inside the while condition is true.
+   Example:
+   while(i>10)
+   {
+      // Block of code
+   }
+   This will run till "i" value is greater than 10
+
+2) Do while loop:
+   do-while loop runs atleast once then check conditions afterwards
+   Example:
+   do{
+
+   }while();
+
+
+3) for loop:
+   1. First assignment statement is executed
+   2. Then second condition statement is evaluated
+   3. If true flow will evaluate the body of the loop
+   4. If false then it will go to the following code after the for loop
+   
