@@ -362,5 +362,109 @@ d) Boolean:
       2. If one operand is long, the while expression will become long
       3. If one operand is float, entire expression will become float
       4. If one operand is double, entire expression is double
+
+
+# EXPRESSION: 
+In programming, an expression is a combination of literals, variables, operators, and function calls that the language interprets and computes to produce a single value.
+
+# OPERATORS IN JAVA
+1) Arithmetic Operators (+, -, *, /, %, ++, --)
+2) Relational Operators (==, !=, <, >, <=, >=)
+
+3) Bitwise Operators
+   This operators work on the bit level
+   &, |, ^, ~, >>, <<, >>>, &=, |=, ^=, >>=, <<=, >>>=
+
+
+   A B A&B A|B A^B ~A
+   0 0  0   0   0  1
+   0 1  0   1   1  1
+   1 0  0   1   1  0
+   1 1  1   1   0  0
+
+
+
+   a) & (AND operator): Outputs 1 when both the binary bits are 1, otherwise returns 0
+   b) ^ (XOR operator): This operator gives 1 whenever there are odd number of 1's in the operands
+   c) | (OR operator) : Output is 1 when any one of the operand is 1
+   d) ~ (NOT Operator): Inverts the bits
+
+
+Bitwise Shift Operators in Java
+   1. Key Concept: Type Promotion
+            In Java, byte and short are promoted to int (32 bits) before any bitwise operation.
+            This means all shift operations (<<, >>, >>>) are actually performed on 32-bit integers, even if the variable is byte or short.
+   
+   2. Left Shift (<<) on byte / short
+            Process:
+            Value is promoted to 32-bit int
+            Left shift operation is performed
+            Result is truncated back to 8 bits (byte) or 16 bits (short)
+            Final value is stored
+            
+            Important Observation:
+               During computation → number is 32-bit (no sign issue yet)
+               After truncation → only LSB bits remain
+               If the MSB (sign bit) of the truncated result = 1, the number becomes negative
+            
+            Example Insight:
+               You may get a positive intermediate result
+               But after truncation → it can become negative
+               Storage Difference:
+               If stored in byte → truncation happens → possible negative value
+               If stored in int → full 32-bit value preserved → different result
+
+   3. Left Shift (<<) on int
+         Operates directly on 32 bits
+         Shift count is capped using modulo 32
+         
+         Rule:
+         shift = shift % 32
+         
+         Examples:
+            x << 35 → same as x << 3
+            Prevents overflow of shift range
+   4. Why byte and short Support Shifts
+         Even though they are smaller types:
+         Java promotes them to int internally
+         That’s why shift operators work without errors
+  
+   5. Negative Numbers and Sign Bit
+         Key Idea:
+         In signed numbers, MSB (Most Significant Bit) represents the sign
+         0 → positive
+         1 → negative
+
+         For Negative Numbers:
+         The sign bit must be preserved to maintain negativity
+        
+         Behavior:
+            Left shift (<<):
+            Shifts bits left, fills 0 on the right
+            May change sign if MSB changes after shift
+
+            Right shift (>>):
+            Preserves sign bit (sign extension)
+            Used for signed numbers
+
+            Unsigned right shift (>>>):
+            Does NOT preserve sign
+            Always fills with 0
+   
+   6. Key Takeaways
+      All shift operations are performed on 32-bit integers
+      byte/short results are truncated after operation
+      Sign may change due to truncation
+      Shift count for int is modulo 32
       
-       
+      Always be careful when:
+         Storing results in smaller data types
+         Working with negative numbers
+      
+# Short Circuit:
+- Short circuit is when the second operation doesn't get executed because the first expression resulted in true or false while using logical operator
+Example (a>b && a>c) (In this case if a>c results in false we don't have to check the other operation)
+
+To prevent short circuit from happening we can use a bitwise and or bitwise OR operation, it works similarly but doesn't give the short circuit and checks every condition
+
+# Operator Precedence:
