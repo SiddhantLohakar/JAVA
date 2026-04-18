@@ -582,4 +582,20 @@ Types of loops in JAVA:
    2. Then second condition statement is evaluated
    3. If true flow will evaluate the body of the loop
    4. If false then it will go to the following code after the for loop
-   
+
+# JUMP STATEMENTS
+1) break: Breaks the execution of the iteration statement
+2) continue: breaks a current iteration and goes to next iteration
+3) Labels : we can give name to loops using labels, we can use them to break a particular loop by specifying its name
+
+   Example :
+   outer : for(int i=0; i<n; i++)
+   {
+      inner: for(int j=o; j<m; j++)
+      {
+         if(j==5)
+         {
+            break outer;
+         }
+      }
+   }
