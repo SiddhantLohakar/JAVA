@@ -467,4 +467,88 @@ Example (a>b && a>c) (In this case if a>c results in false we don't have to chec
 
 To prevent short circuit from happening we can use a bitwise and or bitwise OR operation, it works similarly but doesn't give the short circuit and checks every condition
 
-# Operator Precedence:
+# What is flow of Control?
+- Flow of control is how the bytecode gets executed line by line while converting it to machine code.
+- In JAVA the statements are executed line by line but there are some keywords that can change this flow.
+
+# Three types of flow of control:
+1. Selection
+2. Iteration 
+3. Jumps
+
+1. Selection: 
+   a) if() : 
+      -Executes the inner block if the condition specified in the bracket is true.
+      -Example: a = 20;
+                 if(a>18)
+                 {
+                   system.out.println("Age above 18);
+                 }
+                 else
+                 {
+                     <!-- Some code -->
+                 }
+         If the "if" statement is true then execute the code inside the "if" block else, go to "else" block and execute that statement
+
+
+   b) if-else()
+         Multiple choices we can use if-else if ladder
+         Example:
+           if(a==1)
+           {
+            //
+           }
+           else if()
+           {
+
+           }
+           else
+           {
+
+           }
+
+   c) switch()
+      Before JDK7:
+      - Switch is optimized for some cases, but it has limited use cases
+      - It can evaluate only on byte, short, int, char, enumeration.
+      - two cases can not be duplicated
+      After JDK-7:
+      - Strings can also be used at switch expression
+      After JDK-14: switch is enhanced too much
+
+
+      Switch can only test equality but if-else can test both equality & unequality.
+
+      Why is it more optimized?
+            in switch statement if we have code like this
+            int i = 2;
+            switch(i){
+               case 1:
+                  // do something
+                  break;
+               case 2:
+                  // do something
+                  break;
+               case 3:
+                  // do something
+                  break;
+               default:
+                  // do something
+                  break;
+            }
+
+            In this case the JVM doesn't evaluate cases 1 by 1. It sees that i is storing 2 and directly executes case 2, so the execution happens
+            in one step only.
+
+      How does JVM achieve it?
+      => It uses jump table internally
+        - Jump table provide us random access, so that we can directly jump to any testCase
+        - The jump table are not always efficient, so compiler doesn't create it always
+        - When there are sparse values (Values that are too far from each other) the JAVA doesn't make Jump table.
+
+      Jump Table are of two types:
+      Table-Switch : this creates and stores value for each test cases, used whhen there are dense values.
+      lookup-Switch: This can do binary search to search lookup in log(N) time. Created when value is sparse.
+
+      We can also have nested switch 
+
