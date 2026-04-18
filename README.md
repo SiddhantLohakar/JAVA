@@ -599,3 +599,54 @@ Types of loops in JAVA:
          }
       }
    }
+
+# ARRAY:
+Array is a contigious storage space allocated where we can store elements of similar data type
+
+* Declaration:
+  int []      rollNumber                   =    new                               int[3];
+  datatype    identifier for the array          allocate memory in heap          size of array
+
+* Why do we need to specify the datatype?
+  By specifying the data type we tell the compiler how much memory we need for our elements.
+  For example: If we are using "int" datatype and wanting to store 4 elements then we would require 32 bits.
+               hence we need to specify the datatype
+
+* We can get  the size of array using : rollNumber.length
+
+* Assigning number:
+  - rollNumber[index] = value;
+
+* retrieving number:
+  - soutp(rollNumber[index]);
+
+* indexOutOfBoundException: 
+  - If we try to access the element at a certain index which is greater than the size of array the compiler will give this exception.
+
+# Multidimensional Arrays:
+   Array of arrays is called as multidimensional Array.
+   1) 2d Array:
+   
+   * Declaration:
+     int [][] marks = new int[3][3];
+
+   * Assigning values:
+     marks[0][0] = 3;  
+
+   * Representation of 2d Array in memory
+      int [][] marks = new int [3][3];
+      how will it be actually present in the memory:
+
+      It will be something like this
+         [][][]
+         /  |  \
+        []  [] [] 
+        []  [] []
+        []  [] []
+
+   * Giving the number of rows is compulsary while declaring but columns are optional.
+     -> then we can declare it later like this:
+        arr[0] = new int[3];
+        arr[1] = new int[4];
+        arr[2] = new int[5];
+     -> We can give different lengths like this
