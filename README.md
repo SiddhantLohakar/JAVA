@@ -719,3 +719,50 @@ Why?
       Scope of variable is limited to the block they are defined inside.
   2) Global scope:
       The variable are defined outside the main function inside the class. They are accessible till we are working on the same file.
+
+
+# Problems in functional programming
+-  Need a lot of independant variable to represent a similar group of entities like, Student, Vehicles etc.1
+-  If we pass the Entitiy to function we need to pass all the variables related to that entity
+-  We need to create new set of variables for new students.
+-  No authority over data.
+
+# Object Oriented Programming:(Code present in OOP.java)
+-  Object-Oriented Programming (OOP) is a programming paradigm that structures software design around objects, which are instances of classes, and         encapsulates data and behavior together.
+
+* Class:
+  It is an blue print of the object. It shows how an object would look like.
+  Example: 
+  class Student{
+      String name;
+      int age;
+      int marks;
+  }
+
+* Object:
+   Object is an instance of Class. They are type of non-primitive data type, and it is also called as user-defined datatype.
+   Example:
+   Student s1;
+   s1 = new Student();
+
+   We can also define it as:
+   Student s1 = new Student();
+
+   - The new keyword tells the compiler to assign the memory in heap for the Student object. It will take enough memory to which can actually store
+     every characteristics and methods present in the class for that object.
+   - s1 here is a reference variable that will be containing the base address for that object.
+   - s1 is stored in stack, and actual object is present in the heap.
+
+* Assigning Values
+  s1.age = 30;
+  s1.name = "Vedant"
+
+* Behaviour:
+  This are the functions that an object can perform. Like Student can study, talk etc. In class if we define functions, we call them methods.
+
+
+# Naming Convention
+  - Variables (primitive/ reference Variables) -> They should be in camel Case.
+  - Classes -> Starting with capital letter
+  - Functions -> They should be in camelCase
+This are not manditory but a good coding practice.
