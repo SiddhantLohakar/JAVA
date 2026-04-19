@@ -878,3 +878,40 @@ This are not manditory but a good coding practice.
       - Exact field size of 16 bytes
      Adding those two we have total size of 28 bytes so the nearest multiple of 8 to 28 is 32, so we add 4bytes of padding and we get the size of our object as 32 byte.
 
+# IS JAVA LANGUAGE CALL BY VALUE OR CALL BY REFERENCE:
+  - It is call by value. There is no call by reference in JAVA.
+
+# Deep Copy vs Shallow Copy in JAVA: (Code present in ShallowDeep.java)
+  - Let us understand this by an example.
+  Consider a class Student:
+   ** Student s1 = new Student(); **
+  In the above case the s1 is the object of class Student
+
+  - Now there are two ways that we can get the values of this object to be stored in the another object of "Student" class.
+
+  1) The first way is to do direct assigning:
+     Student s2 = s1; // This is called as shallow copy
+     Since s1 is a reference variable that is storing the reference of the object. The s2 will also get the reference of the same object.
+     So the changes made in s2 will reflect in s1 also as both are pointing to the same object.
+     This is called as shallow copy.
+
+  2) The second method is using the constructor.
+     Create a constructor inside the "Student" class that can copy the values of passed "Student" object to the current object
+     Example:
+     class Student {
+
+         Student (Student s)
+         {
+            this.name = s.name;
+            this.age = s.age;
+         }
+     }
+
+     <!-- Assigning Values -->
+     Student s1 = new Student("Siddhant", 20);
+     Student s2 = new Student(s1);
+
+     In the above example the s2 and s1 will point to seperate object memory, since s2 is also getting its own memory space because new keyword has been used.
+     Now changes made in s2 will not reflect in s1, for the starting part the value of s1 and s2 will remain same.
+
+     * This is called as Deep Copy
