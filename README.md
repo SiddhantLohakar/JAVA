@@ -766,3 +766,65 @@ Why?
   - Classes -> Starting with capital letter
   - Functions -> They should be in camelCase
 This are not manditory but a good coding practice.
+
+
+
+# Instance Variable:
+- The variables declared inside a class are called as instance variables.
+- Instance variables have some default values:
+  Integer --> 0
+  floating --> 0.0
+  Boolean --> false
+  String --> null (nothing)
+
+  *  NOTE: Local variables dont have default values.
+
+# Instance Methods:
+- Instance methods are those functions that are defined inside the class.
+
+# Constructors: (Code in OOP2.java)
+-  Constructor is a special member function that is called during the creation of any object.
+
+   Example
+   Student s1 = new Student(); -> this Student() is calling the constructor.
+
+  * Rules of Constructors
+  -  Same name as class.
+  -  No return type. Not even void
+  -  Automatically called during object creation
+  -  Used to initialize an object
+  -  Can be overloaded
+
+# Different types of Constructors in JAVA:
+1) Default Constructor:
+   - JAVA says that constructor is mandatory. 
+   - If we dont make any constructor, JAVA adds a constructor while the code gets compiled.
+
+2) User defined Constructor:
+   - Users can create there own constructor.
+   - When users creates there own constructor, java doesn't add there own constructor.
+
+   * Parameterized Constructor:
+   - We can take parameters inside the constructor like any other function.
+   Example of parameterized Constructor for a Student class:
+   --> Student(string n, int a){ name = n; age = a;}
+
+# Overloading of a constructor:
+- Constructor can be overloaded similarly to the functions.
+
+# this keyword in JAVA:
+- this keyword refers to the current object. Basically it is a reference to the current object, hence it has access to all the data members and member function.
+- If we are calling the constructor using this, it should always be the first line.
+
+# Chaining in Constructor:
+- Calling bigger constructor using this constructor, and that constructor itself calls another constructor is called as constructor chaining.
+  Example: Constructor chaining for a student class:
+  Student() { this("unknown")};
+  Student(string name) {this(name, 0)}
+  Student(String name, int age) {this(name, age, 0)}
+  Student(String name, int age, int rollNumber)
+  {
+      this.name = name;
+      this.age = age;
+      this.rollNumber = rollNumber;
+  }
