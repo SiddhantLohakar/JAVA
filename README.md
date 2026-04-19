@@ -670,3 +670,52 @@ Caching:
 Java performs caching while reading the memory from the RAM so it doens't have to fetch the memory again and again from the RAM.
 If it reads 8 bytes of memory, then it can store two integers present at arr[0] and arr[1] if it reads arr[0] since the next location is arr[1],
 so it can cache that data, so the next time someone tries to access it, the data can be given directly from the cache.
+
+# FUNCTIONS IN JAVA:
+Function is a block  of code that executed whenever that function is called for. It increases the reusability.  
+Compiler calls the main function and starts executing block of code line by line.
+
+* Boilerplate
+  static return_type function_name(parameters){
+
+      return value_of_same_datatype;
+
+  }
+ 
+  Example: 
+  static int Sum(int a, int b)
+  {
+      int result = a + b;
+      return result;
+  }
+
+* Arguments:
+  Arguments are the actual value that is passed while calling the function.
+
+
+# Types of Functions in JAVA (Code in functions.java file)
+1) No Input No output
+2) Input but no Output
+3) No Input but gives output
+4) Both Inpht and Output
+
+* NOTE: Number of parameters can be anything
+
+# Function Overloading (Code in Overloading.java)
+Function Overloading is a thing where two or more functions can have same name but must differ on the following things:
+- number of parameters
+- data_types of the parameter
+- order of parameter (for different datatype parameter);
+
+We cant do overloading based on the return_type.
+Why?
+=> The answer is, it is optional to store the value returned by function inside any variable, so how would compiler know when you just call the function with same name and not storing the value in any variable. How will compiler know if you are calling the function with int return type, float return type.
+
+# Chaining of Function:
+  A function calling another function and that function is calling another function and so on. It is called as chaining of function.
+
+# Scope of variable:
+  1) Local Scope:
+      Scope of variable is limited to the block they are defined inside.
+  2) Global scope:
+      The variable are defined outside the main function inside the class. They are accessible till we are working on the same file.
