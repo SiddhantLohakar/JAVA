@@ -828,3 +828,53 @@ This are not manditory but a good coding practice.
       this.age = age;
       this.rollNumber = rollNumber;
   }
+
+  * Can we call constructors manually?
+    - No we cannot call constructors manually, it can be only called when creating an object, or it can be called using this inside the class itself.
+   
+  * What happens when the memory in heap is full and there is no space remaining to allocate for the object being created using the constructor?
+    => At that time we get the runtime exception.
+
+
+# Objects Deep Dive :
+ 
+ * How much memory does reference variable take?
+ => It takes either 4byte or 8byte. It varies from JVM to JVM. The JVM which uses compression takes 4 bytes rest takes 8 bytes.
+
+ * How much memory does object takes?
+   Let us understand with an example, consider the object of the class
+   class Student{
+      String name; 4 bytes
+      int age; 4 bytes
+      int rollNo; 4 bytes
+      String college; 4 bytes
+   }
+
+   By looking at it we can think that it would take 16 bytes, but it is wrong, because there are more things apart from the exact fields that are present in the class.
+  
+   * What are some of the other things?
+   - Header size
+   - Exact fields
+   - Padding
+
+   1) Headers: This contains the metadata of the object.
+      The metadata can be divided into two subparts:
+      a) Mark Words: This contains
+         - lock info
+         - Synchronization info
+         - Garbage collection infor
+        This takes around 8 bytes.
+      b) Class Pointers:
+         this keyword: 4bytes/8 bytes
+   
+   2) Exact Data: 
+      Considering the Student class example, the exact fields are name, age, rollNo, college, this will take around 16 bytes of memory.
+
+   3) Padding:
+      Since modern CPUs work by fetching 8bytes of data at once we want are object size to be the multiple of 8. So the size of the Object is rounded off to multiple of 8 bytes using padding.
+
+      Now considering the Student class example:
+      - We had header size of 12 bytes
+      - Exact field size of 16 bytes
+     Adding those two we have total size of 28 bytes so the nearest multiple of 8 to 28 is 32, so we add 4bytes of padding and we get the size of our object as 32 byte.
+
