@@ -650,3 +650,23 @@ Array is a contigious storage space allocated where we can store elements of sim
         arr[1] = new int[4];
         arr[2] = new int[5];
      -> We can give different lengths like this
+
+
+# How does random access work internally.
+
+For a 1D Array:
+-> The identifier of the 1D array stores the base address of that array. As each next element is stored at contiguous memory location. We can create a formula that is like this:
+   base_address + (size_of_datatype * index);
+
+For a 2D Array:
+-> In a 2D array arr[0] holds the address of the array that is going to be present at that index so the formula becomes:
+  (base_address + (size_of_datatype * index)) + (col_index * size_of_datatype);
+
+For a boolean:
+The official JAVA docs specifies, they have specified that the boolean size should be handled by the JDK for the particular platform
+-> Usually most of the JVMs  keep it to 1byte 
+
+Caching:
+Java performs caching while reading the memory from the RAM so it doens't have to fetch the memory again and again from the RAM.
+If it reads 8 bytes of memory, then it can store two integers present at arr[0] and arr[1] if it reads arr[0] since the next location is arr[1],
+so it can cache that data, so the next time someone tries to access it, the data can be given directly from the cache.
