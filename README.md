@@ -1007,3 +1007,59 @@ This are not manditory but a good coding practice.
 
   * How does it work on JVM level:
     - Internally the JVM adds the bytecode of the classes imported from certain packages and adds it in our code while compiling.
+
+2) Inheritance
+  Inheritance is a mechanism in Java by which one class (called the subclass or derived class) acquires the properties (fields) and behaviors (methods) of another class (called the superclass or base class), enabling code reusability and establishing a hierarchical relationship between classes.
+
+  Example:
+  class Vehicle{
+    void start(){
+
+    }
+  }
+
+
+  class Car extends  Vehicle{
+      void setGear(){
+
+      }
+  }
+
+  - Now the object of class Car can use the methods of class Vehicle, but if we redefine the "start" method inside the Car class then the method present inside the Car class will be called. We can say that the method "start" inside the Car class has shadowed the method "start" present in the "Vehicle" class.
+
+  * Properties of Inheritance:
+   - Code Reusability.
+   - Supports polymorphism.
+
+# TYPES OF INHERITANCE:
+1) Simple Inheritance. A -> B
+2) MultiLevel Inheritance.  A -> B -> C
+3) Hierarchical Inheritance.  
+         A
+        / \
+       B   C
+4) Multiple Inheritance: (Java doesn't support multiple inheritance using classes)
+      A  B
+      \ /
+       C
+
+
+ * Why multiple inheritance is not supported in JAVA?
+   Let us understand it with an example:
+           A  show()
+          / \
+  show() B   C  show()
+          \ /
+           D
+
+   Consider the above example where the class A has a method named as show, and class B and class C which are inheriting from class A write there own method "show".
+   If calss D which inherits from both B and C tries to call the method "show" the compiler won't be  able to decide which method it should call, from class B or from class C, so this is called as "Diamond problem", hence multiple inheritence is not supported in JAVA for classes.
+
+
+# SUPER KEYWORD
+  - "super" keyword stores the reference of the parent object
+ 
+  * Uses of Super:
+     - To access parent class Variable
+     - Can call parent class method using Super
+     - Call parent class constructor.
