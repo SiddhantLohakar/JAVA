@@ -991,6 +991,19 @@ This are not manditory but a good coding practice.
   - Getters: used to get the value of instance variables.
   - Setters: used to set the value of instance variables.
 
+  # PACKAGES in JAVA (Code are present in School folder)
+  - Packages are just folders, in which we can store differenct classes. The files stored inside the same folder belong to that package.
+  
+  * Importing classes presnt in packages:
+    - To import classes present in packages, we use the import statement the syntax is as follows:
+    - import package_name.class_name
+  * Importing all classes present in the packages
+    - We use the syntax:
+    - import package_name.* (This imports all the classes presnt inside that package).
 
+  * There are two types of packages in JAVA:
+  - User  defined package
+  - In-Built package (java.util, java.lang, java.io)
 
- 
+  * How does it work on JVM level:
+    - Internally the JVM adds the bytecode of the classes imported from certain packages and adds it in our code while compiling.
