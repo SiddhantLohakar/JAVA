@@ -954,3 +954,43 @@ This are not manditory but a good coding practice.
 
 # Why main is static in JAVA.
 - if it was not static then JVM would have to create an object of class for calling the main method. But JVM cannot create the object hence main method is static in JAVA
+
+# Pillars of OOP:
+
+1) Encapsulation: 
+   Encapsulation in Object-Oriented Programming is the mechanism of wrapping data (variables) and the methods (functions) that operate on that data into a single unit (class), while restricting direct access to the data and allowing it only through controlled interfaces.
+
+ * Principles of Encapsulation
+   -  Both data and behaviours should be encapsulated within and object.
+   -  We should not provide unrestricted access of the data.
+
+
+ # ACCESS OF MODIFIERS:
+ This are the keywords to define who has access to variables, class, method and constructor.
+
+ * There are four access modifiers in JAVA:
+   1) Private: 
+      - The variable, method, or class which are private cannot be accessed out of the class in which it is defined.
+   2) default:
+      - Any field declared with default access modifiers can be accessed inside the same package (Groups similar classes and interfaces together) and not outside the package.
+      - By default every field is default.
+   3) protected:
+       - Anyone can access them within the same package or inherited class which are even present in the other package.
+   4) public:
+       - Can be accessd by anyone.
+
+
+   This can be added in the front of variable, Method, constructor, class
+
+* NOTE: We can't use private or protected in front of our main class.
+   Why?
+   Because, our main class is the class, out of which there is nothing, so we can't determine what the private is in rellation to.
+   We can't use protected to a class because the protected mmakes the variables, and instance methods available in the child class, but we cant use inheritance on the class itself hence we can't use it.
+
+* Getters and Setters:
+  - Getters: used to get the value of instance variables.
+  - Setters: used to set the value of instance variables.
+
+
+
+ 
