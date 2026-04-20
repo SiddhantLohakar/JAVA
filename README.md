@@ -915,3 +915,42 @@ This are not manditory but a good coding practice.
      Now changes made in s2 will not reflect in s1, for the starting part the value of s1 and s2 will remain same.
 
      * This is called as Deep Copy
+
+# Static and Final Keyword:
+  1) Static
+     - The static keyword in Java is used to declare class-level members (variables, methods, blocks, or nested classes) that belong to the class itself rather than any specific instance of the class, meaning they are shared among all objects of that class.
+     - This can be accessed using Class Name and also the Object Name
+       Example:
+        - Student.college is also valid and also s1.college is also valid. (here Student is the className, s1 is instance of student class and college is the static variable of Student class).
+     - Static variables are also called as class variables.
+
+   * Rules for static:
+     - One static method can only call other static method. 
+     - Static method can only access static variables.
+     - Static method doesn't have "this" reference.
+
+   * static block:
+     It is used to assing values to static variables
+     Example:
+     class Student{
+        static String college;
+        static{
+            college = "SVPCET";
+        }
+     }
+
+   * NOTE: Even before the creation of the object the static memebers gets memory allocated and assigned.
+           Parameters cannot be static
+           class cannot be static if it is not an nested class
+
+# Final Keyword:
+   - "final" keywords fixes the value for a variable.
+   - All the letters for the variable which uses "final" keyword must be Capital, it is a naming convention, more than one word are seperated by underscore.
+   - "final" can be applied on
+      - Variable
+      - Method
+      - Class
+      - Parameters
+
+# Why main is static in JAVA.
+- if it was not static then JVM would have to create an object of class for calling the main method. But JVM cannot create the object hence main method is static in JAVA
