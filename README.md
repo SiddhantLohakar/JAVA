@@ -1063,3 +1063,51 @@ This are not manditory but a good coding practice.
      - To access parent class Variable
      - Can call parent class method using Super
      - Call parent class constructor.
+
+   * NOTE: A parent class reference variable can refer to child class object.
+
+3) Abstraction:
+   - The process of focusing on what something does while ignoring how it does that.
+
+   * Principle of Abstraction:
+     - To represent whaterver necessary.
+     - Even what we model, we don't want everyone to know how everything works, but they can still use it.
+   
+   * Two types of abstraction ways in JAVA:
+     - Low level abstraction: (Hiding implementation detail)
+        i) Java achieves this through classes.
+
+     - High Level Abstraction: ( Seperate What from how)
+        
+         class Car{
+            start()  {
+
+            }
+            accelerate(){
+
+            }
+         }
+
+         - The above type of classes are called concrete classes.
+         - The reference variable for the object of this class will be tightly coupled to the concrete classes.
+         - This introduces a problem that everytime the new feature comes or new type of implementation comes, we need to make another class. For example, if in future a new car comes, that is Electric Car then I would have to make another class called Electric Car where I would have to implement the start() function seperately as it would be different for the electric car. 
+         - Our what was same but how was different. This made the object strongly coupled to the Electric Car class, or Fuel Car class.
+
+         * We can remove this tight coupling using inheitance.
+           - We can define similar methods in the parent class. For example walk, it is same in all Animals, so we can define it in parent class Animal. The method makeSound will be different for each animals so that can be defined in individual animal classes.
+           - Now using the Animal class object, we can point to any derived class object. Hence there is no tight coupling the compiler decides at runtime which object to point to.
+           - Using this we seperated what we can do, and how we do it.
+
+
+        It is implemented using two things:
+        a) Abstract Class:
+            - An abstract class is a class declared with the keyword abstract that cannot be instantiated and is designed to be extended by other classes. It may contain abstract methods (methods without implementation) as well as concrete methods (methods with implementation), and serves as a base class to provide a common definition and enforce a contract for its subclasses.
+
+            - If there are any abstract methods within a class then that class should also be made abstract.
+              Why?
+              => Because the abstract methods doesn't provide any implementation, so if someone tries to call the abstract method using that class object, it will give error. Hence we must make a class abstract if it has any abstract methods.
+            - Second thing is all the subclasses of abstract class must define the abstract methods, or they should become the abstract class themselves for the similar reason as above.
+
+            * @Override:
+              This keyword is specifically for telling that we have made our own method and haven't used the parent class method. It is not compulsory but a good coding practice.
+        b) Interfaces
