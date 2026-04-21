@@ -1110,4 +1110,24 @@ This are not manditory but a good coding practice.
 
             * @Override:
               This keyword is specifically for telling that we have made our own method and haven't used the parent class method. It is not compulsory but a good coding practice.
-        b) Interfaces
+       
+   
+   # Interface
+     - An interface is a reference type in Java that defines a set of abstract methods (and constants) which a class must implement. It provides a way to achieve full abstraction and multiple inheritance, allowing different classes to follow a common contract without specifying implementation details.
+     - We need to use "implements" keyword for performing inheritance using inerface.
+     - Interface supports multiple inheritance.
+
+     * Why do we need interface?
+       - When java implemented interface, there thought process was that interface should tell pure what. It should not tell how.
+       - Before JAVA 8 interfaces used to provide full abstraction.
+       
+     * What are intentions of interface?
+       - First it is a contract between the interface and its child classes. The child classes are bound to implement the methods present in the interfaces.
+       - It tells the responsibilites of the class. Example: interface flyable { void startFlying() {}}, Any class becoming the subclass of this interface must have to implement the startFlying method. That's why interfaces tell the responsibility to the child class, that if you want to be my child class you have to implement this methods.
+
+      * Abstract class and Interface
+        - Abstract class shows the family of similar objects whereas interface defines a contract.
+
+    # ABSTRACTION VS ENCAPSULATION
+      - Encapsulation talks about data security, by providing access modifiers
+      - Abstraction talks abot data/implementation hiding, it just wants to reduce complexity by hiding the complex implementation and still making it usable
