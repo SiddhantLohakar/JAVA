@@ -1298,4 +1298,12 @@ This are not manditory but a good coding practice.
 
  * If we try to compare two objects of "Integer" class storing the value in range of -128 to 127 it will give true.
    - This is because, internally Integer.valueOf() method has cached values for this range, it has already created the object for this range so it directly returns the address of that object. Hence any object created within this range using Integer share same memory location hence giving the true output.
+
+# POJO Classes (Plain Old Java Object):
+  - Simple class that doesn't use any external frameworks.
+  - It has simple variables and methods, getters, setters and basic business logic.
+
+  * Why POJO Classes exist?
+    - Consider an example where we want to represent a "Student" class, with fields like name, age, rollNo, college. We can represent it using a simple POJO class.
+    
    
