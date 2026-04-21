@@ -1131,3 +1131,49 @@ This are not manditory but a good coding practice.
     # ABSTRACTION VS ENCAPSULATION
       - Encapsulation talks about data security, by providing access modifiers
       - Abstraction talks abot data/implementation hiding, it just wants to reduce complexity by hiding the complex implementation and still making it usable
+
+
+# POLYMORPHISM:
+  - Poly means many, morph means forms.
+  - Same object behaves differently on same command if one of the param is changed.
+
+  Example:
+  * Compile Time Polymorphism:
+  - We do function overloading by changing the function signature. This is called compile time polymorphism, because the function to be called is decided in compile time only.
+
+  * Runtime Polymorphism:
+    - We achieve this using method overriding. When we create an abstract class, and inherit from it, we can implement different kinds of method in every subclass. 
+    - Consider an example of class "Animal" this class is abstract class with a mehod "makeSound" in it, this is inherited by a Dog class, a Duck class, a Cat class.
+    - Now those classes will override the makeSound method. When we will be creating an object like the example given below:
+      Animal A = new Duck();
+      A.makeSound();
+      So at the runtime we will be deciding which makeSound() method we have to call for, whether od Dog, Duck or Cat. Hence it is called the runtime polymorphism.
+
+
+  * FEW KEYWORDS
+   - Static:
+     - The static methods doesn't get overrided. Because static method are class methods they belong to class. So what object we are refering to doesn't matter.
+   - Private:
+     - Private methods they can't be overridden.
+   - final:
+     - final methods also cannot be overridden.
+     - If we add final keyword in front of the class, then no subclass of that class can be created.
+
+  * NOTE: Fields and variable cannot be overridden. They are not polymorphic, they depend on the reference variable.
+      class A {
+         int x = 20;
+      }
+
+      class B extends B {
+         int x = 30;
+      }
+
+      A a = new B();
+      soutp(a.x);
+
+      // This will print 20, because the reference variable is of type class A.
+
+      B b = new B();
+      soutp(b.x);
+
+      // This will print 30 now.
