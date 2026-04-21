@@ -1305,5 +1305,60 @@ This are not manditory but a good coding practice.
 
   * Why POJO Classes exist?
     - Consider an example where we want to represent a "Student" class, with fields like name, age, rollNo, college. We can represent it using a simple POJO class.
+
+   * Types of POJO classes:
+     1) Anemic model: It consists of only getter/setter, constructor, fields.
+     2) Rich Domain Model: Business logic added a little bit.
+
+# Nested Classes in JAVA:
+-  A class declared inside other class is called as Nested class.
+
+ * Why do we need nested class?
+   - Logical Grouping:
+      - In Java, logical grouping (in the context of nested classes) means placing a class inside another class when they are closely related and only make sense together.
+      - Book is logically part of Library
+      - It doesn’t make sense to use Book while creating a library management system.
+   - Better access to Outer Class:
+      - Inner class has access to private methods and variables.
+ 
+ * This are divided into 4 parts:
+   1) Static Nested
+   2) Inner Class
+   3) Local Class
+   4) Anonymous class
+
+   - Static Nested Class:
+     - Inner class will be defined using static keyword.
+     - The object of this class can be directly created using the name of the Outer class.
+       For example:
+       class A{
+         static class B{
+
+         }
+       }
+       - Consider the above example where B is the nested static class. The object of class B can be created like below:
+         A.B inner = new A.B();
+
+      * Properties of Static Nested Classes:
+        - It can't access the non-static method or variable present inside the outer class.
+        - It can inherit some class, or implement an interface.
+        - Static nested class can have static members and functions.
+        - It can also use access modifiers.
+
+      * Use cases of Static Nested Class:
+        - As helper class for any outer class.
+        - Builder design pattern.
+        - If you want to have static methods inside a nested class.
+        - Request/Response DTO.
+   
+   - Inner Class:
+     - A simple nested class within a class is called as Inner class.
+     - Example:
+        class Outer {
+            class Inner{
+
+            }
+        }
+
     
    
