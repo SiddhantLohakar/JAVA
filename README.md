@@ -1067,6 +1067,7 @@ This are not manditory but a good coding practice.
    * NOTE: A parent class reference variable can refer to child class object.
 
 3) Abstraction:
+
    - The process of focusing on what something does while ignoring how it does that.
 
    * Principle of Abstraction:
@@ -1110,6 +1111,27 @@ This are not manditory but a good coding practice.
 
             * @Override:
               This keyword is specifically for telling that we have made our own method and haven't used the parent class method. It is not compulsory but a good coding practice.
+
+      * Some important knowlege points for Abstraction:
+        - Cannot be instantiated directly.
+        - Can contain abstract method (method without implementation)
+        - Can also contain normal methods
+        - Is meant to be extended
+
+      * Questions:
+      1) Can abstract class have constructors?
+        => Yes constructors are allowed. Because child class constructor can call the constructor of the parent class.
+      2) Can abstract classes be made final?
+        => No final keyword is not allowed because it will block the class from being inherited and we don't want that.
+      3) Can abstract class have static method?
+        => Yes they can have static method, variable and block.
+      4) Can abstract classes have private method?
+        => private methods are allowed, but they should not be abstract.
+      5) Can abstract classes have final method?
+        => Yes, just that they cannot be overrided in the child class and they cannot be abstract.
+      6) Can abstract classes have no abstract method?
+        => Yes, because we might want a situation where we dont want the class to have any object but want to provide a default implementation for every method present in that class. 
+           Those method can be overrided in the child class if wanted otherwise the base class method will be called.
        
    
    # Interface
