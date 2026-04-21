@@ -1177,3 +1177,103 @@ This are not manditory but a good coding practice.
       soutp(b.x);
 
       // This will print 30 now.
+
+# IN DEPTH KNOWLEDGE OF CLASSES:
+
+1) Why one public class per file?
+   => Every code is executed using JVM and it calls the main function. That's why we make our main function as static and our class as public so that JVM doen't have to create any object of that file and can execute the main method. Also the main method should be public, so that it can be accessible outside the package.
+
+   - If JAVA allowed more than one public class, JVM would not know in which class the main method exists. So to make it simple for JVM Java allowed only one public class per file.
+
+2) Now why does the class name should be same as the file name?
+   => Because it becomes easy for JVM to find the class which will be having the main method directly as the file name and the class name is same.
+
+
+3) What are wrapper classes?
+   - Wrapper classes are those classes that are based on primitive datatypes with more functionality.
+     For example:
+     int  -> Integer (Wrapper class for int)
+     float -> Float ( Wrapper class for float)
+
+4) Why does wrapper classes exist?
+   - Java has something called as collection frameword which works only on objects.
+   - JAVA is OOP based language so JAVA wants a substitutable way od using primitive datatypes in the form of object
+
+5) Then why does primitive datatypes exists till now?
+   - Because of Legacy. To maintain legacy of previous language like C/C++.
+   - This are fast.
+
+# Autoboxing and Unboxing
+
+1) Autoboxing:
+   - Automatic conversion of primitive datatype to wrapper class is called as Autoboxing.
+     Example:
+      int x = 10;
+      Integer y = x; // x value gets stored in y.value
+
+   - How does it happen internally:
+      Older versions : Integer y = new Integer(x);
+      Newer versions : Integer y = Integer.valueof(x);  // This uses caching to make it better and more optimized
+
+2) Unboxing:
+   -  Automatic conversion of Wrapper class object into premitive datatype is called Unboxing.
+      Example:
+      Integer x = 10;
+      int y = x;
+
+   - Internally:
+     int y = x.intValue();
+
+* Autoboxing and Unboxing work automatically on the following things:
+  - Assignment
+  - Method Calls
+  - Arithmetic Operations
+
+* Null pointer exception that  can happen while using autoboxing and unboxing.
+      Integer x = null;
+      int y = x;
+      soutp(y);
+
+   If we do something like this this will throw the null pointer exception, because a primitive datatype like int cannot have a null value.
+   Internally the JVM is calling the method Integer.valueof(x) while assigning the value of object X to y. So that is not possible, hence the null pointer exception.
+
+* Comparing two wrapper classes objects:
+  Example:
+   Integer x = 100;
+   Integet y = 100;
+
+   Now if we do something like this
+   soutp(x == y) // this will return false
+
+   Why?
+   => Since both x and y are different references variable pointing to different object address, and "==" compares the reference variables for the objects.
+      Since bothe the both the reference variables are storing different addresses we get false.
+
+   - If we want the values to be compared we have two ways:
+     1) Use x.intValue() so that we can get the value and then we can compare.
+     2) Or use x.equals(y) this compares the value present in the x and y
+
+* How does Integer class looks like? Conceptual overview
+  public final calss Integer {
+      private int value;
+
+      public Integer(int value){
+         this.value = value;
+      }
+
+      public int intValue(){
+         return value;
+      }
+
+      public static Integer valueOf(int x){
+
+      }
+
+      public boolean equals(Integer x){
+         return (value == x.intValue())
+      }
+  }
+
+ * If we try to compare two objects of "Integer" class storing the value in range of -128 to 127 it will give true.
+   - This is because, internally Integer.valueOf() method has cached values for this range, it has already created the object for this range so it directly returns the address of that object. Hence any object created within this range using Integer share same memory location hence giving the true output.
+   
