@@ -1361,4 +1361,118 @@ This are not manditory but a good coding practice.
         }
 
     
+
+
+# Standard Input Output in JAVA
+
+* Types of Input Output:
+   - Console based Input Output.
+   - File Input Output.
+   - Network Input Output.
+   - Memory Input Output.
+
+
+* Console Input Output:
+   - System.out.println(): In this we can see that:
+      - System is a class which has a static variable "out", that static variable is reference varible for some class, which has the method println.
+      - The out is the reference variable for class PrintStream.
+
+   * How did we get the access of the System class without importing it?
+      - The System class belongs to "java.lang" package, and it is imported by default by the compiler.
+
+# Streams:
+   - Flow of data is called as stream.
+   - In JAVA all of them are stream of bytes.
+
+   * Two type of Stream:
+    1) Input Stream: Data flow into program.
+    2) Output Stram: Data flow outside the program
+
+    This are both abstract classes. Since they provide only with the methods that should be implemented by their child class for different purpose. The methods are read and write.
+
+    * Heirarchy of InputStream (Abstract):
+      - FileInputStream
+      - ByteArrayInputStream
+      - BufferedInputStream
+      - DataInputStream
+    
+    * Heirarchy of OutputStream (Abstract):
+      - FileOutputStream
+      - ByteArrayOutputStream
+      - BufferOutputStream
+      - PrintStream
    
+
+
+* How to take input from user?
+   - There is a "in" named variable present in the System class which is of type InputStream.
+   * Older method:
+      - int data = System.in.read() // Returns int value
+         soutp((char) data); // Converting to char
+
+   * Problem in above method is:
+     - The read method only reads 1 byte at time, so if I enter my name "Siddhant", it will read only S, and rest of the letters will go in a input buffer (It is a kind of array for letters input using keyboard).
+     - So what we can do is use while loop till we find the nextline character, and keep reading till then.
+     - Example:
+
+     String s = "";
+     int c;
+     while(c != '\n'){
+         c = system.in.read();
+         s += (char) c;
+     }
+
+   * Updated Method (Reader class)
+
+    - Heirarchy of Reader class:
+       - BufferReader
+       - InputStreaReader
+       - FileReader
+
+    - This reads stream of characters.
+
+   * BufferReader
+    - BufferReader does something interesting, it reads a chunk of data at once from the OS and keeps it in its program buffer, so that it doesn't have to go again and again to the OS for the data. It doesn't read byte by byte improving speed and efficiency.
+    - FLOW : Keyboard -> OS Buffer -> Java Buffer -> Program
+
+   
+   * InputStreamReader:
+     - The input from the keyboard can be accessed by the class InputStream which reads 1 byte of data at a time. 
+     - Our BufferedReader reads stream of character.
+     - So the BufferedReader(stream of char)  and InputStreamI(stream of bytes) are not compatible with each other.
+     - Here comes the role of InputStreamReader, this class converts the stream of bytes into stream of characters. So that BufferReader can access the stream of character from OS and place it in the program buffer.
+
+     - Byte Stream -> Character Stream
+
+   * How do we combine this now
+     InputStreamReader isr = new InputStreamReader(System.in)  // this will convert byte stream to character stream
+     BufferedReader br = new BufferedReader(isr); // Reads the chuck of stream
+     br.readLine();
+
+   * Entire flow:
+   1. Reading from console. Let's say we read "Aditya".
+   2. OS Buffer will store: [65, 100, 105, 116, 121, 97]
+   3. System.in (InputStream object) recieves bytes.
+   4. InputStreamReader -> converts stream of bytes into stream of characters
+   5. BufferedReader -> This will read entire stream of characters inside the program buffer using readLine and make an entire string out of it,  store it in the variable.
+   6. Then whenever we will print  that variable we will get string as output.
+
+   * Limitations of BufferedReader:
+     - It can only read String. If we want to read integer we will have to convert it into int by Integer.parseInt() method.
+     - Complex code.
+
+# To address this issues JAVA introduced Scanner class:
+   - Simplified (Input)
+   - provide various method for reading different datatype values.
+   
+   * NOTE: this class is not present within the JAVA.io class. This comes under package called java.util.
+
+   - It works on the basis of tokenization, it breaks string based on whitespaces.
+
+   * Methods of Scanner:
+     - sn.next() -> reads only word
+     - sc.nextLine() -> reads entire sentence till nextline character is encountered
+     - sc.nextInt() -> Reading integer value
+     Similarly we have all the other methods
+   
+   * NOTE: Scanner class is slow compared to BufferedReader. Because Scanner class does multiple things.
