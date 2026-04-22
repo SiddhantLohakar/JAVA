@@ -1150,6 +1150,9 @@ This are not manditory but a good coding practice.
       * Abstract class and Interface
         - Abstract class shows the family of similar objects whereas interface defines a contract.
 
+      * Marker Interafces:
+         - Empty interfaces that act as marker for something.
+
     # ABSTRACTION VS ENCAPSULATION
       - Encapsulation talks about data security, by providing access modifiers
       - Abstraction talks abot data/implementation hiding, it just wants to reduce complexity by hiding the complex implementation and still making it usable
@@ -1514,3 +1517,97 @@ This are not manditory but a good coding practice.
   }
 
   Here the class student is a complete immutable class, because every primitive and non-primitive members in this class can never be changed by the user.
+
+# Object Class in JAVA:
+- It is present inside java.lang package.
+- Every class in JAVA inherits from Object class directly or indirectly.
+
+* Why did we needed this class?
+  - To add common behaviours to all the classes that are pre-built or build by user.
+  - We can store any class object in the reference variable of this Object class.
+    Example:
+      Object obj = new Student();
+    Even if the Student class is a seperate class still directly or indirectly it inherits from the Object class. Hence we can store the Object of "Student" class in "Object" class reference.
+
+* What are the common behaviours present in this?
+  - Core Methods
+    - toString()
+    - equals()
+    - hashCode()
+    - getClass()
+  - Cloning:
+    -  clone()
+  - Garbage Collection
+    - finalize()
+  - Thread
+    - wait()
+    - notify()
+    - notifyAll()
+
+ * toString() method:
+    - Convert anything to String.
+    - Signature:
+       public String toString() {
+
+       }
+
+       This returns String representation of any object
+    - Default Implementation
+    - It returns output like this => class_name@hexa_value
+    - The returned hexa value is unique.
+    - When we try to print an object like "soutp(object_name)" then internally the "println" function calls the "toString()" method on that provided object.
+
+ * equals() method:
+   - Compares two object and returns true or false
+   - Signature:
+     public boolean equals(Object obj){
+
+     }
+   - This compares two  references
+
+* hashCode() method:
+   - Return an integer of an Object in hexadecimal format.
+   - Used in collection frameworks.
+
+   * Rule:
+     - If two objecs are equal then their hashCode must be equal.
+     - Reverse might not be true.
+
+* getClass()  method:
+   - Return runtime class of an Object.
+   - Student s1 = new Student();
+   - s1.getClass() -> this will return Class type object.
+   - s1.getClass().getName() -> Now this will return the Student
+
+   * This is a final method in Object so it cannot be overrided
+
+   - Signature:
+     class Object {
+         public final Class <?>  getClass(){
+            //default method
+         }
+     }
+ 
+* instanceOf operator:
+  - Checkks if an object is instance od a class or any of its subclass
+
+* clone() method:
+  - Creates copy of any object.
+  - Our class must implement clonable interface to use this method
+
+  - Signature
+    - class Object{
+       protected Object clone() throws classNotSupportedException{
+
+       }
+    }
+
+   - this gives the shallow copy.
+  
+  * Why do we need to implement Cloneable interface for using clone.
+     - We dont want someone to clone database, or Threads, hence JAVA makes it mandatory to implement the Cloneable Class.
+
+
+  * finalize() method:
+   - this was use earlier by Garbage Collection, now this has been depricated.
+   - This was too unpredictable, unsaffe and unreliable.
