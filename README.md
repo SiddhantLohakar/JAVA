@@ -1476,3 +1476,41 @@ This are not manditory but a good coding practice.
      Similarly we have all the other methods
    
    * NOTE: Scanner class is slow compared to BufferedReader. Because Scanner class does multiple things.
+
+# Immutable Class in JAVA:
+- Immutable classes are those classes, where the methods and variables present in the object of this class cannot be changed once defined.
+- Immutable objects are those objects whose methods and instance variables cannot be changed once they are defined, and the class which this object belongs to is called as immutable class.
+
+* Rules of Immutable Object:
+  - Mark my class as final.
+  - Mark my instance variable as private and final.
+  - No setters.
+  - Defensive copy in costructors and getters.
+
+* Deep Copy:
+  - It means that never return a direct reference of any object, return a new object storing the same values as the object to be returned.
+
+* Example of how we will make immutable class:
+  class Student {
+      private final College college;
+
+      Student(College college){
+         this.college = new College(college.name, college.address);
+      }
+
+      College getCollege(){
+         return new College(this.college.name, this.college.address);
+      }
+  }
+
+  class College {
+      string name;
+      string address;
+
+      College(String name, String address){
+         this.name = name;
+         this.address = address;
+      }
+  }
+
+  Here the class student is a complete immutable class, because every primitive and non-primitive members in this class can never be changed by the user.
