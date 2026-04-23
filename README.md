@@ -1,1780 +1,2900 @@
+```md
 # JAVA
-1. Why did JAVA came?
-=>  1. Portability problem in C and C++:
-        - If we want to run C and C++ code anywhere we need a compiler (converts high level language into machine code).
-        - Compilers of C and C++  are platform specific. 
-        Example : 
-        Let us consider two platforms P1 and P2, a C++ code compiled by compiler on P1 platform will generate some machine code let's say M1, now this
-        machine code cannot be run on platform P2, we will have to recompile the code written on platform P1 using the compiler present on platform P2.
-        Hence increasing the compiling time and making it non portable.
 
-    a) What is a platform?
-    => platform is the combination of Processor and OS 
-       Example (Intelx86 + Windows)
+## 1. Why did Java come into existence?
 
-    Hence we can say that C and C++ are platform dependant.
+### 1. Portability problem in C and C++
+- In C and C++, code is compiled into machine code.
+- Machine code is platform dependent.
+- To run the same program on another platform, recompilation is required.
 
-    b) Why do different platforms generate different binary codes?
-    => 1. Different OS have different functions to interact with OS therefore the machine code generated will be different.
-       2. On hardware level there might be different transistors per processor and that would require different binary combinations to interact with them.
+Example:
+- Platform P1 → Compile → Machine Code M1
+- Platform P2 → M1 cannot run → Recompile required
 
-    c) ISA (Instruction Set Architecture):
-    => This tells the processor how to perform small small command, like add jump etc.
+Hence, C and C++ are platform dependent.
 
-    So since the processors are different there ISA will also be different and hence the binary code generated will also be different.
+---
 
-    Conclusion: Therefore the C and C++ are platform dependent
+### a) What is a platform?
+- A platform is a combination of:
+  - Processor + Operating System
+- Example: Intel x86 + Windows
 
-    2. Simplicity
-    3. Security
+---
 
-    This are the reasons that JAVA came into existence.
+### b) Why do different platforms generate different binary code?
+1. Different operating systems have different system-level functions.
+2. Different processors have different hardware architectures.
 
-**** SUMMARY ******
-JAVA IS: 
- 1. PORTABLE
- 2. SIMPLE
- 3. SECURE
-********************
+---
 
+### c) ISA (Instruction Set Architecture)
+- ISA defines how a processor performs operations like add, jump, etc.
+- Different processors have different ISAs.
+- Therefore, binary code differs across platforms.
 
-CONCEPT OF BYTE CODE
-- Byte code fixed the problem of C and C++
+---
 
+### Other reasons for Java:
+2. Simplicity  
+3. Security  
 
-Byte Code:
-- It is an intermediate code between high level code and machine level code
-- When we compile the java code it creates the bite code with the name file_name.class
-- It is same for all the platforms
+---
 
+### Summary:
+Java is:
+1. Portable  
+2. Simple  
+3. Secure  
 
-JVM (Java Virtual Machine):
-- This will help convert byte code to machine code
-- Now this byte code can be converted to any machine code wherever the JVM for that machine is present
-- Now there is no need to recompile the byte code everytime.
+---
+
+## 2. Concept of Bytecode
+
+- Bytecode solves the portability problem of C and C++.
+
+### Bytecode:
+- Intermediate code between high-level code and machine code.
+- Generated when Java code is compiled.
+- Stored in `.class` files.
+- Same across all platforms.
+
+---
+
+## 3. JVM (Java Virtual Machine)
+
+- Converts bytecode into machine code.
+- Makes Java platform independent.
 - JVM is platform dependent.
 
+### Advantages:
+- No need to recompile for different platforms.
+- Bytecode runs anywhere JVM is available.
 
-ISSUES IN C AND C++
-= pointers
-- multiple inheritance
-- Manual memory allocation and deallocation
+---
 
+## 4. Issues in C and C++
+- Use of pointers
+- Multiple inheritance (complexity)
+- Manual memory management
 
-HOW IS JAVA SECURE?
-- JVM runs byte code in secure environment.
-- This model of java is called as sandbox model.
+---
 
+## 5. How is Java secure?
+- JVM runs code in a controlled environment.
+- This is called the sandbox model.
 
-***************************************** JVM IN DEPTH *******************************************
---------------------
-|        JDK       |
-|  --------------- |
-|  |     JRE     | |
-|  | ----------- | |
-|  | |   JVM   | | | 
-|  | ----------- | |
-|  --------------- |
---------------------
+---
 
-JRE -> JAVA RUNTIME ENVIRONMENT
-JDK -> JAVA DEVELOPMENT KIT
-JVM -> JAVA VIRTUAL MACHINE
+# JVM IN DEPTH
 
-Q.1) How does JVM runs bytecode?
-=> There are two types of software present to convert bytecode to machine code
-   a) Compiler -> Converts one type of code to another type of code. (Reads full code first and then converts it to another code)
-   b) Interpreter -> Same as compiler. (Converts code line by line and executes it line by line)
+```
 
-   In early ages JAVA used interpreter
-   because we wanted early execution of the program.
-   - Slow Hardware : due to this using compiler was time consuming
-   - less RAM
-   - Disc slow
-   Therefore we used the interpreter
+---
 
-   In modern times we added an JIT compiler with Interpreter
-   - So now it became Interpreter + JIT
+| JDK             |             |     |   |   |
+| --------------- | ----------- | --- | - | - |
+|                 | JRE         |     |   |   |
+|                 | ----------- |     |   |   |
+|                 |             | JVM |   |   |
+|                 | ----------- |     |   |   |
+| --------------- |             |     |   |   |
 
-   Now what does JVM do to optimize it?
-   - The ByteCode which will be used frequently is compiled by the compiler to Machine Code and at the same time the interpreter keeps on converting
-     and executing the code line by line, this makes the repeated code run fast as it is already in machine code. Hence making it faster.
+---
 
+```
 
-JVM functionalities:
-- Convert ByteCode to MC
-- Security (Runs code in a sandbox environment)
-- Garbage Collection
+- JVM: Java Virtual Machine  
+- JRE: Java Runtime Environment  
+- JDK: Java Development Kit  
 
+---
 
-***************************************** JRE (JAVA RUNTIME ENVIRONMENT) *******************************************
-JRE = JVM + Class Libraries
+## 6. How does JVM run bytecode?
 
-Class Libraries : This are the class libraries implemented internally by JAVA
+There are two approaches:
 
+### a) Compiler
+- Converts entire code at once into another form.
 
-***************************************** JDk (JAVA DEVELOPMENT KIT) *******************************************
-*JDK
-=> JDK consist of everything that is required to run th java program.
-   It consists of:
-   - Compiler
-   - Debugger
-   - JavaDocs
-   It consists compiler that converts source code to byte code.
+### b) Interpreter
+- Converts and executes code line by line.
+
+---
+
+### Early Java:
+- Used Interpreter
+- Reasons:
+  - Slow hardware
+  - Less RAM
+  - Slow disk
+
+---
+
+### Modern Java:
+- Uses Interpreter + JIT (Just-In-Time Compiler)
+
+### Optimization:
+- Frequently used bytecode is compiled into machine code by JIT.
+- Interpreter continues line-by-line execution.
+- Improves performance significantly.
+
+---
+
+## 7. JVM Functionalities
+- Converts bytecode to machine code
+- Provides security (sandbox)
+- Performs garbage collection
+
+---
+
+# JRE (Java Runtime Environment)
+
+- JRE = JVM + Class Libraries
+
+### Class Libraries:
+- Predefined classes provided by Java
+
+---
+
+# JDK (Java Development Kit)
+
+- JDK contains everything required to develop and run Java programs.
+
+### Includes:
+- Compiler (converts source code to bytecode)
+- Debugger
+- JavaDocs
+- JRE (which includes JVM)
+```
+
 
 
 
 ***************************************** Some Important Terms Asked in Interviews *******************************************
-JSE -> Java Standard Edition (It is our core JAVA)
-JEE -> Java Enterprise Edition (More libraries Added, used to create webapps), It is also called Jakarta Enterprise Edition
-JME -> Java Micro Edition (It is a lightweight Java edition), It was used for creating the mobile apps
 
+JSE -> Java Standard Edition (Core Java)
+JEE -> Java Enterprise Edition (Used for building web applications, now called Jakarta EE)
+JME -> Java Micro Edition (Lightweight version, used for mobile/embedded systems)
 
+---
 
 # VARIABLES
-Variables are named storage location in a computer that can hold some value. It is also called as an identifier
-The value stored inside the variable is called as literal.
 
-How to declare variables in java?
--> data_type variableName = data (optional);
+- Variables are named storage locations in memory that hold values.
+- They are also called identifiers.
+- The value stored inside a variable is called a literal.
 
-Java is Staticaly Typed (we need to specify what type of data is going to be stored beforehand)
+## Declaration:
+data_type variableName = value;  // value is optional
 
-# DATATYPES IN JAVA
-There are two types of data types in Java:
+Example:
+int a = 10;
+
+- Java is statically typed → data type must be defined at compile time.
+
+---
+
+# DATA TYPES IN JAVA
+
+There are two types:
 1. Primitive
 2. Non-Primitive
 
-1. Primitive:
-   a) Integer -> byte, short, int, long (this all have different ranges as how large of a number can be stored)
-   b) Real Number -> float, double
-   c) Character -> char
-   d) Boolean ->  boolean
+---
 
-a) Integer
-   i) byte: A byte can store number x where range of x is (-128, 127) that is 8 bit.
-  ii) short: A short can store 16 bit.  
- iii) int: It can store 32 bit. 
-  iv) long: It can store 64  bit.
+## 1. Primitive Data Types
 
-  NOTE: Every number is signed in JAVA. It means that both positive and negative number can be stored in any variable.
+### a) Integer Types
+- byte  → 8 bits   → range: -128 to 127
+- short → 16 bits
+- int   → 32 bits
+- long  → 64 bits
 
-b) Real Number (Floating point numbers):
-   i) float: It can contain up to 32 bits. Range(1.4e-0.45 to 3.4e+0.38)
-             we need to explicitly specify keyword "f" when using float
-  ii) double: It can contain up to 64 bits. Range(4.9e-324 to 1.8e+308)
+Note:
+- All numeric types in Java are signed.
 
-  float is also called as single precision and double is also called as double precision.
-  In production always prefer to use double. 
-  Why?
-  -> It has much more precision.
-  -> The hardware previously were good for doing calculation using float, but now the hardware are optimized for double.
-  -> Also builtin avg, sin(), cos() return double values.
+---
 
-c) Characters:
-   i) char: They can represent unicode characters (They follow ASCII standard). It has the storage value of 16 bits.
+### b) Real Numbers (Floating Point)
 
-   We need to store it using single quotes so that the JAVA compiler knows that it is a character
-   Example : char d = 'a';
-   internally the character 'a' is stored as its ASCII number that is 65 and inside the memory that is stored in binary form of that number.
-   Whenever a user tries to retrieve that character based on the data type the compiler converts 65 to 'a';
+- float  → 32 bits  
+  Range: approx 1.4E-45 to 3.4E+38  
+  Must use suffix 'f'  
+  Example: float f = 3.14f;
 
-   Java uses unicode, which consists of all the characters around the world.
+- double → 64 bits  
+  Range: approx 4.9E-324 to 1.8E+308  
 
+Notes:
+- float → single precision  
+- double → double precision  
+- Prefer double in production because:
+  - Higher precision
+  - Modern hardware optimized for double
+  - Most math functions return double
 
-d) Boolean:
-   i) boolean: It consists of only two values that are 0 and 1. 
-   -> in JAVA we can't write 0 or 1 for true or false, we can just write true and false unlike c and c++.
+---
 
+### c) Character
 
-1) Problem with java storing decimal numbers.
-  Example : float f =  0.7f;
-            System.out.printf("%.20f");
+- char → 16 bits
+- Stores Unicode characters
 
-            output : 0.698975.... 
-            this kind of output is not given when we write soutp because it rounds of the number and gives the output. 
+Example:
+char c = 'a';
 
+Notes:
+- Stored using single quotes
+- Internally stored as numeric Unicode value
+- Example: 'a' → 97 (Unicode)
 
-# Storing binary, octal, and hexadecimal numbers in JAVA.
+---
 
-1) Binary Number: Add "0b" in front of the number
-   example  int a = 0b101;
+### d) Boolean
 
-2) Octal Number: Add "0" in front of the number
-   example int a = 023;
+- boolean → true or false
 
-3) Hexadecimal number: Add "0x" in front of the number.
-   example int a = 0xA;
+Notes:
+- Cannot use 0 or 1 like C/C++
+- Only allowed values: true, false
+
+---
+
+## Floating Point Precision Issue
+
+Example:
+float f = 0.7f;
+System.out.printf("%.20f", f);
+
+Output:
+0.69999998807907100000 (approx)
+
+Reason:
+- Floating point numbers are stored in binary
+- Some decimal values cannot be represented exactly
+
+---
+
+# NUMBER SYSTEMS IN JAVA
+
+### 1) Binary
+- Prefix: 0b  
+Example:
+int a = 0b101;   // 5
+
+---
+
+### 2) Octal
+- Prefix: 0  
+Example:
+int a = 023;     // 19
+
+---
+
+### 3) Hexadecimal
+- Prefix: 0x  
+Example:
+int a = 0xA;     // 10
 
 # How negative numbers and decimal numbers are stored internally in JAVA?
 
-1) Negative Number:
-   In JAVA the negative number is stored in the form 2's complement of that number.
-   For example:
+## 1) Negative Numbers
 
-   byte a = -2;
+- In Java, negative numbers are stored using **2's complement representation**.
 
-   1's complement of 2 =  0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
-   2's complement of 2 =  1 | 1 | 1 | 1 | 1 | 1 | 0 | 1 | +  1  =  1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 |
+### Example:
+byte a = -2;
 
-   But how will java know if the number is positive or negative?
-   - It will look at the numbers most significant bit.
-   - If the MSB is 1 then the number is considered -ve. 
-     Else it is considered positive.
-   
-  a) Why byte can store only from -128 to 127?
-    - Byte can store 8 bits of memory, if we consider the first bit to be sign bit then :
-      If the first bit is 0 for +ve numbers:
-      - Even if we make all the remaining bits as 1 still the maximum number comes to be 127.
-      - Example:
-        0 1 1 1 1 1 1 1 = 127 (In this 0 is the sign bit).
-      if the first bit is 1 for -ver numbers:
-      - If we consider the rest of the numbers to be 0. Then the 2's complement of that number will come 128 and attaching -ve sign it becomes -128.
-      -  Example:
-         1 0 0 0 0 0 0 0 (1 is the sign bit here, so the number is negative)
-         2's complement of above number is = (10000000) = -128 
+Step:
+1. Convert +2 to binary:
+   00000010
 
-   This is how we store negative numbers in java.
+2. Take 1's complement:
+   11111101
 
-   b) Why do we take 2's complement to store -ve number we could've used the 1's complement?
-   - This was done to handle a specific condition
-   - If someone tries to store -0 in byte, then the 1's complement will be (11111111)
-     in this case we have a negative 0 stored in our memory and that is wrong.
-   - If we use 2's complement then still -0 has 2's complement as 00000000 hence storing the number as 0 and not -0.
+3. Add 1 (2's complement):
+   11111110
 
-2. Floating Number:
-   If we have number stored like:
-   float f = 8.125
-   What happens internally?
-   => The float takes 32 bit of memory which is divided into 3 parts
-      1. Sign bit: 1bit (MSB) is a sign bit.
-      2. Exponent: Following 8 bit after sign bit are exponent.
-      3. Mantissa: The remaining 23 bits are called as mantissa.
-   
-   Now how does the "8.125" gets stored internally?
-   => STEP 1:
-      first "8" is converted to binary i.e  1000
-      then  ".125" is converted to binary i.e 001
+So, -2 is stored as:
+11111110
 
-      so the binary now looks like 1000.001
+---
 
-      STEP 2: Make it in the form of (1.xx * 2^exp).
-      => So the number becomes: 1.000001 * 2^3
+### How does Java identify positive or negative?
+- It checks the **Most Significant Bit (MSB)**:
+  - MSB = 0 → Positive number
+  - MSB = 1 → Negative number
 
-      STEP 3: Add Bias to the exponent.
-      => for float bias = 127;
-         so exponent = 127 + 3 = 130
-         Convert the exponent to binary so we get: exp = (10000010)
+---
 
-      STEP 4: Place value in memory.
-      => 1. Sign Bit: 
-            - Since the number is positive the sign bit is 0
-         2. Exponent Bits:
-            - Exponent we have took out i.e 10000010
-         3. Mantisaa:
-            - The "xx" in (1.xx * 2^exp) is the mantissa
-            - i.e 000001
-            - since we have the space of 23 bits we make the remaining spaces to "0"
+### a) Why is byte range -128 to 127?
 
-   3) How does retrieval takes place?
-      => Let's use our previous number as an example: 0|10000010|00000100...00
-      
-         The formula for that is : (-1)^sign * (1 + Mantissa) * 2^exp-Bias
-         => So replacing the value accordingly we get: (-1)^0 * (1 + 2^-6) * 2^(130-127)
-                                                       = 1 * (1.56125) * 8 = 8.125
+- A byte = 8 bits
 
-   
-   4) Now let's look at the edge case:
-      Consider the number 0.7.
-      a) Express the number to binary
-         i.e 0.1011001100110... the number after decimal goes on repeating infinitely
-      
-      b) Express the above number in the format : (1.xx * 2^exp)
-         1.01100110... * 2^-1
-         Exponent = 127 +  (-1) = 126
-         Binary form of exponent =  01111110
-      
-      c) Express it in memory
-         0|01111110|0110 0110 0110 0110 0110 011
-         - Since we are storing trucated data, when we try to extract it back we get the wrong value.
+#### Positive range:
+- MSB = 0
+- Max value:
+  01111111 → 127
 
-   5) What is Bias and why it's value is 127?
-      - Bias is the number that we add to exponent so that we don't have to store negative exponents.
-      - To know the exact value of bias we have the formula: 
-        2^(Number of exp bits - 1) -1;
-      - This is an IEEE format
+#### Negative range:
+- MSB = 1
+- Smallest value:
+  10000000 → -128 (in 2's complement)
 
-   6) But how do we store the floating numbers in double:
-      - In double we have 64 bits
-      - MSB (1bit) = Sign bit
-      - Following 11 (bit) = Exponent
-      - Following 52 (bit) = Mantissa
+---
 
-      The bias for double will be 1023.
+### b) Why 2's complement instead of 1's complement?
 
+- 1's complement creates two representations of zero:
+  - +0 → 00000000
+  - -0 → 11111111  (problem)
 
-# Type Conversion in JAVA
-  
-  There are two types of type conversion in JAVA:
-  1. Implicit : 
-      Type conversion done by JAVA itself is called as Implicit conversion
-      Example:
-        byte b = 24:
-        int i;
-        i = b;
-      
-      A) Rules for implicit Conversion
-      - Destination data type should be wider than source data type. (This are also called as widening conversion)
+- 2's complement solves this:
+  - Only one representation of zero → 00000000
 
+---
 
-  2. Explicit:
-     This needs to be done by using casting.
-     Example int i = 300;
-             byte b = i; -> this will give error because bytes range is short
-         We need to do explicit casting to do this
-             byte b = (byte) i; we tell compiler intentionally that we want to convert our integer to byte
+## 2) Floating Point Numbers (IEEE 754)
 
-             Since byte range is only 8 bit, the first 8 bit will be taken from the integer 300's binary form
-             so the number stored in "b" will be 44.
-         - This type of conversion are also called as narrowing conversion
+### Example:
+float f = 8.125;
 
+A float uses **32 bits**, divided into:
+1. Sign bit → 1 bit  
+2. Exponent → 8 bits  
+3. Mantissa (fraction) → 23 bits  
 
-   3. Truncating Conversion:
-      - float to int
-         float f = 16.25f;
-         int a - f;
-         we get the value in "a" as 16
-      
-      - double to int
+---
 
-   4. Boolean to any data type conversion:
-         NOTE: This conversion are not possible in JAVA
-   
-   5. Automatic Type Promotion
-       JAVA internally converts the type while doing some calculations or writing some expression.
-       Example:
-         byte b = 50;
-         b = b*2; This will give error because  the number while calculating are converted to int
-         So we need to explicitly specify the type to be inferred as byte
+### Step-by-step storage:
 
-      ** Type Promotion Rules **
-      1. byte, short  and char values are promoted to int.
-      2. If one operand is long, the while expression will become long
-      3. If one operand is float, entire expression will become float
-      4. If one operand is double, entire expression is double
+#### Step 1: Convert to binary
+8 → 1000  
+0.125 → 0.001  
 
+Combined:
+1000.001
 
-# EXPRESSION: 
-In programming, an expression is a combination of literals, variables, operators, and function calls that the language interprets and computes to produce a single value.
+---
+
+#### Step 2: Normalize (scientific form)
+1.000001 × 2^3
+
+---
+
+#### Step 3: Add bias
+- Bias (float) = 127
+- Exponent = 127 + 3 = 130
+- Binary: 10000010
+
+---
+
+#### Step 4: Store in memory
+
+- Sign bit:
+  0 (positive)
+
+- Exponent:
+  10000010
+
+- Mantissa:
+  00000100000000000000000
+
+Final representation:
+0 | 10000010 | 00000100000000000000000
+
+---
+
+## 3) Retrieval Formula
+
+Value is calculated as:
+
+(-1)^sign × (1 + mantissa) × 2^(exponent - bias)
+
+Example:
+(-1)^0 × (1 + 2^-6) × 2^(130 - 127)  
+= 1 × 1.015625 × 8  
+= 8.125
+
+---
+
+## 4) Precision Issue Example (0.7)
+
+- Binary representation:
+  0.1011001100110011... (repeating)
+
+- Normalized:
+  1.011001100110... × 2^-1
+
+- Exponent:
+  127 + (-1) = 126  
+  Binary: 01111110
+
+- Stored (truncated):
+  0 | 01111110 | 01100110011001100110011
+
+- Since it is truncated, exact value is not stored → leads to precision errors.
+
+---
+
+## 5) What is Bias?
+
+- Bias is added to exponent to avoid storing negative exponents.
+
+### Formula:
+Bias = 2^(number of exponent bits - 1) - 1
+
+- For float:
+  = 2^(8 - 1) - 1  
+  = 127
+
+---
+
+## 6) Double Precision (64-bit)
+
+- Total bits: 64
+
+Breakdown:
+- Sign bit → 1 bit  
+- Exponent → 11 bits  
+- Mantissa → 52 bits  
+
+- Bias for double:
+  = 2^(11 - 1) - 1  
+  = 1023
+
+# TYPE CONVERSION IN JAVA
+
+There are two types of type conversion in Java:
+
+## 1. Implicit Conversion (Widening)
+- Conversion done automatically by Java
+- Happens when destination type is larger than source type
+
+Example:
+byte b = 24;
+int i;
+i = b;
+
+### Rule:
+- Destination data type must be wider than source data type
+
+---
+
+## 2. Explicit Conversion (Casting / Narrowing)
+- Done manually using casting
+
+Example:
+int i = 300;
+byte b = (byte) i;
+
+### Explanation:
+- int = 300 → binary is truncated to 8 bits (byte size)
+- Result stored in byte = 44
+
+---
+
+## 3. Truncating Conversion
+
+- When converting floating point to integer, decimal part is removed
+
+Example:
+float f = 16.25f;
+int a = (int) f;   // a = 16
+
+- Applies to:
+  - float → int
+  - double → int
+
+---
+
+## 4. Boolean Conversion
+
+- Boolean cannot be converted to any other data type in Java
+
+---
+
+## 5. Automatic Type Promotion
+
+- Java automatically promotes smaller types during expressions
+
+Example:
+byte b = 50;
+b = b * 2;   // ERROR
+
+### Reason:
+- b * 2 → result becomes int
+
+### Fix:
+b = (byte)(b * 2);
+
+---
+
+### Type Promotion Rules:
+1. byte, short, char → promoted to int
+2. If one operand is long → result is long
+3. If one operand is float → result is float
+4. If one operand is double → result is double
+
+---
+
+# EXPRESSION
+
+- An expression is a combination of:
+  - literals
+  - variables
+  - operators
+  - function calls
+- It produces a single value
+
+---
 
 # OPERATORS IN JAVA
-1) Arithmetic Operators (+, -, *, /, %, ++, --)
-2) Relational Operators (==, !=, <, >, <=, >=)
 
-3) Bitwise Operators
-   This operators work on the bit level
-   &, |, ^, ~, >>, <<, >>>, &=, |=, ^=, >>=, <<=, >>>=
+## 1. Arithmetic Operators
++, -, *, /, %, ++, --
 
+## 2. Relational Operators
+==, !=, <, >, <=, >=
 
-   A B A&B A|B A^B ~A
-   0 0  0   0   0  1
-   0 1  0   1   1  1
-   1 0  0   1   1  0
-   1 1  1   1   0  0
+---
 
+## 3. Bitwise Operators
 
+- Work at bit level
 
-   a) & (AND operator): Outputs 1 when both the binary bits are 1, otherwise returns 0
-   b) ^ (XOR operator): This operator gives 1 whenever there are odd number of 1's in the operands
-   c) | (OR operator) : Output is 1 when any one of the operand is 1
-   d) ~ (NOT Operator): Inverts the bits
+Operators:
+&, |, ^, ~, >>, <<, >>>, &=, |=, ^=, >>=, <<=, >>>=
 
+### Truth Table:
 
-Bitwise Shift Operators in Java
-   1. Key Concept: Type Promotion
-            In Java, byte and short are promoted to int (32 bits) before any bitwise operation.
-            This means all shift operations (<<, >>, >>>) are actually performed on 32-bit integers, even if the variable is byte or short.
-   
-   2. Left Shift (<<) on byte / short
-            Process:
-            Value is promoted to 32-bit int
-            Left shift operation is performed
-            Result is truncated back to 8 bits (byte) or 16 bits (short)
-            Final value is stored
-            
-            Important Observation:
-               During computation → number is 32-bit (no sign issue yet)
-               After truncation → only LSB bits remain
-               If the MSB (sign bit) of the truncated result = 1, the number becomes negative
-            
-            Example Insight:
-               You may get a positive intermediate result
-               But after truncation → it can become negative
-               Storage Difference:
-               If stored in byte → truncation happens → possible negative value
-               If stored in int → full 32-bit value preserved → different result
+A B | A&B | A|B | A^B | ~A
+0 0 |  0  |  0  |  0  |  1
+0 1 |  0  |  1  |  1  |  1
+1 0 |  0  |  1  |  1  |  0
+1 1 |  1  |  1  |  0  |  0
 
-   3. Left Shift (<<) on int
-         Operates directly on 32 bits
-         Shift count is capped using modulo 32
-         
-         Rule:
-         shift = shift % 32
-         
-         Examples:
-            x << 35 → same as x << 3
-            Prevents overflow of shift range
-   4. Why byte and short Support Shifts
-         Even though they are smaller types:
-         Java promotes them to int internally
-         That’s why shift operators work without errors
-  
-   5. Negative Numbers and Sign Bit
-         Key Idea:
-         In signed numbers, MSB (Most Significant Bit) represents the sign
-         0 → positive
-         1 → negative
+---
 
-         For Negative Numbers:
-         The sign bit must be preserved to maintain negativity
-        
-         Behavior:
-            Left shift (<<):
-            Shifts bits left, fills 0 on the right
-            May change sign if MSB changes after shift
+### Operator Meaning:
 
-            Right shift (>>):
-            Preserves sign bit (sign extension)
-            Used for signed numbers
+- & (AND) → 1 only if both bits are 1  
+- | (OR) → 1 if any one bit is 1  
+- ^ (XOR) → 1 if bits are different  
+- ~ (NOT) → inverts bits  
 
-            Unsigned right shift (>>>):
-            Does NOT preserve sign
-            Always fills with 0
-   
-   6. Key Takeaways
-      All shift operations are performed on 32-bit integers
-      byte/short results are truncated after operation
-      Sign may change due to truncation
-      Shift count for int is modulo 32
-      
-      Always be careful when:
-         Storing results in smaller data types
-         Working with negative numbers
-      
-# Short Circuit:
-- Short circuit is when the second operation doesn't get executed because the first expression resulted in true or false while using logical operator
-Example (a>b && a>c) (In this case if a>c results in false we don't have to check the other operation)
+---
 
-To prevent short circuit from happening we can use a bitwise and or bitwise OR operation, it works similarly but doesn't give the short circuit and checks every condition
+# BITWISE SHIFT OPERATORS
 
-# What is flow of Control?
-- Flow of control is how the bytecode gets executed line by line while converting it to machine code.
-- In JAVA the statements are executed line by line but there are some keywords that can change this flow.
+## 1. Type Promotion
+- byte and short are promoted to int (32-bit) before shifting
 
-# Three types of flow of control:
-1. Selection
-2. Iteration 
-3. Jumps
+---
 
-1. Selection: 
-   a) if() : 
-      -Executes the inner block if the condition specified in the bracket is true.
-      -Example: a = 20;
-                 if(a>18)
-                 {
-                   system.out.println("Age above 18);
-                 }
-                 else
-                 {
-                     <!-- Some code -->
-                 }
-         If the "if" statement is true then execute the code inside the "if" block else, go to "else" block and execute that statement
+## 2. Left Shift (<<) on byte/short
 
+Process:
+1. Value promoted to int
+2. Shift applied
+3. Result truncated back to original type
 
-   b) if-else()
-         Multiple choices we can use if-else if ladder
-         Example:
-           if(a==1)
-           {
-            //
-           }
-           else if()
-           {
+### Important:
+- Truncation may change sign
+- MSB determines sign after truncation
 
-           }
-           else
-           {
+---
 
-           }
+## 3. Left Shift (<<) on int
 
-   c) switch()
-      Before JDK7:
-      - Switch is optimized for some cases, but it has limited use cases
-      - It can evaluate only on byte, short, int, char, enumeration.
-      - two cases can not be duplicated
-      After JDK-7:
-      - Strings can also be used at switch expression
-      After JDK-14: switch is enhanced too much
+- Operates on full 32 bits
 
+### Rule:
+shift = shift % 32
 
-      Switch can only test equality but if-else can test both equality & unequality.
+Example:
+x << 35 → same as x << 3
 
-      Why is it more optimized?
-            in switch statement if we have code like this
-            int i = 2;
-            switch(i){
-               case 1:
-                  // do something
-                  break;
-               case 2:
-                  // do something
-                  break;
-               case 3:
-                  // do something
-                  break;
-               default:
-                  // do something
-                  break;
-            }
+---
 
-            In this case the JVM doesn't evaluate cases 1 by 1. It sees that i is storing 2 and directly executes case 2, so the execution happens
-            in one step only.
+## 4. Why byte and short support shifts?
 
-      How does JVM achieve it?
-      => It uses jump table internally
-        - Jump table provide us random access, so that we can directly jump to any testCase
-        - The jump table are not always efficient, so compiler doesn't create it always
-        - When there are sparse values (Values that are too far from each other) the JAVA doesn't make Jump table.
+- They are promoted to int internally
+- Hence shift operations work
 
-      Jump Table are of two types:
-      Table-Switch : this creates and stores value for each test cases, used whhen there are dense values.
-      lookup-Switch: This can do binary search to search lookup in log(N) time. Created when value is sparse.
+---
 
-      We can also have nested switch 
+## 5. Negative Numbers and Sign Bit
 
+- MSB (Most Significant Bit):
+  - 0 → positive
+  - 1 → negative
 
-# Iteration Statement in JAVA
-- Loops a certain block of code for a certain number of time
-Types of loops in JAVA:
- - While loop
- - For loop
- - do - while loop
+### Behavior:
 
-1) While loop :
-   Runs the block of code till the expression specified inside the while condition is true.
-   Example:
-   while(i>10)
-   {
-      // Block of code
-   }
-   This will run till "i" value is greater than 10
+- << (Left Shift)
+  - Shifts left, fills 0
+  - May change sign
 
-2) Do while loop:
-   do-while loop runs atleast once then check conditions afterwards
-   Example:
-   do{
+- >> (Right Shift)
+  - Preserves sign (sign extension)
 
-   }while();
+- >>> (Unsigned Right Shift)
+  - Fills 0 regardless of sign
 
+---
 
-3) for loop:
-   1. First assignment statement is executed
-   2. Then second condition statement is evaluated
-   3. If true flow will evaluate the body of the loop
-   4. If false then it will go to the following code after the for loop
+## 6. Key Takeaways
+
+- All shift operations are performed on 32-bit integers
+- byte/short results are truncated
+- Sign can change after truncation
+- Shift count for int is modulo 32
+
+---
+
+# SHORT CIRCUIT
+
+- Short circuit occurs in logical operators (&&, ||)
+
+### Example:
+(a > b && a > c)
+
+- If first condition is false → second is NOT evaluated
+
+---
+
+## Prevent Short Circuit
+
+- Use bitwise operators:
+  - & instead of &&
+  - | instead of ||
+
+- These always evaluate both conditions
+
+# FLOW OF CONTROL IN JAVA
+
+## What is Flow of Control?
+- Flow of control defines how the program executes statements step by step.
+- In Java, execution is normally sequential (line by line).
+- Certain statements and keywords can alter this flow.
+
+---
+
+# TYPES OF FLOW OF CONTROL
+
+1. Selection  
+2. Iteration  
+3. Jump Statements  
+
+---
+
+# 1. SELECTION STATEMENTS
+
+Used to make decisions in a program.
+
+---
+
+## a) if Statement
+
+- Executes block only if condition is true
+
+Example:
+int a = 20;
+
+if (a > 18) {
+    System.out.println("Age above 18");
+} else {
+    // some code
+}
+
+---
+
+## b) if-else-if Ladder
+
+- Used for multiple conditions
+
+Example:
+if (a == 1) {
+    // code
+} else if (a == 2) {
+    // code
+} else {
+    // code
+}
+
+---
+
+## c) switch Statement
+
+### Before JDK 7:
+- Supported:
+  - byte, short, int, char, enum
+- Case values must be unique
+
+### After JDK 7:
+- Supports String
+
+### After JDK 14:
+- Enhanced switch (more flexible and powerful)
+
+---
+
+### Key Points:
+- switch checks only equality
+- if-else can check all types of conditions (>, <, ==, etc.)
+
+---
+
+### Why is switch faster?
+
+Example:
+int i = 2;
+
+switch (i) {
+    case 1:
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+    default:
+        break;
+}
+
+- JVM directly jumps to matching case
+- Does not check cases one by one
+
+---
+
+### How does JVM optimize switch?
+
+- Uses Jump Tables internally
+
+#### Jump Table:
+- Provides direct access to cases
+- Improves performance
+
+---
+
+### Types of Switch Implementation:
+
+1. Table-Switch
+   - Used when values are dense (close together)
+   - Direct indexing
+   - Faster
+
+2. Lookup-Switch
+   - Used when values are sparse
+   - Uses binary search
+   - Time complexity: O(log N)
+
+---
+
+- Nested switch statements are allowed
+
+---
+
+# 2. ITERATION STATEMENTS (LOOPS)
+
+- Used to repeat a block of code multiple times
+
+---
+
+## Types of Loops:
+
+1. while loop  
+2. do-while loop  
+3. for loop  
+
+---
+
+## a) while Loop
+
+- Executes while condition is true
+
+Example:
+while (i > 10) {
+    // code
+}
+
+---
+
+## b) do-while Loop
+
+- Executes at least once
+- Condition checked after execution
+
+Example:
+do {
+    // code
+} while (condition);
+
+---
+
+## c) for Loop
+
+Execution flow:
+1. Initialization
+2. Condition check
+3. Loop body execution
+4. Update statement
+5. Repeat until condition becomes false
+
+Example:
+for (int i = 0; i < 5; i++) {
+    // code
+}
+
+---
+
 
 # JUMP STATEMENTS
-1) break: Breaks the execution of the iteration statement
-2) continue: breaks a current iteration and goes to next iteration
-3) Labels : we can give name to loops using labels, we can use them to break a particular loop by specifying its name
 
-   Example :
-   outer : for(int i=0; i<n; i++)
-   {
-      inner: for(int j=o; j<m; j++)
-      {
-         if(j==5)
-         {
+## 1) break
+- Terminates the loop or switch statement immediately
+- Control moves to the statement after the loop/switch
+
+---
+
+## 2) continue
+- Skips the current iteration
+- Moves control to the next iteration of the loop
+
+---
+
+## 3) Labels
+
+- Labels are used to name loops
+- Useful in nested loops to break or continue a specific loop
+
+### Example:
+outer: for (int i = 0; i < n; i++) {
+    inner: for (int j = 0; j < m; j++) {
+        if (j == 5) {
             break outer;
-         }
-      }
-   }
-
-# ARRAY:
-Array is a contigious storage space allocated where we can store elements of similar data type
-
-* Declaration:
-  int []      rollNumber                   =    new                               int[3];
-  datatype    identifier for the array          allocate memory in heap          size of array
-
-* Why do we need to specify the datatype?
-  By specifying the data type we tell the compiler how much memory we need for our elements.
-  For example: If we are using "int" datatype and wanting to store 4 elements then we would require 32 bits.
-               hence we need to specify the datatype
-
-* We can get  the size of array using : rollNumber.length
-
-* Assigning number:
-  - rollNumber[index] = value;
-
-* retrieving number:
-  - soutp(rollNumber[index]);
-
-* indexOutOfBoundException: 
-  - If we try to access the element at a certain index which is greater than the size of array the compiler will give this exception.
-
-# Multidimensional Arrays:
-   Array of arrays is called as multidimensional Array.
-   1) 2d Array:
-   
-   * Declaration:
-     int [][] marks = new int[3][3];
-
-   * Assigning values:
-     marks[0][0] = 3;  
-
-   * Representation of 2d Array in memory
-      int [][] marks = new int [3][3];
-      how will it be actually present in the memory:
-
-      It will be something like this
-         [][][]
-         /  |  \
-        []  [] [] 
-        []  [] []
-        []  [] []
-
-   * Giving the number of rows is compulsary while declaring but columns are optional.
-     -> then we can declare it later like this:
-        arr[0] = new int[3];
-        arr[1] = new int[4];
-        arr[2] = new int[5];
-     -> We can give different lengths like this
-
-
-# How does random access work internally.
-
-For a 1D Array:
--> The identifier of the 1D array stores the base address of that array. As each next element is stored at contiguous memory location. We can create a formula that is like this:
-   base_address + (size_of_datatype * index);
-
-For a 2D Array:
--> In a 2D array arr[0] holds the address of the array that is going to be present at that index so the formula becomes:
-  (base_address + (size_of_datatype * index)) + (col_index * size_of_datatype);
-
-For a boolean:
-The official JAVA docs specifies, they have specified that the boolean size should be handled by the JDK for the particular platform
--> Usually most of the JVMs  keep it to 1byte 
-
-Caching:
-Java performs caching while reading the memory from the RAM so it doens't have to fetch the memory again and again from the RAM.
-If it reads 8 bytes of memory, then it can store two integers present at arr[0] and arr[1] if it reads arr[0] since the next location is arr[1],
-so it can cache that data, so the next time someone tries to access it, the data can be given directly from the cache.
-
-# FUNCTIONS IN JAVA:
-Function is a block  of code that executed whenever that function is called for. It increases the reusability.  
-Compiler calls the main function and starts executing block of code line by line.
-
-* Boilerplate
-  static return_type function_name(parameters){
-
-      return value_of_same_datatype;
-
-  }
- 
-  Example: 
-  static int Sum(int a, int b)
-  {
-      int result = a + b;
-      return result;
-  }
-
-* Arguments:
-  Arguments are the actual value that is passed while calling the function.
-
-
-# Types of Functions in JAVA (Code in functions.java file)
-1) No Input No output
-2) Input but no Output
-3) No Input but gives output
-4) Both Inpht and Output
-
-* NOTE: Number of parameters can be anything
-
-# Function Overloading (Code in Overloading.java)
-Function Overloading is a thing where two or more functions can have same name but must differ on the following things:
-- number of parameters
-- data_types of the parameter
-- order of parameter (for different datatype parameter);
-
-We cant do overloading based on the return_type.
-Why?
-=> The answer is, it is optional to store the value returned by function inside any variable, so how would compiler know when you just call the function with same name and not storing the value in any variable. How will compiler know if you are calling the function with int return type, float return type.
-
-# Chaining of Function:
-  A function calling another function and that function is calling another function and so on. It is called as chaining of function.
-
-# Scope of variable:
-  1) Local Scope:
-      Scope of variable is limited to the block they are defined inside.
-  2) Global scope:
-      The variable are defined outside the main function inside the class. They are accessible till we are working on the same file.
-
-
-# Problems in functional programming
--  Need a lot of independant variable to represent a similar group of entities like, Student, Vehicles etc.1
--  If we pass the Entitiy to function we need to pass all the variables related to that entity
--  We need to create new set of variables for new students.
--  No authority over data.
-
-# Object Oriented Programming:(Code present in OOP.java)
--  Object-Oriented Programming (OOP) is a programming paradigm that structures software design around objects, which are instances of classes, and         encapsulates data and behavior together.
-
-* Class:
-  It is an blue print of the object. It shows how an object would look like.
-  Example: 
-  class Student{
-      String name;
-      int age;
-      int marks;
-  }
-
-* Object:
-   Object is an instance of Class. They are type of non-primitive data type, and it is also called as user-defined datatype.
-   Example:
-   Student s1;
-   s1 = new Student();
-
-   We can also define it as:
-   Student s1 = new Student();
-
-   - The new keyword tells the compiler to assign the memory in heap for the Student object. It will take enough memory to which can actually store
-     every characteristics and methods present in the class for that object.
-   - s1 here is a reference variable that will be containing the base address for that object.
-   - s1 is stored in stack, and actual object is present in the heap.
-
-* Assigning Values
-  s1.age = 30;
-  s1.name = "Vedant"
-
-* Behaviour:
-  This are the functions that an object can perform. Like Student can study, talk etc. In class if we define functions, we call them methods.
-
-
-# Naming Convention
-  - Variables (primitive/ reference Variables) -> They should be in camel Case.
-  - Classes -> Starting with capital letter
-  - Functions -> They should be in camelCase
-This are not manditory but a good coding practice.
-
-
-
-# Instance Variable:
-- The variables declared inside a class are called as instance variables.
-- Instance variables have some default values:
-  Integer --> 0
-  floating --> 0.0
-  Boolean --> false
-  String --> null (nothing)
-
-  *  NOTE: Local variables dont have default values.
-
-# Instance Methods:
-- Instance methods are those functions that are defined inside the class.
-
-# Constructors: (Code in OOP2.java)
--  Constructor is a special member function that is called during the creation of any object.
-
-   Example
-   Student s1 = new Student(); -> this Student() is calling the constructor.
-
-  * Rules of Constructors
-  -  Same name as class.
-  -  No return type. Not even void
-  -  Automatically called during object creation
-  -  Used to initialize an object
-  -  Can be overloaded
-
-# Different types of Constructors in JAVA:
-1) Default Constructor:
-   - JAVA says that constructor is mandatory. 
-   - If we dont make any constructor, JAVA adds a constructor while the code gets compiled.
-
-2) User defined Constructor:
-   - Users can create there own constructor.
-   - When users creates there own constructor, java doesn't add there own constructor.
-
-   * Parameterized Constructor:
-   - We can take parameters inside the constructor like any other function.
-   Example of parameterized Constructor for a Student class:
-   --> Student(string n, int a){ name = n; age = a;}
-
-# Overloading of a constructor:
-- Constructor can be overloaded similarly to the functions.
-
-# this keyword in JAVA:
-- this keyword refers to the current object. Basically it is a reference to the current object, hence it has access to all the data members and member function.
-- If we are calling the constructor using this, it should always be the first line.
-
-# Chaining in Constructor:
-- Calling bigger constructor using this constructor, and that constructor itself calls another constructor is called as constructor chaining.
-  Example: Constructor chaining for a student class:
-  Student() { this("unknown")};
-  Student(string name) {this(name, 0)}
-  Student(String name, int age) {this(name, age, 0)}
-  Student(String name, int age, int rollNumber)
-  {
-      this.name = name;
-      this.age = age;
-      this.rollNumber = rollNumber;
-  }
-
-  * Can we call constructors manually?
-    - No we cannot call constructors manually, it can be only called when creating an object, or it can be called using this inside the class itself.
-   
-  * What happens when the memory in heap is full and there is no space remaining to allocate for the object being created using the constructor?
-    => At that time we get the runtime exception.
-
-
-# Objects Deep Dive :
- 
- * How much memory does reference variable take?
- => It takes either 4byte or 8byte. It varies from JVM to JVM. The JVM which uses compression takes 4 bytes rest takes 8 bytes.
-
- * How much memory does object takes?
-   Let us understand with an example, consider the object of the class
-   class Student{
-      String name; 4 bytes
-      int age; 4 bytes
-      int rollNo; 4 bytes
-      String college; 4 bytes
-   }
-
-   By looking at it we can think that it would take 16 bytes, but it is wrong, because there are more things apart from the exact fields that are present in the class.
-  
-   * What are some of the other things?
-   - Header size
-   - Exact fields
-   - Padding
-
-   1) Headers: This contains the metadata of the object.
-      The metadata can be divided into two subparts:
-      a) Mark Words: This contains
-         - lock info
-         - Synchronization info
-         - Garbage collection infor
-        This takes around 8 bytes.
-      b) Class Pointers:
-         this keyword: 4bytes/8 bytes
-   
-   2) Exact Data: 
-      Considering the Student class example, the exact fields are name, age, rollNo, college, this will take around 16 bytes of memory.
-
-   3) Padding:
-      Since modern CPUs work by fetching 8bytes of data at once we want are object size to be the multiple of 8. So the size of the Object is rounded off to multiple of 8 bytes using padding.
-
-      Now considering the Student class example:
-      - We had header size of 12 bytes
-      - Exact field size of 16 bytes
-     Adding those two we have total size of 28 bytes so the nearest multiple of 8 to 28 is 32, so we add 4bytes of padding and we get the size of our object as 32 byte.
-
-# IS JAVA LANGUAGE CALL BY VALUE OR CALL BY REFERENCE:
-  - It is call by value. There is no call by reference in JAVA.
-
-# Deep Copy vs Shallow Copy in JAVA: (Code present in ShallowDeep.java)
-  - Let us understand this by an example.
-  Consider a class Student:
-   ** Student s1 = new Student(); **
-  In the above case the s1 is the object of class Student
-
-  - Now there are two ways that we can get the values of this object to be stored in the another object of "Student" class.
-
-  1) The first way is to do direct assigning:
-     Student s2 = s1; // This is called as shallow copy
-     Since s1 is a reference variable that is storing the reference of the object. The s2 will also get the reference of the same object.
-     So the changes made in s2 will reflect in s1 also as both are pointing to the same object.
-     This is called as shallow copy.
-
-  2) The second method is using the constructor.
-     Create a constructor inside the "Student" class that can copy the values of passed "Student" object to the current object
-     Example:
-     class Student {
-
-         Student (Student s)
-         {
-            this.name = s.name;
-            this.age = s.age;
-         }
-     }
-
-     <!-- Assigning Values -->
-     Student s1 = new Student("Siddhant", 20);
-     Student s2 = new Student(s1);
-
-     In the above example the s2 and s1 will point to seperate object memory, since s2 is also getting its own memory space because new keyword has been used.
-     Now changes made in s2 will not reflect in s1, for the starting part the value of s1 and s2 will remain same.
-
-     * This is called as Deep Copy
-
-# Static and Final Keyword:
-  1) Static
-     - The static keyword in Java is used to declare class-level members (variables, methods, blocks, or nested classes) that belong to the class itself rather than any specific instance of the class, meaning they are shared among all objects of that class.
-     - This can be accessed using Class Name and also the Object Name
-       Example:
-        - Student.college is also valid and also s1.college is also valid. (here Student is the className, s1 is instance of student class and college is the static variable of Student class).
-     - Static variables are also called as class variables.
-     - Static variables are stored in a seperate memory area called as metaspace.
-
-   * Rules for static:
-     - One static method can only call other static method. 
-     - Static method can only access static variables.
-     - Static method doesn't have "this" reference.
-
-   * static block:
-     It is used to assing values to static variables
-     Example:
-     class Student{
-        static String college;
-        static{
-            college = "SVPCET";
         }
-     }
-
-   * NOTE: Even before the creation of the object the static memebers gets memory allocated and assigned.
-           Parameters cannot be static
-           class cannot be static if it is not an nested class
-
-# Final Keyword:
-   - "final" keywords fixes the value for a variable.
-   - All the letters for the variable which uses "final" keyword must be Capital, it is a naming convention, more than one word are seperated by underscore.
-   - "final" can be applied on
-      - Variable
-      - Method
-      - Class
-      - Parameters
-
-# Why main is static in JAVA.
-- if it was not static then JVM would have to create an object of class for calling the main method. But JVM cannot create the object hence main method is static in JAVA
-
-# Pillars of OOP:
-
-1) Encapsulation: 
-   Encapsulation in Object-Oriented Programming is the mechanism of wrapping data (variables) and the methods (functions) that operate on that data into a single unit (class), while restricting direct access to the data and allowing it only through controlled interfaces.
-
- * Principles of Encapsulation
-   -  Both data and behaviours should be encapsulated within and object.
-   -  We should not provide unrestricted access of the data.
-
-
- # ACCESS OF MODIFIERS:
- This are the keywords to define who has access to variables, class, method and constructor.
-
- * There are four access modifiers in JAVA:
-   1) Private: 
-      - The variable, method, or class which are private cannot be accessed out of the class in which it is defined.
-   2) default:
-      - Any field declared with default access modifiers can be accessed inside the same package (Groups similar classes and interfaces together) and not outside the package.
-      - By default every field is default.
-   3) protected:
-       - Anyone can access them within the same package or inherited class which are even present in the other package.
-   4) public:
-       - Can be accessd by anyone.
-
-
-   This can be added in the front of variable, Method, constructor, class
-
-* NOTE: We can't use private or protected in front of our main class.
-   Why?
-   Because, our main class is the class, out of which there is nothing, so we can't determine what the private is in rellation to.
-   We can't use protected to a class because the protected mmakes the variables, and instance methods available in the child class, but we cant use inheritance on the class itself hence we can't use it.
-
-* Getters and Setters:
-  - Getters: used to get the value of instance variables.
-  - Setters: used to set the value of instance variables.
-
-  # PACKAGES in JAVA (Code are present in School folder)
-  - Packages are just folders, in which we can store differenct classes. The files stored inside the same folder belong to that package.
-  
-  * Importing classes presnt in packages:
-    - To import classes present in packages, we use the import statement the syntax is as follows:
-    - import package_name.class_name
-  * Importing all classes present in the packages
-    - We use the syntax:
-    - import package_name.* (This imports all the classes presnt inside that package).
-
-  * There are two types of packages in JAVA:
-  - User  defined package
-  - In-Built package (java.util, java.lang, java.io)
-
-  * How does it work on JVM level:
-    - Internally the JVM adds the bytecode of the classes imported from certain packages and adds it in our code while compiling.
-
-2) Inheritance
-  Inheritance is a mechanism in Java by which one class (called the subclass or derived class) acquires the properties (fields) and behaviors (methods) of another class (called the superclass or base class), enabling code reusability and establishing a hierarchical relationship between classes.
-
-  Example:
-  class Vehicle{
-    void start(){
-
     }
-  }
+}
 
+---
 
-  class Car extends  Vehicle{
-      void setGear(){
+# ARRAY
 
-      }
-  }
+## Definition
+- An array is a contiguous block of memory used to store elements of the same data type
 
-  - Now the object of class Car can use the methods of class Vehicle, but if we redefine the "start" method inside the Car class then the method present inside the Car class will be called. We can say that the method "start" inside the Car class has shadowed the method "start" present in the "Vehicle" class.
+---
 
-  * Properties of Inheritance:
-   - Code Reusability.
-   - Supports polymorphism.
+## Declaration
 
-# TYPES OF INHERITANCE:
-1) Simple Inheritance. A -> B
-2) MultiLevel Inheritance.  A -> B -> C
-3) Hierarchical Inheritance.  
-         A
-        / \
-       B   C
-4) Multiple Inheritance: (Java doesn't support multiple inheritance using classes)
-      A  B
-      \ /
-       C
+int[] rollNumber = new int[3];
 
+### Breakdown:
+- int[] → data type of array
+- rollNumber → array name
+- new int[3] → allocates memory in heap for 3 elements
 
- * Why multiple inheritance is not supported in JAVA?
-   Let us understand it with an example:
-           A  show()
-          / \
-  show() B   C  show()
-          \ /
-           D
+---
 
-   Consider the above example where the class A has a method named as show, and class B and class C which are inheriting from class A write there own method "show".
-   If calss D which inherits from both B and C tries to call the method "show" the compiler won't be  able to decide which method it should call, from class B or from class C, so this is called as "Diamond problem", hence multiple inheritence is not supported in JAVA for classes.
+## Why specify data type?
 
+- Helps compiler determine memory allocation
+
+Example:
+- int = 4 bytes (32 bits)
+- For 4 elements → 4 × 4 = 16 bytes required
+
+---
+
+## Size of Array
+
+- Can be accessed using:
+rollNumber.length
+
+---
+
+## Assigning Values
+
+rollNumber[index] = value;
+
+---
+
+## Accessing Values
+
+System.out.println(rollNumber[index]);
+
+---
+
+## IndexOutOfBoundsException
+
+- Occurs when accessing an index outside array size
+
+Example:
+int[] arr = new int[3];
+arr[3];   // Invalid (valid indices: 0 to 2)
+
+---
+
+## Key Points
+
+- Arrays are stored in heap memory
+- Elements are stored in contiguous locations
+- Indexing starts from 0
+- Fixed size once created
+
+# MULTIDIMENSIONAL ARRAYS IN JAVA
+
+## Definition
+- Multidimensional arrays are arrays of arrays.
+- Used to represent data in tabular form (rows and columns).
+
+---
+
+## 1. Declaration
+
+int[][] arr;
+
+---
+
+## 2. Memory Allocation
+
+int[][] arr = new int[3][4];
+
+### Meaning:
+- 3 → number of rows
+- 4 → number of columns
+
+---
+
+## 3. Initialization
+
+int[][] arr = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+---
+
+## 4. Accessing Elements
+
+arr[row][column]
+
+Example:
+arr[1][2];  // Accesses element at 2nd row, 3rd column
+
+---
+
+## 5. Traversing 2D Array
+
+### Using nested loops:
+
+for (int i = 0; i < arr.length; i++) {
+    for (int j = 0; j < arr[i].length; j++) {
+        System.out.print(arr[i][j] + " ");
+    }
+    System.out.println();
+}
+
+---
+
+## 6. Jagged Arrays (Irregular Arrays)
+
+- Rows can have different column sizes
+
+Example:
+int[][] arr = new int[3][];
+
+arr[0] = new int[2];
+arr[1] = new int[4];
+arr[2] = new int[3];
+
+---
+
+## 7. Key Points
+
+- Stored in heap memory
+- Each row is a separate array
+- Can have different sizes (jagged arrays)
+- Indexing starts from 0
+
+---
+
+## 8. 3D Arrays (Optional Extension)
+
+int[][][] arr = new int[2][3][4];
+
+- 2 → number of 2D arrays
+- 3 → rows
+- 4 → columns
+
+---
+# HOW DOES RANDOM ACCESS WORK INTERNALLY?
+
+## Definition
+- Random access means accessing any element directly using its index without traversing previous elements.
+
+Example:
+arr[3] → directly accesses the 4th element
+
+---
+
+## How it works internally
+
+- Arrays are stored in **contiguous memory locations**
+- Each element occupies fixed size (depends on data type)
+
+---
+
+## Address Calculation Formula
+
+Address of element at index i:
+
+address = base_address + (i × size_of_each_element)
+
+---
+
+## Example
+
+int[] arr = new int[5];
+
+Assume:
+- Base address = 1000
+- Size of int = 4 bytes
+
+Then:
+
+arr[0] → 1000 + (0 × 4) = 1000  
+arr[1] → 1000 + (1 × 4) = 1004  
+arr[2] → 1000 + (2 × 4) = 1008  
+arr[3] → 1000 + (3 × 4) = 1012  
+
+---
+
+## Key Idea
+
+- No looping required
+- Direct calculation → direct access
+
+---
+
+## Time Complexity
+
+- O(1) (Constant time)
+
+---
+
+## Why is it fast?
+
+- Because:
+  - Memory is contiguous
+  - Element size is fixed
+  - Address is computed using a formula
+
+---
+
+## Important Notes
+
+- Works only for:
+  - Arrays
+  - ArrayList (internally uses array)
+
+- Does NOT work for:
+  - Linked List (requires traversal)
+
+---
+
+# FUNCTIONS IN JAVA
+
+## Definition
+- A function (method) is a block of code that executes when called.
+- It improves code reusability.
+- Execution of a Java program starts from the main method.
+
+---
+
+## Boilerplate Syntax
+
+static return_type function_name(parameters) {
+    return value;
+}
+
+---
+
+## Example
+
+static int sum(int a, int b) {
+    int result = a + b;
+    return result;
+}
+
+---
+
+## Arguments
+- Arguments are the actual values passed during function call.
+
+Example:
+sum(5, 10);  // 5 and 10 are arguments
+
+---
+
+# TYPES OF FUNCTIONS IN JAVA
+
+1. No Input, No Output  
+2. Input, No Output  
+3. No Input, Returns Output  
+4. Input and Returns Output  
+
+Note:
+- Number of parameters can be any.
+
+---
+
+# FUNCTION OVERLOADING
+
+## Definition
+- Function overloading allows multiple functions with the same name but different parameters.
+
+## Must differ in:
+- Number of parameters
+- Data type of parameters
+- Order of parameters (if types are different)
+
+---
+
+## Not allowed:
+- Cannot overload based only on return type
+
+### Reason:
+- Function call may not store return value
+- Compiler cannot determine which method to call
+
+---
+
+# FUNCTION CHAINING
+
+- When one function calls another function, which calls another, and so on.
+
+---
+
+# SCOPE OF VARIABLES
+
+## 1. Local Scope
+- Variables declared inside a block or function
+- Accessible only within that block
+
+---
+
+## 2. Global Scope (Class Level)
+- Variables declared inside class but outside methods
+- Accessible throughout the class
+
+---
+
+# LIMITATIONS OF FUNCTION-BASED PROGRAMMING
+
+- Requires many independent variables for related data
+- Passing multiple variables becomes complex
+- Difficult to manage multiple entities (e.g., multiple students)
+- No proper data control or security
+
+---
+
+# OBJECT-ORIENTED PROGRAMMING (OOP)
+
+## Definition
+- OOP is a programming paradigm that organizes code using objects and classes.
+- Combines data and behavior together.
+
+---
+
+## CLASS
+
+- A class is a blueprint for creating objects.
+
+Example:
+class Student {
+    String name;
+    int age;
+    int marks;
+}
+
+---
+
+## OBJECT
+
+- An object is an instance of a class.
+- It is a user-defined (non-primitive) data type.
+
+---
+
+## Object Creation
+
+Student s1 = new Student();
+
+### Explanation:
+- new → allocates memory in heap
+- s1 → reference variable (stored in stack)
+- Object → stored in heap
+
+---
+
+## Assigning Values
+
+s1.age = 30;
+s1.name = "Vedant";
+
+---
+
+## BEHAVIOR (METHODS)
+
+- Functions inside a class are called methods.
+- They define what an object can do.
+
+Example:
+class Student {
+    void study() {
+        System.out.println("Studying...");
+    }
+}
+
+# NAMING CONVENTIONS IN JAVA
+
+- Variables (primitive/reference) → camelCase  
+- Classes → Start with uppercase (PascalCase)  
+- Methods (functions) → camelCase  
+
+Note:
+- Not mandatory, but good coding practice
+
+---
+
+# INSTANCE VARIABLES
+
+- Variables declared inside a class (outside methods)
+- Also called non-static variables
+
+### Default Values:
+- int → 0  
+- float/double → 0.0  
+- boolean → false  
+- reference types (e.g., String) → null  
+
+Note:
+- Local variables do NOT have default values
+
+---
+
+# INSTANCE METHODS
+
+- Methods defined inside a class
+- Operate on instance variables
+
+---
+
+# CONSTRUCTORS
+
+## Definition
+- Special method called when an object is created
+
+Example:
+Student s1 = new Student();  
+(Student() is the constructor)
+
+---
+
+## Rules of Constructors
+
+- Same name as class  
+- No return type (not even void)  
+- Automatically called during object creation  
+- Used to initialize object  
+- Can be overloaded  
+
+---
+
+# TYPES OF CONSTRUCTORS
+
+## 1. Default Constructor
+- Provided by Java if no constructor is defined
+
+---
+
+## 2. User-Defined Constructor
+- Created by programmer
+- If defined, Java does NOT provide default constructor
+
+---
+
+### Parameterized Constructor
+
+Example:
+Student(String name, int age) {
+    this.name = name;
+    this.age = age;
+}
+
+---
+
+# CONSTRUCTOR OVERLOADING
+
+- Multiple constructors with different parameters
+
+---
+
+# this KEYWORD
+
+- Refers to current object
+- Used to access instance variables and methods
+
+### Rules:
+- If used to call constructor → must be first statement
+
+---
+
+# CONSTRUCTOR CHAINING
+
+- One constructor calls another using `this()`
+
+Example:
+Student() {
+    this("unknown");
+}
+
+Student(String name) {
+    this(name, 0);
+}
+
+Student(String name, int age) {
+    this(name, age, 0);
+}
+
+Student(String name, int age, int rollNumber) {
+    this.name = name;
+    this.age = age;
+    this.rollNumber = rollNumber;
+}
+
+---
+
+## Can constructors be called manually?
+
+- No
+- Only called:
+  - During object creation
+  - Using `this()` inside another constructor
+
+---
+
+## What if heap memory is full?
+
+- JVM throws runtime error:
+  - OutOfMemoryError
+
+---
+
+# OBJECTS DEEP DIVE
+
+## Memory of Reference Variable
+
+- Takes:
+  - 4 bytes (compressed OOPs)
+  - 8 bytes (normal JVM)
+
+---
+
+## Memory of Object
+
+Example:
+class Student {
+    String name;
+    int age;
+    int rollNo;
+    String college;
+}
+
+---
+
+### Components of Object Memory
+
+## 1. Header
+
+Contains metadata:
+
+### a) Mark Word (~8 bytes)
+- Lock information  
+- Synchronization info  
+- Garbage collection data  
+
+### b) Class Pointer (~4/8 bytes)
+- Points to class metadata
+
+---
+
+## 2. Actual Data (Fields)
+
+- Example:
+  - name → reference (4/8 bytes)  
+  - age → 4 bytes  
+  - rollNo → 4 bytes  
+  - college → reference (4/8 bytes)  
+
+---
+
+## 3. Padding
+
+- Ensures object size is multiple of 8 bytes
+- Improves memory alignment and performance
+
+---
+
+### Example Calculation
+
+- Header → 12 bytes  
+- Fields → 16 bytes  
+- Total → 28 bytes  
+
+Nearest multiple of 8 → 32 bytes  
+→ Add 4 bytes padding  
+
+Final object size = 32 bytes
+
+---
+
+# CALL BY VALUE IN JAVA
+
+- Java is strictly call by value
+
+### Key Idea:
+- Copy of value is passed to method
+
+- For primitives:
+  - Actual value is copied
+
+- For objects:
+  - Reference is copied (not object itself)
+
+Note:
+- There is no call by reference in Java
+# DEEP COPY VS SHALLOW COPY IN JAVA
+
+## Shallow Copy
+
+- Copying reference of an object
+- Both variables point to the same object in memory
+
+Example:
+Student s1 = new Student();
+Student s2 = s1;
+
+### Key Points:
+- No new object created
+- Changes in s2 affect s1
+- Only reference is copied
+
+---
+
+## Deep Copy
+
+- Creating a new object and copying values
+
+Example:
+class Student {
+    String name;
+    int age;
+
+    Student(Student s) {
+        this.name = s.name;
+        this.age = s.age;
+    }
+}
+
+Student s1 = new Student("Siddhant", 20);
+Student s2 = new Student(s1);
+
+### Key Points:
+- New memory allocated
+- Objects are independent
+- Changes in s2 do not affect s1
+
+---
+
+# STATIC KEYWORD
+
+## Definition
+- Static members belong to the class, not objects
+- Shared among all instances
+
+---
+
+## Access
+
+Student.college  
+s1.college  
+
+---
+
+## Key Points
+
+- Static variables → class variables
+- Stored in Metaspace
+- Memory allocated before object creation
+
+---
+
+## Rules for Static
+
+- Static method can access only static members
+- Static method cannot use `this`
+- Static method can call only static methods
+
+---
+
+## Static Block
+
+- Used to initialize static variables
+
+Example:
+class Student {
+    static String college;
+
+    static {
+        college = "SVPCET";
+    }
+}
+
+---
+
+## Notes
+
+- Parameters cannot be static
+- Only nested classes can be static
+
+---
+
+# FINAL KEYWORD
+
+## Definition
+- Used to make something constant / unmodifiable
+
+---
+
+## Can be applied to:
+
+- Variable → value cannot change  
+- Method → cannot be overridden  
+- Class → cannot be inherited  
+- Parameter → cannot be modified  
+
+---
+
+## Naming Convention
+
+- Use uppercase letters
+- Use underscore for multiple words
+
+Example:
+final int MAX_VALUE = 100;
+
+---
+
+# WHY MAIN METHOD IS STATIC
+
+- JVM calls main method without creating object
+- Hence main must be static
+
+---
+
+# PILLARS OF OOP
+
+## Encapsulation
+
+### Definition
+- Wrapping data and methods into a single unit (class)
+- Restricting direct access to data
+
+---
+
+## Principles
+
+- Combine data and behavior
+- Restrict direct access
+- Use controlled access methods
+
+---
+
+# ACCESS MODIFIERS
+
+- Define visibility of variables, methods, classes
+
+---
+
+## Types
+
+### 1. Private
+- Accessible only within same class
+
+---
+
+### 2. Default (No modifier)
+- Accessible within same package only
+
+---
+
+### 3. Protected
+- Accessible:
+  - Within same package
+  - In subclasses (even in different package)
+
+---
+
+### 4. Public
+- Accessible from anywhere
+
+---
+
+## Notes
+
+- Cannot use private or protected for top-level class
+- Protected is meaningful only with inheritance
+
+---
+
+# GETTERS AND SETTERS
+
+## Getters
+- Used to access private variables
+
+Example:
+public int getAge() {
+    return age;
+}
+
+---
+
+## Setters
+- Used to modify private variables
+
+Example:
+public void setAge(int age) {
+    this.age = age;
+}
+# PACKAGES IN JAVA
+
+## Definition
+- Packages are folders used to organize related classes.
+- Classes inside the same folder belong to the same package.
+
+---
+
+## Importing Classes
+
+### Import specific class:
+import package_name.class_name;
+
+### Import all classes:
+import package_name.*;
+
+---
+
+## Types of Packages
+
+1. User-defined packages  
+2. Built-in packages  
+   - java.util  
+   - java.lang  
+   - java.io  
+
+---
+
+## JVM Working
+
+- JVM includes bytecode of imported classes during compilation.
+
+---
+
+# INHERITANCE
+
+## Definition
+- Mechanism where one class acquires properties and behavior of another class.
+
+---
+
+## Example
+
+class Vehicle {
+    void start() {}
+}
+
+class Car extends Vehicle {
+    void setGear() {}
+}
+
+---
+
+## Key Points
+
+- Child class can use parent methods
+- Child can override parent methods
+- Supports:
+  - Code reusability
+  - Polymorphism
+
+---
+
+# TYPES OF INHERITANCE
+
+1. Single → A → B  
+2. Multilevel → A → B → C  
+3. Hierarchical  
+       A  
+      / \  
+     B   C  
+
+4. Multiple (Not supported using classes)
+
+---
+
+## Why Multiple Inheritance is Not Supported?
+
+- Causes ambiguity (Diamond Problem)
+
+Example:
+
+      A
+     / \
+    B   C
+     \ /
+      D
+
+- If B and C override same method from A
+- D cannot decide which method to use
+
+---
 
 # SUPER KEYWORD
-  - "super" keyword stores the reference of the parent object
- 
-  * Uses of Super:
-     - To access parent class Variable
-     - Can call parent class method using Super
-     - Call parent class constructor.
-
-   * NOTE: A parent class reference variable can refer to child class object.
-
-3) Abstraction:
-
-   - The process of focusing on what something does while ignoring how it does that.
-
-   * Principle of Abstraction:
-     - To represent whaterver necessary.
-     - Even what we model, we don't want everyone to know how everything works, but they can still use it.
-   
-   * Two types of abstraction ways in JAVA:
-     - Low level abstraction: (Hiding implementation detail)
-        i) Java achieves this through classes.
-
-     - High Level Abstraction: ( Seperate What from how)
-        
-         class Car{
-            start()  {
-
-            }
-            accelerate(){
-
-            }
-         }
-
-         - The above type of classes are called concrete classes.
-         - The reference variable for the object of this class will be tightly coupled to the concrete classes.
-         - This introduces a problem that everytime the new feature comes or new type of implementation comes, we need to make another class. For example, if in future a new car comes, that is Electric Car then I would have to make another class called Electric Car where I would have to implement the start() function seperately as it would be different for the electric car. 
-         - Our what was same but how was different. This made the object strongly coupled to the Electric Car class, or Fuel Car class.
-
-         * We can remove this tight coupling using inheitance.
-           - We can define similar methods in the parent class. For example walk, it is same in all Animals, so we can define it in parent class Animal. The method makeSound will be different for each animals so that can be defined in individual animal classes.
-           - Now using the Animal class object, we can point to any derived class object. Hence there is no tight coupling the compiler decides at runtime which object to point to.
-           - Using this we seperated what we can do, and how we do it.
-
-
-        It is implemented using two things:
-        a) Abstract Class:
-            - An abstract class is a class declared with the keyword abstract that cannot be instantiated and is designed to be extended by other classes. It may contain abstract methods (methods without implementation) as well as concrete methods (methods with implementation), and serves as a base class to provide a common definition and enforce a contract for its subclasses.
-
-            - If there are any abstract methods within a class then that class should also be made abstract.
-              Why?
-              => Because the abstract methods doesn't provide any implementation, so if someone tries to call the abstract method using that class object, it will give error. Hence we must make a class abstract if it has any abstract methods.
-            - Second thing is all the subclasses of abstract class must define the abstract methods, or they should become the abstract class themselves for the similar reason as above.
-
-            * @Override:
-              This keyword is specifically for telling that we have made our own method and haven't used the parent class method. It is not compulsory but a good coding practice.
-
-      * Some important knowlege points for Abstraction:
-        - Cannot be instantiated directly.
-        - Can contain abstract method (method without implementation)
-        - Can also contain normal methods
-        - Is meant to be extended
-
-      * Questions:
-      1) Can abstract class have constructors?
-        => Yes constructors are allowed. Because child class constructor can call the constructor of the parent class.
-      2) Can abstract classes be made final?
-        => No final keyword is not allowed because it will block the class from being inherited and we don't want that.
-      3) Can abstract class have static method?
-        => Yes they can have static method, variable and block.
-      4) Can abstract classes have private method?
-        => private methods are allowed, but they should not be abstract.
-      5) Can abstract classes have final method?
-        => Yes, just that they cannot be overrided in the child class and they cannot be abstract.
-      6) Can abstract classes have no abstract method?
-        => Yes, because we might want a situation where we dont want the class to have any object but want to provide a default implementation for every method present in that class. 
-           Those method can be overrided in the child class if wanted otherwise the base class method will be called.
-       
-   
-   # Interface
-     - An interface is a reference type in Java that defines a set of abstract methods (and constants) which a class must implement. It provides a way to achieve full abstraction and multiple inheritance, allowing different classes to follow a common contract without specifying implementation details.
-     - We need to use "implements" keyword for performing inheritance using inerface.
-     - Interface supports multiple inheritance.
-
-     * Why do we need interface?
-       - When java implemented interface, there thought process was that interface should tell pure what. It should not tell how.
-       - Before JAVA 8 interfaces used to provide full abstraction.
-       
-     * What are intentions of interface?
-       - First it is a contract between the interface and its child classes. The child classes are bound to implement the methods present in the interfaces.
-       - It tells the responsibilites of the class. Example: interface flyable { void startFlying() {}}, Any class becoming the subclass of this interface must have to implement the startFlying method. That's why interfaces tell the responsibility to the child class, that if you want to be my child class you have to implement this methods.
-
-      * Abstract class and Interface
-        - Abstract class shows the family of similar objects whereas interface defines a contract.
-
-      * Marker Interafces:
-         - Empty interfaces that act as marker for something.
-
-    # ABSTRACTION VS ENCAPSULATION
-      - Encapsulation talks about data security, by providing access modifiers
-      - Abstraction talks abot data/implementation hiding, it just wants to reduce complexity by hiding the complex implementation and still making it usable
-
-
-# POLYMORPHISM:
-  - Poly means many, morph means forms.
-  - Same object behaves differently on same command if one of the param is changed.
 
-  Example:
-  * Compile Time Polymorphism:
-  - We do function overloading by changing the function signature. This is called compile time polymorphism, because the function to be called is decided in compile time only.
+## Definition
+- Refers to parent class object
 
-  * Runtime Polymorphism:
-    - We achieve this using method overriding. When we create an abstract class, and inherit from it, we can implement different kinds of method in every subclass. 
-    - Consider an example of class "Animal" this class is abstract class with a mehod "makeSound" in it, this is inherited by a Dog class, a Duck class, a Cat class.
-    - Now those classes will override the makeSound method. When we will be creating an object like the example given below:
-      Animal A = new Duck();
-      A.makeSound();
-      So at the runtime we will be deciding which makeSound() method we have to call for, whether od Dog, Duck or Cat. Hence it is called the runtime polymorphism.
+---
 
+## Uses
 
-  * FEW KEYWORDS
-   - Static:
-     - The static methods doesn't get overrided. Because static method are class methods they belong to class. So what object we are refering to doesn't matter.
-   - Private:
-     - Private methods they can't be overridden.
-   - final:
-     - final methods also cannot be overridden.
-     - If we add final keyword in front of the class, then no subclass of that class can be created.
+- Access parent variables  
+- Call parent methods  
+- Call parent constructor  
 
-  * NOTE: Fields and variable cannot be overridden. They are not polymorphic, they depend on the reference variable.
-      class A {
-         int x = 20;
-      }
+---
 
-      class B extends B {
-         int x = 30;
-      }
+## Note
+- Parent reference can refer to child object
 
-      A a = new B();
-      soutp(a.x);
+---
 
-      // This will print 20, because the reference variable is of type class A.
+# ABSTRACTION
 
-      B b = new B();
-      soutp(b.x);
+## Definition
+- Focus on what an object does instead of how it does it
 
-      // This will print 30 now.
+---
 
-# IN DEPTH KNOWLEDGE OF CLASSES:
+## Principles
 
-1) Why one public class per file?
-   => Every code is executed using JVM and it calls the main function. That's why we make our main function as static and our class as public so that JVM doen't have to create any object of that file and can execute the main method. Also the main method should be public, so that it can be accessible outside the package.
+- Show only essential details  
+- Hide implementation details  
 
-   - If JAVA allowed more than one public class, JVM would not know in which class the main method exists. So to make it simple for JVM Java allowed only one public class per file.
+---
 
-2) Now why does the class name should be same as the file name?
-   => Because it becomes easy for JVM to find the class which will be having the main method directly as the file name and the class name is same.
+## Types of Abstraction
 
+### 1. Low-Level Abstraction
+- Hiding internal implementation
+- Achieved using classes
 
-3) What are wrapper classes?
-   - Wrapper classes are those classes that are based on primitive datatypes with more functionality.
-     For example:
-     int  -> Integer (Wrapper class for int)
-     float -> Float ( Wrapper class for float)
+---
 
-4) Why does wrapper classes exist?
-   - Java has something called as collection frameword which works only on objects.
-   - JAVA is OOP based language so JAVA wants a substitutable way od using primitive datatypes in the form of object
+### 2. High-Level Abstraction
+- Separating "what" from "how"
 
-5) Then why does primitive datatypes exists till now?
-   - Because of Legacy. To maintain legacy of previous language like C/C++.
-   - This are fast.
+---
 
-# Autoboxing and Unboxing
+## Problem Without Abstraction
 
-1) Autoboxing:
-   - Automatic conversion of primitive datatype to wrapper class is called as Autoboxing.
-     Example:
-      int x = 10;
-      Integer y = x; // x value gets stored in y.value
-
-   - How does it happen internally:
-      Older versions : Integer y = new Integer(x);
-      Newer versions : Integer y = Integer.valueof(x);  // This uses caching to make it better and more optimized
-
-2) Unboxing:
-   -  Automatic conversion of Wrapper class object into premitive datatype is called Unboxing.
-      Example:
-      Integer x = 10;
-      int y = x;
-
-   - Internally:
-     int y = x.intValue();
-
-* Autoboxing and Unboxing work automatically on the following things:
-  - Assignment
-  - Method Calls
-  - Arithmetic Operations
-
-* Null pointer exception that  can happen while using autoboxing and unboxing.
-      Integer x = null;
-      int y = x;
-      soutp(y);
-
-   If we do something like this this will throw the null pointer exception, because a primitive datatype like int cannot have a null value.
-   Internally the JVM is calling the method Integer.valueof(x) while assigning the value of object X to y. So that is not possible, hence the null pointer exception.
-
-* Comparing two wrapper classes objects:
-  Example:
-   Integer x = 100;
-   Integet y = 100;
-
-   Now if we do something like this
-   soutp(x == y) // this will return false
-
-   Why?
-   => Since both x and y are different references variable pointing to different object address, and "==" compares the reference variables for the objects.
-      Since bothe the both the reference variables are storing different addresses we get false.
-
-   - If we want the values to be compared we have two ways:
-     1) Use x.intValue() so that we can get the value and then we can compare.
-     2) Or use x.equals(y) this compares the value present in the x and y
-
-* How does Integer class looks like? Conceptual overview
-  public final calss Integer {
-      private int value;
-
-      public Integer(int value){
-         this.value = value;
-      }
-
-      public int intValue(){
-         return value;
-      }
-
-      public static Integer valueOf(int x){
-
-      }
+- Tight coupling with concrete classes
+- Difficult to extend system
 
-      public boolean equals(Integer x){
-         return (value == x.intValue())
-      }
-  }
-
- * If we try to compare two objects of "Integer" class storing the value in range of -128 to 127 it will give true.
-   - This is because, internally Integer.valueOf() method has cached values for this range, it has already created the object for this range so it directly returns the address of that object. Hence any object created within this range using Integer share same memory location hence giving the true output.
-
-# POJO Classes (Plain Old Java Object):
-  - Simple class that doesn't use any external frameworks.
-  - It has simple variables and methods, getters, setters and basic business logic.
-
-  * Why POJO Classes exist?
-    - Consider an example where we want to represent a "Student" class, with fields like name, age, rollNo, college. We can represent it using a simple POJO class.
-
-   * Types of POJO classes:
-     1) Anemic model: It consists of only getter/setter, constructor, fields.
-     2) Rich Domain Model: Business logic added a little bit.
-
-# Nested Classes in JAVA:
--  A class declared inside other class is called as Nested class.
-
- * Why do we need nested class?
-   - Logical Grouping:
-      - In Java, logical grouping (in the context of nested classes) means placing a class inside another class when they are closely related and only make sense together.
-      - Book is logically part of Library
-      - It doesn’t make sense to use Book while creating a library management system.
-   - Better access to Outer Class:
-      - Inner class has access to private methods and variables.
- 
- * This are divided into 4 parts:
-   1) Static Nested
-   2) Inner Class
-   3) Local Class
-   4) Anonymous class
-
-   - Static Nested Class:
-     - Inner class will be defined using static keyword.
-     - The object of this class can be directly created using the name of the Outer class.
-       For example:
-       class A{
-         static class B{
-
-         }
-       }
-       - Consider the above example where B is the nested static class. The object of class B can be created like below:
-         A.B inner = new A.B();
-
-      * Properties of Static Nested Classes:
-        - It can't access the non-static method or variable present inside the outer class.
-        - It can inherit some class, or implement an interface.
-        - Static nested class can have static members and functions.
-        - It can also use access modifiers.
-
-      * Use cases of Static Nested Class:
-        - As helper class for any outer class.
-        - Builder design pattern.
-        - If you want to have static methods inside a nested class.
-        - Request/Response DTO.
-   
-   - Inner Class:
-     - A simple nested class within a class is called as Inner class.
-     - Example:
-        class Outer {
-            class Inner{
-
-            }
-        }
-
-    
-
-
-# Standard Input Output in JAVA
-
-* Types of Input Output:
-   - Console based Input Output.
-   - File Input Output.
-   - Network Input Output.
-   - Memory Input Output.
-
-
-* Console Input Output:
-   - System.out.println(): In this we can see that:
-      - System is a class which has a static variable "out", that static variable is reference varible for some class, which has the method println.
-      - The out is the reference variable for class PrintStream.
-
-   * How did we get the access of the System class without importing it?
-      - The System class belongs to "java.lang" package, and it is imported by default by the compiler.
-
-# Streams:
-   - Flow of data is called as stream.
-   - In JAVA all of them are stream of bytes.
-
-   * Two type of Stream:
-    1) Input Stream: Data flow into program.
-    2) Output Stram: Data flow outside the program
-
-    This are both abstract classes. Since they provide only with the methods that should be implemented by their child class for different purpose. The methods are read and write.
-
-    * Heirarchy of InputStream (Abstract):
-      - FileInputStream
-      - ByteArrayInputStream
-      - BufferedInputStream
-      - DataInputStream
-    
-    * Heirarchy of OutputStream (Abstract):
-      - FileOutputStream
-      - ByteArrayOutputStream
-      - BufferOutputStream
-      - PrintStream
-   
-
-
-* How to take input from user?
-   - There is a "in" named variable present in the System class which is of type InputStream.
-   * Older method:
-      - int data = System.in.read() // Returns int value
-         soutp((char) data); // Converting to char
-
-   * Problem in above method is:
-     - The read method only reads 1 byte at time, so if I enter my name "Siddhant", it will read only S, and rest of the letters will go in a input buffer (It is a kind of array for letters input using keyboard).
-     - So what we can do is use while loop till we find the nextline character, and keep reading till then.
-     - Example:
-
-     String s = "";
-     int c;
-     while(c != '\n'){
-         c = system.in.read();
-         s += (char) c;
-     }
-
-   * Updated Method (Reader class)
-
-    - Heirarchy of Reader class:
-       - BufferReader
-       - InputStreaReader
-       - FileReader
-
-    - This reads stream of characters.
-
-   * BufferReader
-    - BufferReader does something interesting, it reads a chunk of data at once from the OS and keeps it in its program buffer, so that it doesn't have to go again and again to the OS for the data. It doesn't read byte by byte improving speed and efficiency.
-    - FLOW : Keyboard -> OS Buffer -> Java Buffer -> Program
-
-   
-   * InputStreamReader:
-     - The input from the keyboard can be accessed by the class InputStream which reads 1 byte of data at a time. 
-     - Our BufferedReader reads stream of character.
-     - So the BufferedReader(stream of char)  and InputStreamI(stream of bytes) are not compatible with each other.
-     - Here comes the role of InputStreamReader, this class converts the stream of bytes into stream of characters. So that BufferReader can access the stream of character from OS and place it in the program buffer.
-
-     - Byte Stream -> Character Stream
-
-   * How do we combine this now
-     InputStreamReader isr = new InputStreamReader(System.in)  // this will convert byte stream to character stream
-     BufferedReader br = new BufferedReader(isr); // Reads the chuck of stream
-     br.readLine();
-
-   * Entire flow:
-   1. Reading from console. Let's say we read "Aditya".
-   2. OS Buffer will store: [65, 100, 105, 116, 121, 97]
-   3. System.in (InputStream object) recieves bytes.
-   4. InputStreamReader -> converts stream of bytes into stream of characters
-   5. BufferedReader -> This will read entire stream of characters inside the program buffer using readLine and make an entire string out of it,  store it in the variable.
-   6. Then whenever we will print  that variable we will get string as output.
-
-   * Limitations of BufferedReader:
-     - It can only read String. If we want to read integer we will have to convert it into int by Integer.parseInt() method.
-     - Complex code.
-
-# To address this issues JAVA introduced Scanner class:
-   - Simplified (Input)
-   - provide various method for reading different datatype values.
-   
-   * NOTE: this class is not present within the JAVA.io class. This comes under package called java.util.
-
-   - It works on the basis of tokenization, it breaks string based on whitespaces.
-
-   * Methods of Scanner:
-     - sn.next() -> reads only word
-     - sc.nextLine() -> reads entire sentence till nextline character is encountered
-     - sc.nextInt() -> Reading integer value
-     Similarly we have all the other methods
-   
-   * NOTE: Scanner class is slow compared to BufferedReader. Because Scanner class does multiple things.
-
-# Immutable Class in JAVA:
-- Immutable classes are those classes, where the methods and variables present in the object of this class cannot be changed once defined.
-- Immutable objects are those objects whose methods and instance variables cannot be changed once they are defined, and the class which this object belongs to is called as immutable class.
-
-* Rules of Immutable Object:
-  - Mark my class as final.
-  - Mark my instance variable as private and final.
-  - No setters.
-  - Defensive copy in costructors and getters.
-
-* Deep Copy:
-  - It means that never return a direct reference of any object, return a new object storing the same values as the object to be returned.
-
-* Example of how we will make immutable class:
-  class Student {
-      private final College college;
-
-      Student(College college){
-         this.college = new College(college.name, college.address);
-      }
-
-      College getCollege(){
-         return new College(this.college.name, this.college.address);
-      }
-  }
-
-  class College {
-      string name;
-      string address;
-
-      College(String name, String address){
-         this.name = name;
-         this.address = address;
-      }
-  }
-
-  Here the class student is a complete immutable class, because every primitive and non-primitive members in this class can never be changed by the user.
-
-# Object Class in JAVA:
-- It is present inside java.lang package.
-- Every class in JAVA inherits from Object class directly or indirectly.
-
-* Why did we needed this class?
-  - To add common behaviours to all the classes that are pre-built or build by user.
-  - We can store any class object in the reference variable of this Object class.
-    Example:
-      Object obj = new Student();
-    Even if the Student class is a seperate class still directly or indirectly it inherits from the Object class. Hence we can store the Object of "Student" class in "Object" class reference.
-
-* What are the common behaviours present in this?
-  - Core Methods
-    - toString()
-    - equals()
-    - hashCode()
-    - getClass()
-  - Cloning:
-    -  clone()
-  - Garbage Collection
-    - finalize()
-  - Thread
-    - wait()
-    - notify()
-    - notifyAll()
-
- * toString() method:
-    - Convert anything to String.
-    - Signature:
-       public String toString() {
-
-       }
-
-       This returns String representation of any object
-    - Default Implementation
-    - It returns output like this => class_name@hexa_value
-    - The returned hexa value is unique.
-    - When we try to print an object like "soutp(object_name)" then internally the "println" function calls the "toString()" method on that provided object.
-
- * equals() method:
-   - Compares two object and returns true or false
-   - Signature:
-     public boolean equals(Object obj){
-
-     }
-   - This compares two  references
-
-* hashCode() method:
-   - Return an integer of an Object in hexadecimal format.
-   - Used in collection frameworks.
-
-   * Rule:
-     - If two objecs are equal then their hashCode must be equal.
-     - Reverse might not be true.
-
-* getClass()  method:
-   - Return runtime class of an Object.
-   - Student s1 = new Student();
-   - s1.getClass() -> this will return Class type object.
-   - s1.getClass().getName() -> Now this will return the Student
-
-   * This is a final method in Object so it cannot be overrided
-
-   - Signature:
-     class Object {
-         public final Class <?>  getClass(){
-            //default method
-         }
-     }
- 
-* instanceOf operator:
-  - Checkks if an object is instance od a class or any of its subclass
-
-* clone() method:
-  - Creates copy of any object.
-  - Our class must implement clonable interface to use this method
-
-  - Signature
-    - class Object{
-       protected Object clone() throws classNotSupportedException{
-
-       }
+---
+
+## Solution
+
+- Use inheritance and abstraction
+- Parent class defines common behavior
+- Child classes define specific implementation
+
+---
+
+# ABSTRACT CLASS
+
+## Definition
+- A class declared with `abstract` keyword
+- Cannot be instantiated
+- Used as base class
+
+---
+
+## Features
+
+- Can have abstract methods (no body)
+- Can have concrete methods
+- Must be extended
+
+---
+
+## Rules
+
+- If a class has abstract method → class must be abstract
+- Child class must implement abstract methods
+  OR be abstract itself
+
+---
+
+## @Override Annotation
+
+- Indicates method is overridden
+- Not mandatory but good practice
+
+---
+
+# IMPORTANT POINTS ABOUT ABSTRACT CLASS
+
+- Cannot be instantiated  
+- Can have constructors  
+- Can have static methods, variables, blocks  
+- Can have private methods (not abstract)  
+- Can have final methods (cannot be overridden)  
+- Can exist without abstract methods  
+
+---
+
+## Restrictions
+
+- Cannot be final (because it must be inherited)
+
+---
+
+## Summary
+
+- Abstraction hides implementation details
+- Abstract class provides base structure
+- Helps reduce coupling and improve flexibility
+# INTERFACE IN JAVA
+
+## Definition
+- An interface is a reference type that defines a set of abstract methods and constants.
+- It provides full abstraction and supports multiple inheritance.
+
+---
+
+## Key Points
+
+- Classes use `implements` keyword to inherit an interface
+- Interfaces support multiple inheritance
+- Methods are meant to define "what" not "how"
+
+---
+
+## Purpose of Interface
+
+- Acts as a contract between interface and implementing class
+- Forces implementing classes to define required methods
+
+Example:
+interface Flyable {
+    void startFlying();
+}
+
+- Any class implementing Flyable must implement startFlying()
+
+---
+
+## Abstract Class vs Interface
+
+- Abstract Class → Represents "is-a" relationship (family of objects)
+- Interface → Defines contract (capabilities)
+
+---
+
+## Marker Interface
+
+- Empty interface used as a marker
+- Example: Serializable
+
+---
+
+# ABSTRACTION VS ENCAPSULATION
+
+- Encapsulation → Data hiding using access modifiers
+- Abstraction → Hiding implementation details, showing only essential behavior
+
+---
+
+# POLYMORPHISM
+
+## Definition
+- One object, many forms
+
+---
+
+## 1. Compile-Time Polymorphism
+
+- Achieved using method overloading
+- Method decided at compile time
+
+---
+
+## 2. Runtime Polymorphism
+
+- Achieved using method overriding
+
+Example:
+abstract class Animal {
+    abstract void makeSound();
+}
+
+class Dog extends Animal {
+    void makeSound() {
+        System.out.println("Bark");
+    }
+}
+
+class Duck extends Animal {
+    void makeSound() {
+        System.out.println("Quack");
+    }
+}
+
+Animal a = new Duck();
+a.makeSound();   // Calls Duck's method
+
+---
+
+## Important Notes
+
+- Static methods → Cannot be overridden
+- Private methods → Cannot be overridden
+- Final methods → Cannot be overridden
+- Final class → Cannot be inherited
+
+---
+
+## Variables and Polymorphism
+
+- Variables are NOT polymorphic
+- They depend on reference type
+
+Example:
+class A {
+    int x = 20;
+}
+
+class B extends A {
+    int x = 30;
+}
+
+A a = new B();
+System.out.println(a.x);   // 20
+
+B b = new B();
+System.out.println(b.x);   // 30
+
+---
+
+# IN-DEPTH KNOWLEDGE OF CLASSES
+
+## 1. Why one public class per file?
+
+- JVM needs a clear entry point
+- Only one public class simplifies lookup of main method
+
+---
+
+## 2. Why class name = file name?
+
+- Helps JVM locate class easily
+- Ensures consistency
+
+---
+
+## 3. Wrapper Classes
+
+- Classes that wrap primitive types into objects
+
+Examples:
+- int → Integer  
+- float → Float  
+
+---
+
+## 4. Why Wrapper Classes?
+
+- Java Collections work only with objects
+- Needed for object-based operations
+
+---
+
+## 5. Why Primitive Types Still Exist?
+
+- Faster performance
+- Backward compatibility with older languages (C/C++)
+# AUTOBOXING AND UNBOXING
+
+## 1) Autoboxing
+
+- Automatic conversion of primitive data type to wrapper class
+
+Example:
+int x = 10;
+Integer y = x;
+
+---
+
+### Internal Working
+
+- Older versions:
+Integer y = new Integer(x);
+
+- Modern versions:
+Integer y = Integer.valueOf(x);  // Uses caching
+
+---
+
+## 2) Unboxing
+
+- Automatic conversion of wrapper class to primitive type
+
+Example:
+Integer x = 10;
+int y = x;
+
+---
+
+### Internal Working
+
+int y = x.intValue();
+
+---
+
+## Where Autoboxing/Unboxing Happens
+
+- Assignment  
+- Method calls  
+- Arithmetic operations  
+
+---
+
+## NullPointerException Case
+
+Example:
+Integer x = null;
+int y = x;   // Exception
+
+Reason:
+- Primitive types cannot store null
+- JVM internally calls x.intValue()
+
+---
+
+## Comparing Wrapper Objects
+
+Example:
+Integer x = 100;
+Integer y = 100;
+
+System.out.println(x == y);
+
+---
+
+### Why it may return false?
+
+- "==" compares references, not values
+
+---
+
+### Correct Ways to Compare
+
+1. Using value:
+x.intValue() == y.intValue();
+
+2. Using equals:
+x.equals(y);
+
+---
+
+## Integer Caching
+
+- Range: -128 to 127
+- Objects in this range are cached
+- Same reference returned → x == y may be true
+
+---
+
+## Conceptual Structure of Integer Class
+
+public final class Integer {
+    private int value;
+
+    public Integer(int value) {
+        this.value = value;
     }
 
-   - this gives the shallow copy.
-  
-  * Why do we need to implement Cloneable interface for using clone.
-     - We dont want someone to clone database, or Threads, hence JAVA makes it mandatory to implement the Cloneable Class.
+    public int intValue() {
+        return value;
+    }
 
+    public static Integer valueOf(int x) {
+        // returns cached object if within range
+    }
 
-  * finalize() method:
-   - this was use earlier by Garbage Collection, now this has been depricated.
-   - This was too unpredictable, unsaffe and unreliable.
+    public boolean equals(Integer x) {
+        return value == x.intValue();
+    }
+}
 
-# PROBLEMS WITH USING NORMAL CLASS FOR GETTING THE FUNCTIONALITY OF ENUM
-- Let us consider an example of a class PaymentStatus used as enum:
-   class PaymentStatus{
-      public static final int SUCCESS = 1;
-      public static final int PENDING = 2;
-      public static final int FAILED = 3;
-   }
-- Now this class can be used and we can get the value for any status within any variable.
+---
 
-* PROBLEMS:
- - Type safety, since they are integers any one can assign any random value to that variable:
-   - For example:
-     In main function there can be a variable called status of type int, which can be initialized to the value of 100.
-     like : int status = 100;
-     But in our program we wanted the status to be either 1, 2 or 3. This status will give error on runtime but won't be catched at the compile time.
- - Poor readability.
- - No grouping of related entities.
- - Duplicate values issue.
+# POJO CLASSES (Plain Old Java Object)
+
+## Definition
+
+- Simple Java class without external framework dependencies
+- Contains fields, constructors, getters, setters
+
+---
+
+## Why POJO?
+
+- Used to represent real-world entities
+
+Example:
+Student → name, age, rollNo, college
+
+---
+
+## Types
+
+1. Anemic Model  
+   - Only fields + getters/setters  
+
+2. Rich Domain Model  
+   - Includes business logic  
+
+---
+
+# NESTED CLASSES IN JAVA
+
+## Definition
+
+- A class inside another class
+
+---
+
+## Why use Nested Classes?
+
+- Logical grouping  
+- Better encapsulation  
+- Access to outer class private members  
+
+---
+
+## Types of Nested Classes
+
+1. Static Nested Class  
+2. Inner Class  
+3. Local Class  
+4. Anonymous Class  
+
+---
+
+## 1) Static Nested Class
+
+Example:
+class A {
+    static class B {
+    }
+}
+
+Creation:
+A.B obj = new A.B();
+
+---
+
+### Properties
+
+- Cannot access non-static members of outer class  
+- Can have static members  
+- Can implement interfaces / extend classes  
+- Supports access modifiers  
+
+---
+
+### Use Cases
+
+- Helper classes  
+- Builder pattern  
+- DTO (Data Transfer Objects)  
+- Static utilities  
+
+---
+
+## 2) Inner Class
+
+Example:
+class Outer {
+    class Inner {
+    }
+}
+
+- Requires outer class object to create
+
+---
+
+# STANDARD INPUT OUTPUT IN JAVA
+
+## Types of I/O
+
+- Console I/O  
+- File I/O  
+- Network I/O  
+- Memory I/O  
+
+---
+
+## Console Output
+
+System.out.println();
+
+---
+
+### Explanation
+
+- System → class  
+- out → static variable  
+- out → reference to PrintStream object  
+- println() → method of PrintStream  
+
+---
+
+## Why no import needed for System?
+
+- System class belongs to java.lang package  
+- java.lang is imported by default
+# STREAMS IN JAVA
+
+## Definition
+- A stream is a flow of data
+- In Java, streams are treated as a flow of bytes
+
+---
+
+## Types of Streams
+
+1. InputStream  
+   - Data flows into the program  
+
+2. OutputStream  
+   - Data flows out of the program  
+
+---
+
+## Important Note
+
+- InputStream and OutputStream are abstract classes  
+- They provide basic methods like:
+  - read()
+  - write()
+
+---
+
+## InputStream Hierarchy
+
+- FileInputStream  
+- ByteArrayInputStream  
+- BufferedInputStream  
+- DataInputStream  
+
+---
+
+## OutputStream Hierarchy
+
+- FileOutputStream  
+- ByteArrayOutputStream  
+- BufferedOutputStream  
+- PrintStream  
+
+---
+
+# TAKING INPUT FROM USER
+
+## Using System.in
+
+- System.in is an InputStream object
+
+---
+
+## Older Method
+
+int data = System.in.read();
+System.out.println((char) data);
+
+---
+
+### Problem
+
+- Reads only one byte at a time  
+- Remaining input stays in buffer  
+
+---
+
+## Reading Full Input (Manual Way)
+
+String s = "";
+int c;
+
+while ((c = System.in.read()) != '\n') {
+    s += (char) c;
+}
+
+---
+
+# READER CLASSES (Character Stream)
+
+## Hierarchy
+
+- BufferedReader  
+- InputStreamReader  
+- FileReader  
+
+---
+
+## BufferedReader
+
+- Reads chunks of data (not byte by byte)
+- Improves performance
+
+### Flow:
+Keyboard → OS Buffer → Java Buffer → Program
+
+---
+
+## InputStreamReader
+
+- Converts byte stream to character stream
+
+### Purpose:
+- Makes InputStream compatible with BufferedReader
+
+---
+
+## Combining Them
+
+InputStreamReader isr = new InputStreamReader(System.in);
+BufferedReader br = new BufferedReader(isr);
+
+String input = br.readLine();
+
+---
+
+## Full Flow
+
+1. User enters input (e.g., "Aditya")  
+2. OS buffer stores bytes  
+3. System.in reads bytes  
+4. InputStreamReader converts to characters  
+5. BufferedReader reads full line  
+6. Program receives complete string  
+
+---
+
+## Limitations of BufferedReader
+
+- Reads only String  
+- Requires manual parsing (e.g., Integer.parseInt())  
+- Slightly complex syntax  
+
+---
+
+# SCANNER CLASS
+
+## Purpose
+
+- Simplifies input handling  
+- Provides methods for different data types  
+
+---
+
+## Package
+
+- java.util
+
+---
+
+## Working
+
+- Uses tokenization (splits input by whitespace)
+
+---
+
+## Common Methods
+
+- sc.next() → reads single word  
+- sc.nextLine() → reads full line  
+- sc.nextInt() → reads integer  
+- sc.nextDouble() → reads double  
+
+---
+
+## Example
+
+Scanner sc = new Scanner(System.in);
+
+int x = sc.nextInt();
+String s = sc.nextLine();
+
+---
+
+## Note
+
+- Scanner is slower than BufferedReader  
+- Reason:
+  - Performs parsing + tokenization internally
+ # IMMUTABLE CLASS IN JAVA
+
+## Definition
+- Immutable classes are those whose objects cannot be modified after creation
+- Once initialized, their state (data) cannot be changed
+
+---
+
+## Rules to Make Class Immutable
+
+1. Make class `final`  
+2. Make all instance variables `private` and `final`  
+3. Do not provide setters  
+4. Use defensive copying in constructor and getters  
+
+---
+
+## Deep Copy Concept
+
+- Never return direct reference of mutable objects
+- Always return a new object with same values
+
+---
+
+## Example
+
+class Student {
+    private final College college;
+
+    Student(College college) {
+        this.college = new College(college.name, college.address);
+    }
+
+    College getCollege() {
+        return new College(this.college.name, this.college.address);
+    }
+}
+
+class College {
+    String name;
+    String address;
+
+    College(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
+}
+
+---
+
+## Key Idea
+
+- Even if object contains reference types, they should not be modifiable externally
+
+---
+
+# OBJECT CLASS IN JAVA
+
+## Definition
+
+- Present in `java.lang` package  
+- Every class in Java inherits from Object class (directly or indirectly)
+
+---
+
+## Why Object Class?
+
+- Provides common functionality to all classes  
+- Enables polymorphic behavior  
+
+Example:
+Object obj = new Student();
+
+---
+
+## Core Methods
+
+- toString()  
+- equals()  
+- hashCode()  
+- getClass()  
+
+---
+
+## Other Methods
+
+- clone()  
+- finalize()  
+- wait()  
+- notify()  
+- notifyAll()  
+
+---
+
+# IMPORTANT METHODS
+
+## 1. toString()
+
+- Converts object to string representation  
+
+### Default Output:
+class_name@hexadecimal_value  
+
+- Automatically called in:
+System.out.println(object);
+
+---
+
+## 2. equals()
+
+- Compares two objects  
+
+### Default Behavior:
+- Compares references (memory address)
+
+---
+
+## 3. hashCode()
+
+- Returns integer hash value of object  
+
+### Rule:
+- If two objects are equal → hashCode must be same  
+- Reverse is not always true  
+
+---
+
+## 4. getClass()
+
+- Returns runtime class of object  
+
+Example:
+Student s1 = new Student();
+s1.getClass();  
+s1.getClass().getName();  // "Student"
+
+### Note:
+- It is final → cannot be overridden  
+
+---
+
+## instanceof Operator
+
+- Checks if object is instance of class or subclass  
+
+Example:
+if (obj instanceof Student) {
+    // logic
+}
+
+---
+
+## 5. clone()
+
+- Creates copy of object  
+- Produces shallow copy  
+
+### Requirement:
+- Class must implement Cloneable interface  
+
+---
+
+## Why Cloneable Interface?
+
+- Prevents unsafe cloning (e.g., threads, database objects)
+
+---
+
+## 6. finalize()
+
+- Used earlier by garbage collector  
+- Now deprecated  
+
+### Reason:
+- Unpredictable  
+- Unsafe  
+- Unreliable  
+
+---
+# PROBLEMS WITH USING NORMAL CLASS FOR ENUM-LIKE FUNCTIONALITY
+
+## Example
+
+class PaymentStatus {
+    public static final int SUCCESS = 1;
+    public static final int PENDING = 2;
+    public static final int FAILED = 3;
+}
+
+---
+
+## Problems
+
+1. Type Safety Issue  
+   - Any integer value can be assigned  
    - Example:
-     class Role {
-         public static final int ADMIN = 1;
-         public static final int USER = 1;
-     }
-   - I need to manually make sure that there are no duplicate values.
+     int status = 100;  // Invalid but allowed at compile time  
 
-* THIS PROBLEMS ARE SOLVED BY ENUMS (ENUMERATION)
-  - Enums are predefined set of constants.
-  - Creation of enums:
-    enum PaymentStatus{
-      SUCCESS,
-      FAILED,
-      PENDING;
+---
+
+2. Poor Readability  
+   - Values like 1, 2, 3 are not meaningful  
+
+---
+
+3. No Proper Grouping  
+   - Related constants are not strongly tied together  
+
+---
+
+4. Duplicate Values Possible  
+
+Example:
+class Role {
+    public static final int ADMIN = 1;
+    public static final int USER = 1;
+}
+
+---
+
+# ENUM (ENUMERATION)
+
+## Definition
+
+- Enum is a special class representing a fixed set of constants
+
+---
+
+## Example
+
+enum PaymentStatus {
+    SUCCESS,
+    FAILED,
+    PENDING
+}
+
+---
+
+## Usage
+
+PaymentStatus status = PaymentStatus.SUCCESS;
+
+---
+
+## Advantages
+
+- Type safety  
+- Better readability  
+- No duplicate values  
+- Grouped constants  
+
+---
+
+# ENUM IN DEPTH
+
+## Key Points
+
+- Enum is internally converted to a class  
+- Extends java.lang.Enum  
+- Constants are:
+  - static  
+  - final  
+- Enum class is final → cannot be inherited  
+
+---
+
+## Internal Representation
+
+enum Direction {
+    NORTH, SOUTH, EAST, WEST
+}
+
+---
+
+Internally becomes:
+
+final class Direction extends Enum<Direction> {
+    public static final Direction NORTH = new Direction();
+    public static final Direction SOUTH = new Direction();
+    public static final Direction EAST  = new Direction();
+    public static final Direction WEST  = new Direction();
+
+    private Direction() {}
+}
+
+---
+
+## Important Notes
+
+- Each enum constant is an object  
+- Constructor is private  
+- Cannot create enum objects manually  
+
+---
+
+## Enum with Variables
+
+enum Direction {
+    NORTH(0);
+
+    int degree;
+
+    Direction(int degree) {
+        this.degree = degree;
     }
-  - Creation of its variable
-    PaymentStatus status = PaymentStatus.SUCCESS;
+}
 
-  - This introduced type safety.
- 
-* ENUM IN DEPTH
-  - enum is a special type of class, which is converted from enum to class during compile time.
-  - Every enum overrides the java.lang-Enum class.
-  - Each constants inside the enum are static and final. 
-  - They are the objects of the same class they belong to.
-  - The enum class that we make is final so that we cannot override it.
+---
 
-  - Example of internal implementation
-    - We define are enum something like this:
-    - enum Direction {
-       NORTH,
-       SOUTH,
-       EAST,
-       WEST
-    }
-    - Internally the compiler makes the above class like
-      - final class Direction extends Enum<Direction> {
-            public static final Direction NORTH = new Direction();
-            public static final Direction SOUTH = new Direction();
-            public static final Direction EAST  = new Direction();
-            public static final Direction WESt  = new Direction();
+## Enum with Methods
 
-            private Direction(){
-            } 
-      }
-
-    - How does object of this class look inside the Heap:
-      - Since the constructor of the Direction class is private we cannot create the object of it outside the class.
-      - The fields that we specify inside the Enum like "SOUTH", "NORTH" which we saw in the "Direction" enum class are the objects.
-      - So they point to the memory in heap for the "Direction" object. 
-      - So every field in enum points to seperate object space.
-
-    - We can define our seperate variables and methods within  our enum.
-    - For example consider the class below:
-       - enum Direction{
-            NORTH(0);
-            int degree;
-            Direction(int degree){
-               this.degree = degree;
-            }
-       -}
-    - We can also define some abstract methods so they can be object specific and implement them by overriding them
-    - Example 
-    - enum Direction{
-        NORTH {
-          @Override
-          void move(){
-            soutp("move up");
-          }
+enum Direction {
+    NORTH {
+        @Override
+        void move() {
+            System.out.println("Move up");
         }
-    }
+    };
 
-    - Existing methods in Enum class:
-      - values() // this method is compiler generated
-      - valueOf(String) // this method is also compiler generated
-      - name()
-      - ordinal()
+    abstract void move();
+}
 
-    - values():
-      - This method returns the array of enum objects present within the enum class defined by the user.
-      - This is given for iterating within the enum
+---
 
-    - valueOf()
-      - Convert a String into an enum constant
-      - Example:  Direction d = Direction.valueOf("EAST);
-    
-    - name():
-      - returns the name of the enum object.
-      - Even the "toString()" method can do this, but "toString()" method can be overrided, but "name()" method cannot be overrided.
+# BUILT-IN ENUM METHODS
 
-    - ordinal():
-      - When enum was implemented it was done in such a way that the number for that enum was assigned to them based on the position they were present in the enum class.
-      - The number started from 0, 1 and 2 and so on.
+## 1. values()
 
-    - All Object class methods can be overrided in it.
+- Returns array of enum constants
 
-    * Why values() and valueOf() method are compiler generated?
-      - values()
-        -Internal implementation looks like this:
-      - public static final Direction [] $VALUES = {
-         NORTH,
-         SOUTH,
-         EAST,
-         WEST;
-      }
+---
 
-        - publilc static Direction[] values(){
-           return $VALUES.clone();
-         }
+## 2. valueOf(String)
 
-      - public static Directiion valueOf(String s){
-         super.valueOf(Direction.class(), s);
-      }
+- Converts string to enum constant
 
-# INTERFACES DEEP DIVE:
-   - Interfaces define what an object can do without telling how it does that.
-   - We can say that interface is a blueprint of the behaviour or it is a contract.
-   - In interfaces by default all the methods are public so we need to also speciffy that in its subclass which implements that interface.
-   - It uses dynamic polymorphism very well
+Example:
+Direction d = Direction.valueOf("EAST");
 
-   * Variables inside interfaces:
-     - We can also define variables inside the intefaces.
-     - In interfaces if we define any variable, then compiler makes that variable to public, static final.
-     - It makes it static because we cannot create the object of interface.
-     - it makes it final to make it constant
-     - it makes it public for the same reason why methods are made public.
-   
-   * Some random properties of Interface:
-     - An interface can inherit another interface to add on some functionality
-     - Example:
-     - interface Animal {}
-     - interface Dog extends Animal {}
+---
 
-   * Changes in interface after JAVA 8:
-     - Interfaces can define a method within them if they add default modifier in front of them. Now it becomes optional to override this method inside the subclass.
-     - The reason behind adding this kind of functionality was that Java wanted to add method inside there List interface. But if they would've added that method then every class that was implementing that List interface would've  to provide the implementaion of the new method, breaking existing code. Hence JAVA brought the default methods and static method.
+## 3. name()
 
-   * FROM JAVA 9:
-      - We can have private methods.
-   
+- Returns name of enum constant  
+- Cannot be overridden  
 
-   * Why did JAVA allowed multiple inheritance through interface
+---
 
+## 4. ordinal()
 
+- Returns position index (starting from 0)
+
+---
+
+## Why values() and valueOf() are compiler-generated?
+
+- values():
+  - Returns cloned array of constants  
+
+- valueOf():
+  - Uses internal lookup to match string  
+
+---
+
+# INTERFACES (DEEP DIVE)
+
+## Definition
+
+- Interface defines behavior (what), not implementation (how)
+- Acts as contract
+
+---
+
+## Key Points
+
+- Methods are public by default  
+- Supports dynamic polymorphism  
+- Uses `implements` keyword  
+
+---
+
+## Variables in Interface
+
+- Automatically:
+  - public  
+  - static  
+  - final  
+
+---
+
+## Interface Inheritance
+
+Example:
+interface Animal {}
+interface Dog extends Animal {}
+
+---
+
+# CHANGES AFTER JAVA 8
+
+## Default Methods
+
+- Methods with implementation  
+- Optional to override  
+
+---
+
+## Static Methods
+
+- Can be defined inside interface  
+
+---
+
+## Why Introduced?
+
+- To add methods without breaking existing implementations  
+
+---
+
+# CHANGES AFTER JAVA 9
+
+- Interfaces can have private methods  
+
+---
 
 #  Multiple Inheritance in Java using Interfaces
 
