@@ -1744,3 +1744,153 @@ This are not manditory but a good coding practice.
       - public static Directiion valueOf(String s){
          super.valueOf(Direction.class(), s);
       }
+
+# INTERFACES DEEP DIVE:
+   - Interfaces define what an object can do without telling how it does that.
+   - We can say that interface is a blueprint of the behaviour or it is a contract.
+   - In interfaces by default all the methods are public so we need to also speciffy that in its subclass which implements that interface.
+   - It uses dynamic polymorphism very well
+
+   * Variables inside interfaces:
+     - We can also define variables inside the intefaces.
+     - In interfaces if we define any variable, then compiler makes that variable to public, static final.
+     - It makes it static because we cannot create the object of interface.
+     - it makes it final to make it constant
+     - it makes it public for the same reason why methods are made public.
+   
+   * Some random properties of Interface:
+     - An interface can inherit another interface to add on some functionality
+     - Example:
+     - interface Animal {}
+     - interface Dog extends Animal {}
+
+   * Changes in interface after JAVA 8:
+     - Interfaces can define a method within them if they add default modifier in front of them. Now it becomes optional to override this method inside the subclass.
+     - The reason behind adding this kind of functionality was that Java wanted to add method inside there List interface. But if they would've added that method then every class that was implementing that List interface would've  to provide the implementaion of the new method, breaking existing code. Hence JAVA brought the default methods and static method.
+
+   * FROM JAVA 9:
+      - We can have private methods.
+   
+
+   * Why did JAVA allowed multiple inheritance through interface
+
+
+
+#  Multiple Inheritance in Java using Interfaces
+
+## 🔹 Why Java does NOT support multiple inheritance with classes
+
+* Java does not allow a class to extend multiple classes to avoid:
+
+  * **Ambiguity problem (Diamond Problem)**
+  * Confusion in method resolution
+
+---
+
+## 🔹 How Java supports Multiple Inheritance
+
+Java allows multiple inheritance **through interfaces**
+
+```java
+interface A {
+    void show();
+}
+
+interface B {
+    void show();
+}
+
+class C implements A, B {
+    public void show() {
+        System.out.println("Implemented in C");
+    }
+}
+```
+
+###  Key Points
+
+* A class can implement **multiple interfaces**
+* Interfaces (before Java 8):
+
+  * Only had **abstract methods**
+  * No method body
+* Hence, no ambiguity → class provides its **own implementation**
+
+---
+
+## 🔹 After Java 8 (Default Methods)
+
+Java 8 introduced **default methods** in interfaces:
+
+```java
+interface A {
+    default void show() {
+        System.out.println("A");
+    }
+}
+```
+
+---
+
+## 🔹 Problem with Multiple Interfaces having Default Methods
+
+```java
+interface A {
+    default void show() {
+        System.out.println("A");
+    }
+}
+
+interface B {
+    default void show() {
+        System.out.println("B");
+    }
+}
+
+class C implements A, B {
+    // Compilation Error if not overridden
+}
+```
+
+### Why Error Occurs?
+
+* Both interfaces provide a **default implementation**
+* JVM gets **confused** → which method to use?
+
+---
+
+## 🔹 Rule 
+
+ If multiple interfaces provide the **same default method**,
+ Then the implementing class **MUST override it**
+
+---
+
+## 🔹 Correct Implementation
+
+```java
+class C implements A, B {
+    public void show() {
+        System.out.println("Resolved in C");
+    }
+}
+```
+
+---
+
+## 🔹 Accessing Specific Interface Method (Optional)
+
+You can explicitly call a specific interface method:
+
+```java
+class C implements A, B {
+    public void show() {
+        A.super.show();  // calls A's version
+        B.super.show();  // calls B's version
+    }
+}
+```
+
+---
+
+
