@@ -923,6 +923,7 @@ This are not manditory but a good coding practice.
        Example:
         - Student.college is also valid and also s1.college is also valid. (here Student is the className, s1 is instance of student class and college is the static variable of Student class).
      - Static variables are also called as class variables.
+     - Static variables are stored in a seperate memory area called as metaspace.
 
    * Rules for static:
      - One static method can only call other static method. 
@@ -1611,3 +1612,135 @@ This are not manditory but a good coding practice.
   * finalize() method:
    - this was use earlier by Garbage Collection, now this has been depricated.
    - This was too unpredictable, unsaffe and unreliable.
+
+# PROBLEMS WITH USING NORMAL CLASS FOR GETTING THE FUNCTIONALITY OF ENUM
+- Let us consider an example of a class PaymentStatus used as enum:
+   class PaymentStatus{
+      public static final int SUCCESS = 1;
+      public static final int PENDING = 2;
+      public static final int FAILED = 3;
+   }
+- Now this class can be used and we can get the value for any status within any variable.
+
+* PROBLEMS:
+ - Type safety, since they are integers any one can assign any random value to that variable:
+   - For example:
+     In main function there can be a variable called status of type int, which can be initialized to the value of 100.
+     like : int status = 100;
+     But in our program we wanted the status to be either 1, 2 or 3. This status will give error on runtime but won't be catched at the compile time.
+ - Poor readability.
+ - No grouping of related entities.
+ - Duplicate values issue.
+   - Example:
+     class Role {
+         public static final int ADMIN = 1;
+         public static final int USER = 1;
+     }
+   - I need to manually make sure that there are no duplicate values.
+
+* THIS PROBLEMS ARE SOLVED BY ENUMS (ENUMERATION)
+  - Enums are predefined set of constants.
+  - Creation of enums:
+    enum PaymentStatus{
+      SUCCESS,
+      FAILED,
+      PENDING;
+    }
+  - Creation of its variable
+    PaymentStatus status = PaymentStatus.SUCCESS;
+
+  - This introduced type safety.
+ 
+* ENUM IN DEPTH
+  - enum is a special type of class, which is converted from enum to class during compile time.
+  - Every enum overrides the java.lang-Enum class.
+  - Each constants inside the enum are static and final. 
+  - They are the objects of the same class they belong to.
+  - The enum class that we make is final so that we cannot override it.
+
+  - Example of internal implementation
+    - We define are enum something like this:
+    - enum Direction {
+       NORTH,
+       SOUTH,
+       EAST,
+       WEST
+    }
+    - Internally the compiler makes the above class like
+      - final class Direction extends Enum<Direction> {
+            public static final Direction NORTH = new Direction();
+            public static final Direction SOUTH = new Direction();
+            public static final Direction EAST  = new Direction();
+            public static final Direction WESt  = new Direction();
+
+            private Direction(){
+            } 
+      }
+
+    - How does object of this class look inside the Heap:
+      - Since the constructor of the Direction class is private we cannot create the object of it outside the class.
+      - The fields that we specify inside the Enum like "SOUTH", "NORTH" which we saw in the "Direction" enum class are the objects.
+      - So they point to the memory in heap for the "Direction" object. 
+      - So every field in enum points to seperate object space.
+
+    - We can define our seperate variables and methods within  our enum.
+    - For example consider the class below:
+       - enum Direction{
+            NORTH(0);
+            int degree;
+            Direction(int degree){
+               this.degree = degree;
+            }
+       -}
+    - We can also define some abstract methods so they can be object specific and implement them by overriding them
+    - Example 
+    - enum Direction{
+        NORTH {
+          @Override
+          void move(){
+            soutp("move up");
+          }
+        }
+    }
+
+    - Existing methods in Enum class:
+      - values() // this method is compiler generated
+      - valueOf(String) // this method is also compiler generated
+      - name()
+      - ordinal()
+
+    - values():
+      - This method returns the array of enum objects present within the enum class defined by the user.
+      - This is given for iterating within the enum
+
+    - valueOf()
+      - Convert a String into an enum constant
+      - Example:  Direction d = Direction.valueOf("EAST);
+    
+    - name():
+      - returns the name of the enum object.
+      - Even the "toString()" method can do this, but "toString()" method can be overrided, but "name()" method cannot be overrided.
+
+    - ordinal():
+      - When enum was implemented it was done in such a way that the number for that enum was assigned to them based on the position they were present in the enum class.
+      - The number started from 0, 1 and 2 and so on.
+
+    - All Object class methods can be overrided in it.
+
+    * Why values() and valueOf() method are compiler generated?
+      - values()
+        -Internal implementation looks like this:
+      - public static final Direction [] $VALUES = {
+         NORTH,
+         SOUTH,
+         EAST,
+         WEST;
+      }
+
+        - publilc static Direction[] values(){
+           return $VALUES.clone();
+         }
+
+      - public static Directiion valueOf(String s){
+         super.valueOf(Direction.class(), s);
+      }
