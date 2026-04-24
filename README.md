@@ -3088,3 +3088,89 @@ Consider the example like given below:
  ## Internally Interfaces:
     - Internally the interfaces are compiled to classes.
     - For compiler to understand the difference between interface and class there is a tag added within a class i.e ACC_interface.
+
+# String in JAVA
+
+* String is a sequence of characters or character array. It is just an abstraction on this character array.
+
+## Why did we have a seperate String datatype.
+   - Because it gives more functionalities compared to what we would have gotten using just the character array.
+
+* String belongs to java.lang package. This package is auto imported.
+
+## Properties of String class:
+   - String class is an immutable class.
+     - String class is immutable because it is the most used class and can store sensitive data like the passwords, url, or hashes and we dont want them to change, hence String classes are immutable.
+
+## Two ways to Declare String in JAVA
+   * Literal
+   * new
+
+   - Literal:
+      - String  s =  "Hello";
+      - When we declared a string using this way, JAVA has reserved a memory called as String pool. The object is declared within this memory pool.
+      - The benefit of this is  that same strings will be reused if declared again. 
+      - Example String s2 = "Hello" , since "Hello" is already present within the String pool the s2 object will directly point to the "Hello" which was created earlier.
+
+   - new:
+      - String s1 = new String("Hello");
+      - Everytime new object is created.
+
+## Golden Rule for Strings:
+- Only compile time constants go to string pool automatically.
+- Runtime created string go to heap.
+- Any literal goes to the string pool.
+  - Example String s2 = s1 + "va";
+  - Here "va" string will go to the String pool without any reference variable pointing it and eventually it will be cleared by the garbage collector.
+- if we declare the strings like String s1 = new String("Hello");
+  - Here the string "Hello" will get created in heap and s1 will point to it, also the "Hello" since being the string literal will also get stored to the String pool without anyone pointing to it.
+
+
+* String class has overrided the equals method to always compare the values.
+* Compile time constants:
+  - String s1  =  "ja" + "va";
+  - At compile time only this two strings are joined and entire string is stored in the heap.
+* Runtime Coonstants:
+  - String s1 = "ja"
+  - String s2 = s1 +  "va";
+  - This will give false when above two are compared together, because when we do something like s2 = s1 + "va", this object will be created in the heap.
+
+
+## Problems in Strings being immutable:
+``` java
+    String s  = "";
+    for(int i=0; i<5; i++){
+        s = s + i;
+    }
+```
+    - The above code will create 4 different objects, and the last string object will be only pointed.
+
+## After Java 9:
+   - Before java 9 the String was stored using character array, but that used to consume lot of memory.
+   - Afer java 9 Strings use byte array internally.
+   - We have three fields present in the String class:
+     - private final byte[] values;
+     - private final byte coder;
+     - private int hash; // Stores the hash
+   - The byte array at each index store the unicode of individual characters.
+   
+
+
+* Why did java decided to store the String in character array:
+   - Because each character present on the keyboard can be represented using a single byte.
+   - So why should we waste an extra 1 byte.
+
+* Coder field in String class:
+  - The coder field can have two values 0 and 1.
+  - 0 here represent that all the characters present in the string can be represented using ASCII values. (Also called latin 1)
+  - 1 here reprsents that the characters present in the string include some characters that cannot be represented by the ASCII value and need to be stored using unicode. (Also called UTF16).
+  - This will tell whether we need to read two bytes(In case unicode characters are present) from the byte array or single byte(When all characters are under ASCII code).
+
+* hash field in String class:
+  - This stores the hashcode of the String. It is used by hashmaps. This is like caching the hashcode for further use whenever possible.
+
+## Optimization in String class:
+  - String pool reduced the number of objects created.
+  - char array was converted to byte array to prevent extra memory use
+  - Caching the hash values
+
