@@ -3013,4 +3013,78 @@ class C implements A, B {
 
 ---
 
+## Java Resolution Priority Rule
 
+Consider the example like given below:
+```java
+
+    interface A{
+        default void fun(){
+            System.out.println("Inside A interface");
+        }
+    }
+
+
+    class B{
+        public void fun(){
+            System.out.println("Inside B class");
+        }
+    }
+
+    class C extends B implements A{
+
+    }
+```
+* Java Resolution Priority Rule states that if  a class extends a certain class and implements a certain interface, and both the interface implemented and class inherited have same function. Then java gives priority to the function present within the class inherited.
+* If we want to implement the function present in the interface then we would have to call it using the super keyword.
+
+
+## After JAVA 8
+  * Interfaces can have
+    * default methods
+    * static methods
+    * private methods
+    * static and final methods
+  
+  * Now how can we seperate interfaces from abstract class because abstract classes can have
+    * concrete methods
+    * static methods
+    * private methods
+    * abstract methods
+
+  * Gap between Interfaces and Abstract class
+    * Intentions of Interfaces
+      * Interfaces are used for defining contracts or responsibilities
+      * Example : Runnable, Walkable.
+      * It shows "can-do" relationship.
+    * Interfaces cannot have normal fields which are non static and non final. By default it becomes public static final.
+    * Interfaces cannot have constructor.
+    * Supports multiple inheritance.
+    * By default public method
+
+    * Intentions of Abstract
+      * This should be used to group families of similar class.
+      * It shows a "is-a" relationship.
+    * Abstract class can have normal fields
+    * Abstract class can have constructors.
+    * Doesn't support multiple inheritance.
+    * All access modifiers allowed
+
+## Special Types Of Interfaces
+   * Functional Interfaces
+     - Interface that have only one method inside it is called as functional interface. 
+     - This unlocks functional programming using lambda expression.
+   
+   * Marker Interfaces:
+     - Interfaces that do not have any methods within them are called the marker interfaces
+     - Modern Java prefers Annotations over Marker interfaces.
+     - Three types of marker interfaces in JAVA
+       - Classable
+       - Serializable
+       - RandomAccess
+     - Why do we have this interfaces.
+       - To explicitly show that yes we want to do this thing. 
+
+ ## Internally Interfaces:
+    - Internally the interfaces are compiled to classes.
+    - For compiler to understand the difference between interface and class there is a tag added within a class i.e ACC_interface.
