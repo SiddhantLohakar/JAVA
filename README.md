@@ -3160,6 +3160,9 @@ Consider the example like given below:
    - Because each character present on the keyboard can be represented using a single byte.
    - So why should we waste an extra 1 byte.
 
+* values[] array:
+   - This stores the byte values in an array, for the characters.
+
 * Coder field in String class:
   - The coder field can have two values 0 and 1.
   - 0 here represent that all the characters present in the string can be represented using ASCII values. (Also called latin 1)
@@ -3174,3 +3177,124 @@ Consider the example like given below:
   - char array was converted to byte array to prevent extra memory use
   - Caching the hash values
 
+
+## Constructors in String
+* Empty Constructor:
+  - String s1 = new String() // empty string.
+* Parameterized constructor
+  - String s2 = new String("Hello"); // Heap and String pool
+* Another way for constructor:
+  - String s3 = "Siddhant";
+  - String s4 = new String(s3);
+  - Heap->s4-> Siddhant
+  - string pool -> s3  -> "Siddhant"
+* Passing charcter array
+  - char[] arr = ['S', 'i', 'd', 'd', 'h', 'a', 'n', 't'];
+  - String s5 = new String(arr);
+  - s5 will become "Siddhant"
+* Giving starting index and count
+  - char[] arr = ['S', 'i', 'd', 'd', 'h', 'a', 'n', 't'];
+  - String s6 = new String(arr,  0, 6);
+* Byte array in constructor:
+  - byte[] arr = {97, 98, 99};
+  - String s1 = new String(arr);
+  - String s2 = new String(arr, 0, 2);
+
+* StringBuilder method:
+  ```java
+    StringBuilder sb = new StringBuilder("Hello");
+    String s8 = new String(sb);
+  ```
+
+* StringBuffer method:
+  ```java
+    StringBuffer sb = new StringBuffer("Hello");
+    String s9 = new String(sb);
+  ```
+
+## String methods:
+
+* Length/Emptiness
+  - length() -> Returns the length of the string.
+  - isEmpty() -> true or false if the string is empty or not
+  - isBlank() -> Even if there are just spaces in string, isBlank returns true unlike isEmpty()
+
+* Searching
+  - contains() -> To check whether a certain string exist within the given string or not.
+  - indexOf() -> Returns index of a certain character. We can also give strings.
+  - lastIndexOf() ->  Returns the last index of the repeating characters.
+  - startsWith() -> If a string starts with a certain string or not
+  - endsWith() -> Just the oppposite of startsWith
+
+* Conversion:
+  - valueOf() -> String s4 = new String(String.valueOf(10));
+  - getBytes() -> Converts string  to byte array and returns it.
+
+* Character Access
+  - charAt() -> Returns the character present at the specified index
+  - toCharArray() -> Returns character Array of the given string
+
+* Advance
+  - intern() -> If we want to bring the string object from heap memory to String pool so  we use the inntern method. 
+  - format() -> String.format("Hello %s your age is %s", name , age);
+
+* Comparison
+  - equals() -> This checks the value of the String.
+  - equalsIgnoreCase() -> Ignore cases and compares the string
+  - compareTo() -> lexi cographically comparison. It gives three outputs (-ve (when s1 < s2), 0 (when s1 = s2), +ve (when s1 > s2)). It just takes ascii value of each individual characters sums them and does something like this (sum1 - sum2).
+
+* Extraction/Transformation
+  - substring() -> Gives a substring from starting index to ending index - 1. If only one index is given it starts from there and goes to end.
+  - toUpperCase() -> 
+  - toLowerCase()
+  - trim() -> Removes spaces from starting and ending.
+  - strip() -> It is unicode friendly, so use it when we have unicode present in string.
+  - repeat() -> Repeat method takes a count and prints the string that number of times.
+  - replace() -> Replace target character with the specified character, we can also replace substring with another substring.
+  - replaceAll() -> Replaces all occurences with specified string.
+  - split() -> We can split a string based on a delimeter like comma, whitespaces etc.
+  - join() -> Joins strings using some delimeter specified. This is a staic member function
+  
+
+## String Builder class
+   - This is an immutable class
+   - This is not thread safe.
+   - This inherits from AbstractStringBuilder
+   - Exists in java.lang package 
+
+   * The string Builder assigns more size than required for storing string specified during the creation.
+   * Doubles the current capacity and replicates the existing data in that array when size is getting full.
+   * It uses the formula : capacity * 2 + 2
+
+   * It consists of:
+     - byte[] values -> byte array to store the byte value of the string.
+     - int count ->  Tells till which index we have added the characters
+     - capacity -> tells the entire capacity of the array. Initially it is 16, increases when the array is getting almost full.
+     - append() -> Used to append in the string.
+
+   * Constructor withing StringBuilder
+     - new StringBuilder() -> empty srting with 16 spaces
+     - new StringBuilder(50) -> creates a 50 size array.
+     - new StringBuilder("java") -> 16 Initial size and 4 bytes for storing "java" hence it takes 20 bytes.
+
+    * Methods:
+      - append()
+      - insert() -> insert a character at specified index.
+      - delete() -> takes start index and end index and deletes it.
+      - replace() -> replaces a particular substring with another. sb.replace(1, 3, "xy")
+      - reverse() -> reverses a string.
+      - charAt()  -> gives char present at certain index
+      - setCharAt() -> sets character at certain index
+      - length() -> gives length of the string
+      - capacity() -> gives the size of array.
+      - ensureCapacity() -> increases the capacity of the array.
+      - trimToSize() -> trims the unused size present inside the array.
+
+
+## String Buffer class (Mutable + thread safety)
+   - This is an immutable class
+   - This is thread safe.
+   - This inherits from AbstractStringBuilder
+   - Exists in java.lang package 
+
+* IMPORTANT NOTE: String builder and String buffer does not overrides equals method hence it compares only the references and not the values
