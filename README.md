@@ -3298,3 +3298,37 @@ Consider the example like given below:
    - Exists in java.lang package 
 
 * IMPORTANT NOTE: String builder and String buffer does not overrides equals method hence it compares only the references and not the values
+
+
+
+ # Upcasting:
+   - Conversion of specific class to generic class is called as upcasting 
+   - No casting required
+
+   - Example
+    ```java
+        class Animal {
+
+        }
+
+        class Dog extends Animal {
+
+        }
+
+        Dog d = new Dog();
+        Animal a = d;
+    ```
+   - In the above example we can see that I have assigned a "Dog class object" to an "Animal class reference variable", here the "a" can only access the methods present within the Animal class. This type of assignment is called as upcasting.
+   - The compiler doesn't allow parent class reference variable to access the child class specific methods, because it is unsafe and unpredictable.
+
+# DownCasting:
+   - Conversion of general object to specific object.
+   - Example:
+   ```java
+      Object obj = "Hello";
+      String s = (String) obj;
+    ```
+   - In the above example we can see that I have stored a String in "Object" class object (obj). Now when I want to assign it to a "String" class object, I cannot do it directly, so for telling the compiler that I am willingly converting the Object's object to String type object, I need to specify it using the casting.
+   * Why does compiler give error?
+     - This is because there can be a case where we are getting an Intger type object and trying to store it in String type reference variable hence to prevent this type of errors the compiler wants a reassurance.
+     - If at the runtime the types doesn't match we will get the classcastException.
