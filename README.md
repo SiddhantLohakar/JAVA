@@ -3332,3 +3332,89 @@ Consider the example like given below:
    * Why does compiler give error?
      - This is because there can be a case where we are getting an Intger type object and trying to store it in String type reference variable hence to prevent this type of errors the compiler wants a reassurance.
      - If at the runtime the types doesn't match we will get the classcastException.
+
+
+# Problems that lead to Generics:
+  - Consider a situation where we want to make a class which can hold all types of values, basically we want to make it type independant, without making multiple classes.
+  - We can do something like below
+  ```java
+    class Box{
+        orivate Object value;
+
+        Box(Object a){
+            this.value = a;
+        }
+
+        Object getValue(){
+           Object a = new Object(this.value);
+           return a;
+        }
+
+        Object setValue(Object a){
+            this.value = a;
+        }
+    }
+  ```
+
+  ## Limitations of this method
+    - Type information is lost, anyone can store any value in this tyype of class object. Which makes it very unpredictable.
+    - Wrong object could be inserted
+    - Casting became unnecessary when reading
+    - Many errors shift to runtime instead of compile time.
+
+# Generics
+  - Generics in Java are a feature that allows you to write classes, interfaces, and methods with type parameters, so that the type is specified later (at compile time) instead of being fixed.
+  
+  - Example:
+  ```java
+    class Box<T>{
+        T value;
+
+        Box( T value){
+            this.value = value;
+        }
+    }
+  ```
+
+  - The class specified above is a generic class which can hold the value of any type, the type is specified at compile time so no type information is lost.
+  - The  value inside the angular bracket while creating the class is type parameter.
+  - Defining the object of generic class
+  ```java
+    Box<Integer> b1 = new Box<>(10);
+  ```
+
+  ## Generic Methods:
+     - Definition
+     ```java
+        public static <T> T getResult(T x){
+            return x;
+        }
+     ```
+     - Standard format: <T> returnType methodName(T parameter) {}
+
+     * Working with two parameters:
+       ```java
+        public static <T, U> printPair(T first, U second){
+            soutp(first + " , " + second);
+        }
+       ```
+
+       - Type Inference
+         - Type inference in Java is the ability of the compiler to automatically determine the data type of an expression, variable, or method invocation based on the context, without requiring explicit type declaration by the programmer.
+
+    ## Bounds in Genrics.
+       * UpperBound:
+         - This specifies that the type parameter will be the class specified after the extends or will be its subtype.
+         - Example if you want to work only with numbers you will write something like below
+         ```java
+            class Add<T extends Number> {
+                T value;
+
+                public void printDouble(){
+                    System.out.println(value.doubleValue());
+                }
+            }
+         ```
+
+         - We can add more bounds like below:
+         - <T extends Class & Interface1, Interface2, Interface3>
