@@ -3418,3 +3418,132 @@ Consider the example like given below:
 
          - We can add more bounds like below:
          - <T extends Class & Interface1, Interface2, Interface3>
+
+### Generics in Depth:
+-  How does Generics break parent child relationship.
+-  We can say that Dog Is-A Animal but we cannot say that list of dogs is a list of animals.
+-  Generic<A> is Not a subtype of Generic<B>
+-  That means Generics are invariant.
+
+
+
+### WildCards (?):
+ - It is a list that can store anything.
+ - Declared like : List<?>  list   = new ArrayList<Animal>();
+ - It is a list of specific type but we dont know what it is till we pass the Argument to it.
+ - We can't do something like below in our code:
+ - Example :
+   ```java
+        void fun(List <?> list){
+            list.add("Hello");
+        }
+   ```
+ - The above code will give error because at compile time we won't be knowing what List is going to come, whether it will be of Strings, An user defined datatype etc.
+ - We can just read from it by using "Object" class  because it is parent of every class.
+
+ * Another type of Wildcard where we get more functionalities is:
+   ```java
+         static void fun(List<? extends Animal> values){
+            for(Animal a : values){
+                a.eat();
+                
+            }
+        }
+   ```
+   - In the above type of code, we can expect that the list will be of type of Animal or atleast its subTypes hence we can actually call the methods which are present in the Animal class.
+   - But we can still not add anything because it can generate problems like:
+     - Adding Animal object when the List passed is of type Dog
+     - Adding Cat object when the List passed is of type Cat
+
+  * To solve this Java provided a keyword called super.
+    ```java
+         static void fun(List<? super Animal> values){
+            values.add(new Dog());
+        }
+    ```
+    - The super keywords tells the compiler that the list passed will be either Animal or its parent class not below.
+    - So now we can add object of any of its subtype within the list because we know that the parent can point to its child.
+    - But now there will be another type of problem. That we cant read from base class like
+      - Animal a = l.get(0); // because the list can be of object  type also
+    - So if we use super we cant read, and if we use extends we cant write
+
+    * Covariant , CounterVariant, Invariant:
+      - List<? extends T>  : Allows only reading, called covariant
+      - List<? Super T> : Allows writing countervariant
+      - List<?> : Invariant
+
+    ### PECS Rule  (Producer Extends Consumer Super):
+     - It says that if someone is producing we must use extends so that we can read it. 
+     - If someone is going to consume something then we must use super to produce it.
+
+
+### When to use T and when to use Wildcard.
+    - Wildcards is allowed only during containers like List.
+    - In classes or methods we use the type paramenters
+
+
+# Type Erasures:
+ - Does JVM knows Generics?
+   - No. The type parameter is erased till it reaches the runtime and is replaced with Object type.
+ - Generics is just the compile time safety
+ - Now how does compiler removes it?
+   - If there is no bound then directly replace the type with Object
+   - If bounded:
+      - replace with the bound
+   - Insert cast automatically
+
+   * What we cant do with generics:
+   - Cant use the instanceOf for meeting a particular condition.
+   - Method overloading
+
+   * Compiler generated brdige method:
+    - Consider an example like this:
+    ```java
+        class Parent<T>{
+            T get(){
+                return null;
+            }
+        }
+
+        class Child extends Parent<String>{
+            @Override
+            Strine get(){
+                return "Hello";
+            }
+        }
+
+    ```
+    - The above method during the compile, converts into something like this:
+     ```java
+        class Parent{
+            Object get(){
+                return null;
+            }
+        }
+
+        class Child extends Parent{
+            @Override
+            String get(){
+                return "Hello";
+            }
+
+            Object get(){
+                get();
+            }
+        }
+
+    ```
+    - Since during the compilation time the parent class type parameter is considered as an Object type, we cannot override the method with another type, hence JVM creates a similar method that calls the newly created method
+    - This is called as Bridge method.
+
+  * Why is Type Erasure?
+    - Generics was introduced after Java 5.
+    - Before:
+      List l = new ArrayList();
+    - After:
+      List<Integer> = new ArrayList<>();
+    
+    - Why did the JVM did not handle it, if JVM would have handled it the previous code would've broken hence it was only limited to the compile time verification
+
+   * Why Generics does not support primitives?
+     -  Due to type erasure where the type parameter is replaced with Object class, then if we pass a primitive datatype then that Object class reference variable can't point to the primitive type hence generics doesn't support the primitive datatype.
