@@ -3339,7 +3339,7 @@ Consider the example like given below:
   - We can do something like below
   ```java
     class Box{
-        orivate Object value;
+        private Object value;
 
         Box(Object a){
             this.value = a;
@@ -3547,3 +3547,37 @@ Consider the example like given below:
 
    * Why Generics does not support primitives?
      -  Due to type erasure where the type parameter is replaced with Object class, then if we pass a primitive datatype then that Object class reference variable can't point to the primitive type hence generics doesn't support the primitive datatype.
+
+# JAVA Collection Framework:
+ - Java have given support for different Data Structure which are represented in the heirarchical form and the top parent class is called as collection and this entire framework is called as collection framework
+
+ 1. Dynamic Array:
+ - ArrayList is the class for creating dynamic array.
+
+ 2. Linked List:
+ - Java has given a class called LinkedList
+
+ 3. Set (Duplicates are not allowed):
+ - Constant time -> element-> exists or not.
+ - Java gives hash-set and linked-hashset.
+
+ 4. Stack and Queues 
+
+ 5. Maps: Key - Value pair
+    - Duplicate keys are not allowed.1
+
+ 6. Tree:
+    - TreeSet
+    - TreeMap
+
+ * List is the parent class for ArrayList and LinkedList.
+ * Collection is the parent class for List , Set and Queue.
+
+ * Heirarchy.
+   - Object->Iterable->Collection.
+   - Collection->List
+   - Collection -> Queue
+   - Collection->Set
+
+ * Map framework is different from collection framework.
+                                                          

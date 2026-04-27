@@ -14,8 +14,8 @@ public class Strings {
         // String s7 = s6; // This is resolved at compile time. So both will be stored in String pool.
         // System.out.println(s6 == s7); // This will result in true.
 
-        String s8 = new String("Hello");  // Hello will also be present in String pool as well as in heap
-        String s9 = "Hello"; // This will directly  point to the "Hello" present in the String pool
+        // String s8 = new String("Hello");  // Hello will also be present in String pool as well as in heap
+        // String s9 = "Hello"; // This will directly  point to the "Hello" present in the String pool
 
 
     }
