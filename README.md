@@ -3580,4 +3580,95 @@ Consider the example like given below:
    - Collection->Set
 
  * Map framework is different from collection framework.
-                                                          
+
+
+# Limitations of Iterating on any collection:
+- If we consider the data structures like linked list,  or stack which does not follow index based searching, we will have to write different logic for iterating over different data structures. That means the developer would require to know the internal implementation of the data structure used, hence making the implementation tightly coupled to the data structure.
+- To address this limitation we have the iterable interface which is the parent of collection
+
+# Iterable Interface:
+- It is the root interface that represent any object whose element can be traversed one by one.
+
+* Methods:
+1. Iterator() : This method returns the Iterator class object. Iterator is a different interface in java,  it is an actual object which  will iterate in our collection and bring individual elements from our collection. It has two methods that are.
+   - hasNext() :  Gives boolean value for whether the next element is present or not.
+   - next() : Returns the next element present in our data structure.      
+
+# How Different Collection conceptually implement Iterable/Iterator
+
+1. ArrayList:
+   - Conceptual view of the class ArrayList.
+
+   ```java
+
+      class ArrayList implements Iterable{
+        private Integer[] arr;
+        private int size;
+
+        @Override
+        public Iterator iterator(){
+          return new ArrayListIterator();
+        }
+
+
+        private class ArrayListIterator implements Iterator{
+
+            int pos = 0;
+
+            @Override
+            public boolean hasNext(){
+              return pos<size;
+            }
+
+            @Override
+            public Integer next(){
+                return arr[pos++];
+            }
+        }
+      }
+   ```
+
+   2. Linked List
+      - Conceptual overview of Linked List Iterator:
+      ```java
+
+          class LinkedList implements Iterable{
+              static class Node{
+                int data;
+                Node next;
+              }
+
+              Node head;
+
+              @Override
+              Iterator iterator(){
+                return new LinkedListIterator();
+              }
+
+              private class LinkedListIterator implements Iterator{
+                  Node current = head;
+                  @Override
+                  boolean hasNext(){
+                    return current != null;
+                  }
+
+                  @Override
+                  Integer next(){
+                    int data = current.data;
+                    current = current.next;
+                    return data;
+                  }
+              }
+          }
+
+      ```
+
+* Iterable has following methods:
+  - Iterator()
+  - forEach()
+  - splitIterator()
+
+* Iterator has following methods
+  - hasNext()
+  - next()
+  - remove() 
