@@ -3671,4 +3671,56 @@ Consider the example like given below:
 * Iterator has following methods
   - hasNext()
   - next()
-  - remove() 
+  - remove() : Removes the previous element.
+  - forEachRemaining()
+
+* Concurrent Modification Exception:
+  - If we do something like the below code:
+  ```java
+     public  static void main(String[] args){
+        List<Integer> list = new ArrayList<>();
+        list.add(5);
+        list.add(2);
+        list.add(5);
+
+        Iterator<Integer> it = list.iterator();
+
+        while(it.hasNext()){
+            int value = it.next();
+            if(value == 2)
+              list.remove(value);            
+       }
+     }
+  ```
+  - The above code will give exception because we are using remove() method of List and not of the iterator. Iterator's remove() method does not take any args and remove last traversed element and is safe.
+  - This is called as fail fast.
+
+
+# There are two things Collection as interface and Collections as a Class.
+
+# Conceptual view of Collection Interface:
+```java
+  public interface Collection<E> {
+      int size();
+      boolean isEmpty();
+      boolean contains(Object o);
+      Iterator<E> iterator();
+      Object[] toArray();
+      <T> T[] toArray(T[] a);
+      boolean add(E e);
+      boolean remove(Object a);
+      boolean containsAll(Collection<?> c);
+      boolean addAll(Collection<? extends E> c);
+      boolean removeAll(Collection<?> c);
+      boolean retainAll(Collection<?> c);
+      void clear();
+      boolean equals(Object o);
+      int hashCode();
+
+      default boolean removeIf(Predicate<? super E> filter)
+      default Spliterator<E> spliterator()
+      default Stream<E> stream()
+      default Stream<E> parallelStream()
+  }
+
+```
