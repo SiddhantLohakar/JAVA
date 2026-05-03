@@ -3766,3 +3766,40 @@ Consider the example like given below:
 - listIterator(int index): starts from particular index
 - of(Collection) : Gives us an immutable list.
 - Copyof()-
+
+
+# Set and Map interfaces
+
+* NOTE: Internally java creates map even for sets, so there is actually no data structure like set in java.=]
+
+## Set:
+- Doesn't allow duplicates
+- Constant time search operation
+
+### TradeOff:
+- no positional access
+
+## Maps:
+- Stores key value pair where keys are unique
+- constant time search
+
+
+### Internal node structure of Map
+```java
+  class Node<K , V> {
+     K key;
+     V value;
+     int hash;
+     Node<K, V> next;
+  }
+
+  // The above class is present within the Map class
+  class HashMap{
+    static class Node{
+      
+    }
+  }
+```
+
+
+
