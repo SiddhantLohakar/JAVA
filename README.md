@@ -3724,3 +3724,45 @@ Consider the example like given below:
   }
 
 ```
+
+# List Interface in JAVA:
+- It has three implementation
+  1. ArrayList
+  2. LinkedList
+  3. Vector
+     - Stack
+
+## Properties of list:
+- Elements have a position
+- Duplicates are allowed
+- Insertion Order is preserved
+- You can access element by index
+
+* Note: A sequencedCollection interface was introduced in Java 21
+  - So the heirarchy becomes : Collection-> SequencedCollection->List
+
+## Sequenced Collection Methods:
+- getFirst()
+- getLast()
+- addFirst()
+- addLast()
+- removeFirst()
+- removeLast()
+
+## List Interface methods:
+- E get(index)
+- set(index, E value);
+- add(index, E value)
+  - adds the element at specified index and moves all the element one position ahead.
+- boolean addAll(index, Collection<? extends E>)
+- remove(index);
+- indexOf(Object value)
+- lastIndexOf(Object value)
+- listIterator()
+  - forward 
+  - backward
+  - insert
+  - remove
+- listIterator(int index): starts from particular index
+- of(Collection) : Gives us an immutable list.
+- Copyof()-
