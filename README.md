@@ -3825,3 +3825,14 @@ Consider the example like given below:
 - Map
   - HashMap -> LinkedHashMap
   - TreeMap
+
+
+# Methods of Set and HashSet
+
+## Constructors:
+- Set<Integer> set = new HashSet<>();
+- Set<Integer> set = new HashSet<>(20); // Initial Capacity given
+- Set<Integer> set = new HashSet<>(100, 0.8); // Initial Capacity and Load factor
+- Set<Integer> set = new HashSet<>(List.of(1,2,3,4,5,6)); // Using another collection
+
+
