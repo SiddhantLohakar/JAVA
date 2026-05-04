@@ -3836,3 +3836,64 @@ Consider the example like given below:
 - Set<Integer> set = new HashSet<>(List.of(1,2,3,4,5,6)); // Using another collection
 
 
+# Queue Interface:
+- To implement a Queue we have two methods we can use Array  or Linked List.
+- It follows the principle of first in first out
+
+# Stack interface
+- It follows the principle of last in first out
+- Java uses doubly linked list to implement it
+
+## Heirarchy:
+- Iterable->Collection->Queue->DeQueue->ArrayDequeue
+- ArrayDeque can be used as queue, stack and dequeue, It uses array to implement it internally.
+
+### NOTE:
+- It is the responsibility of the developer to make sure that we don't  use a method that will break the principle of stack when using the dequeue as stack. Java has provided all the methods and it doesn't provide any seperate data structure hence we will have to make sure to maintain the boundaries.
+
+# Priority Queue 
+- Special kind of class that implements the Queue interface.
+- We can access the element based on there priority. for example we can give highest priority to the smaller numbers and lower priority to the larger numbers
+
+```java
+import java.util.PriorityQueue;
+
+public class PriorityQueueExample {
+    public static void main(String[] args) {
+
+        // -------- MIN HEAP (Default) --------
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+        // Adding elements
+        minHeap.add(10);
+        minHeap.add(5);
+        minHeap.add(20);
+        minHeap.add(1);
+
+        System.out.println("Min Heap: " + minHeap);
+
+        // Removing elements (smallest first)
+        System.out.println("Removed from Min Heap: " + minHeap.poll()); // 1
+        System.out.println("After removal: " + minHeap);
+
+
+        // -------- MAX HEAP (Using Lambda Comparator) --------
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(
+            (a, b) -> b - a   // lambda for descending order
+        );
+
+        // Adding elements
+        maxHeap.add(10);
+        maxHeap.add(5);
+        maxHeap.add(20);
+        maxHeap.add(1);
+
+        System.out.println("\nMax Heap: " + maxHeap);
+
+        // Removing elements (largest first)
+        System.out.println("Removed from Max Heap: " + maxHeap.poll()); // 20
+        System.out.println("After removal: " + maxHeap);
+    }
+}
+
+```
