@@ -3801,5 +3801,27 @@ Consider the example like given below:
   }
 ```
 
+### Load Factor:
+- In Java, the load factor is a parameter used in hash-based collections such as HashMap and HashSet to determine when the internal hash table should be resized (rehashing). It is defined as the ratio of the number of elements stored in the collection to the current capacity of the hash table. In simpler terms, it indicates how full the hash table is allowed to become before its size is increased. When the number of elements exceeds the product of the current capacity and the load factor, rehashing is triggered, which involves creating a larger internal array (usually double the size) and redistributing all existing elements into new buckets based on their hash values. By default, Java uses a load factor of 0.75, meaning the table is resized when it becomes 75% full. This value provides a balanced trade-off between time efficiency (reducing collisions for faster access) and space efficiency (avoiding excessive unused memory).
 
 
+### TreeFication:
+- After Java 8+ if the linked list size gets bigger than 8 then java converts the linked list to Balanced Binary Search Tree. It uses the Red Black Tree.
+
+
+### LinkedHashSet / LinkedHashMap:
+- It uses doubly linked list internally to store the order. It contains of two more pointers before and after.
+
+### TreeMap and TreeSet:
+- It implements set and map using the Self Balancing BST(Red-Black Tree).
+- Time complexity becomes O(log n).
+
+### Heirarchy:
+- Set:
+  - Collection -> Set
+  - Set -> HashSet -> LinkedHashSet
+  - Set -> TreeSet
+
+- Map
+  - HashMap -> LinkedHashMap
+  - TreeMap
