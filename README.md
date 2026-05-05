@@ -3897,3 +3897,40 @@ public class PriorityQueueExample {
 }
 
 ```
+# Comparable Interface
+- When data structures started emerging which required the sorting and comparing of two values, there was a problem of how to compare two user defined datatypes because for primitive datatypes the java knows, but for the non-primitive user defined data type java doesn't know how to compare them.
+- So comparable interface provides a contract which tells how to compare the current object with another object of the same type.
+- It looks like
+
+```java
+
+  int CompareTo(T o);
+
+```
+
+- The interfaces containiing only one function are called as functional interfaces.
+
+## Rules for CompareTo:
+- If "a.compareTo(b) == 0", then it is the responsibility of us to make sure that "a.equals(b)" should also be true.
+
+## When should we use comparable:
+- If we have a custom class and that has natural ordering.
+- If we don't have a natural ordering and have a ordering specific to use case we use the comparator interface.
+
+
+# Collections Class:
+- This is an utility class. It contains many static methods which can be applied to collections.
+
+## Methods:
+- Collections.sort()
+- Collections.max()
+- Collections.min()
+- Collections.fill(list, 0) // for initial fill
+- Collections.reverse() // reverses the list
+- Collections.shuffle() // Shuffles the indexes
+- Collections.swap(list, a, b) // swaps two values present at specified indexes
+- Collections.frequency(list, b) // finds the frequency of the element
+
+
+* Collections.unmodifiablelist(list) // returns immutable list
+* Collections.emptylist() // returns the empty immutable list 
